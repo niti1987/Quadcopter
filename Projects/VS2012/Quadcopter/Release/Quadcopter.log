@@ -1,11 +1,94 @@
-﻿Build started 11/13/2014 5:22:58 PM.
+﻿Build started 11/14/2014 1:51:26 AM.
      1>Project "\\psf\DMZ\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\Quadcopter.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /analyze- /errorReport:prompt ..\..\..\Source\Quadcopter.cpp ..\..\..\Source\QuadcopterDemo.cpp ..\..\..\Source\main.cpp
+         Quadcopter.cpp
+         QuadcopterDemo.cpp
+         main.cpp
+     1>..\..\..\Source\QuadcopterDemo.cpp(32): warning C4305: 'initializing' : truncation from 'double' to 'rim::Float'
+     1>..\..\..\Source\QuadcopterDemo.cpp(93): warning C4305: 'argument' : truncation from 'double' to 'rim::graphics::Real'
+     1>..\..\..\Source\QuadcopterDemo.cpp(233): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(234): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(268): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(274): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
        Link:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter.exe" /NOLOGO /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics" opengl32.lib RimEntities.lib RimPhysics.lib RimBVH.lib RimEngine.lib RimFramework.lib RimGraphics.lib RimGraphicsGUI.lib RimGUI.lib RimImages.lib RimSound.lib RimXML.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter.lib" /MACHINE:X86 /SAFESEH Release\main.obj
+         Release\Quadcopter.obj
+         Release\QuadcopterDemo.obj
+         Generating code
+         Finished generating code
+     1>RimGraphics.lib(glew.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphics.lib(glew.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(winfnt.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(winfnt.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(type42.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(type42.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(type1.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(type1.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(truetype.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(truetype.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(smooth.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(smooth.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(sfnt.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(sfnt.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(raster.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(raster.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(psnames.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(psnames.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(pshinter.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(pshinter.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(psaux.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(psaux.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(pfr.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(pfr.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(pcf.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(pcf.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftlzw.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftlzw.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftgzip.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftgzip.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(type1cid.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(type1cid.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(cff.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(cff.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(bdf.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(bdf.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftsystem.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftsystem.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftinit.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftinit.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftglyph.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftglyph.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftbitmap.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftbitmap.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(ftbase.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(ftbase.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimGraphicsGUI.lib(autofit.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimGraphicsGUI.lib(autofit.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(zutil.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(zutil.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(trees.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(trees.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(inftrees.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(inftrees.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(inflate.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(inflate.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(inffast.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(inffast.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(deflate.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(deflate.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(crc32.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(crc32.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(compress.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(compress.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(adler32.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(adler32.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngwutil.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngwutil.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngwtran.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngwtran.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngwrite.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngwrite.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngwio.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngwio.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngtrans.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngtrans.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngset.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngset.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngrutil.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngrutil.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngrtran.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngrtran.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngrio.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngrio.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngread.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngread.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngmem.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngmem.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngget.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngget.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(pngerror.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(pngerror.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimImages.lib(png.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimImages.lib(png.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(vorbisfile.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(vorbisfile.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(vorbisenc.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(vorbisenc.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(window.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(window.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(synthesis.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(synthesis.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(smallft.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(smallft.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(sharedbook.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(sharedbook.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(res0.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(res0.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(registry.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(registry.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(psy.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(psy.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(mdct.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(mdct.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(mapping0.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(mapping0.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(lsp.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(lsp.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(lpc.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(lpc.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(info.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(info.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(floor1.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(floor1.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(floor0.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(floor0.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(envelope.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(envelope.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(codebook.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(codebook.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(block.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(block.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(bitrate.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(bitrate.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(analysis.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(analysis.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(framing.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(framing.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
+     1>RimSound.lib(bitwise.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'RimSound.lib(bitwise.obj)' or at '\\psf\DMZ\Quadcopter\Release\vc110.pdb'; linking object as if no debug info
          Quadcopter.vcxproj -> \\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter.exe
        FinalizeBuildStatus:
          Deleting file "Release\Quadcopter.unsuccessfulbuild".
@@ -14,4 +97,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.43
+Time Elapsed 00:00:24.15

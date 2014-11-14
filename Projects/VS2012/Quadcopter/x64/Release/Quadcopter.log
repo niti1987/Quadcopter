@@ -1,16 +1,16 @@
-﻿Build started 11/13/2014 5:22:33 PM.
+﻿Build started 11/14/2014 1:49:27 AM.
      1>Project "\\psf\DMZ\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
-         Creating "x64\Release\Quadcopter.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "x64\Release\Quadcopter.unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /errorReport:prompt ..\..\..\Source\Quadcopter.cpp ..\..\..\Source\QuadcopterDemo.cpp ..\..\..\Source\main.cpp
-         Quadcopter.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /errorReport:prompt ..\..\..\Source\QuadcopterDemo.cpp
          QuadcopterDemo.cpp
-     1>..\..\..\Source\QuadcopterDemo.cpp(29): warning C4305: 'initializing' : truncation from 'double' to 'rim::Float'
-     1>..\..\..\Source\QuadcopterDemo.cpp(77): warning C4305: 'argument' : truncation from 'double' to 'rim::graphics::Real'
-     1>..\..\..\Source\QuadcopterDemo.cpp(227): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
-     1>..\..\..\Source\QuadcopterDemo.cpp(233): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
-         main.cpp
+     1>..\..\..\Source\QuadcopterDemo.cpp(32): warning C4305: 'initializing' : truncation from 'double' to 'rim::Float'
+     1>..\..\..\Source\QuadcopterDemo.cpp(93): warning C4305: 'argument' : truncation from 'double' to 'rim::graphics::Real'
+     1>..\..\..\Source\QuadcopterDemo.cpp(233): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(234): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(268): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(274): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe" /NOLOGO /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics" opengl32.lib RimEntities_x64.lib RimPhysics_x64.lib RimBVH_x64.lib RimEngine_x64.lib RimFramework_x64.lib RimGraphics_x64.lib RimGraphicsGUI_x64.lib RimGUI_x64.lib RimImages_x64.lib RimSound_x64.lib RimXML_x64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.lib" /MACHINE:X64 x64\Release\main.obj
          x64\Release\Quadcopter.obj
@@ -25,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:19.75
+Time Elapsed 00:00:22.41

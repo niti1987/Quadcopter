@@ -59,21 +59,36 @@ class Quadcopter
 			
 			
 			
+			/// The 3D position of the quadcopter's center of mass in world space (meters).
 			Vector3f position;
+			
+			/// The 3D velocity of the quadcopter's center of mass in world space (meters per second).
 			Vector3f velocity;
+			
+			/// The 3D force on the quadcopter's center of mass in world space for the current time step (kg*meters / seconds^2).
 			Vector3f force;
 			
+			/// The 3x3 rotation matrix specifying the rotation from local to world space.
 			Matrix3f orientation;
+			
 			Vector3f angularVelocity;
 			Vector3f torque;
 			
+			/// The mass of the quadcopter in kg.
 			Float mass;
 			Float inverseMass;
 			
+			/// The body-space inertia tensor of the quadcopter.
 			Matrix3f inertia;
 			
 			
-			Pointer<PerspectiveCamera> camera;
+			/// A camera that looks in the forward direction.
+			Pointer<PerspectiveCamera> frontCamera;
+			
+			/// A camera that looks downwards.
+			Pointer<PerspectiveCamera> downCamera;
+			
+			/// The graphical representation of the quadcopter.
 			Pointer<GraphicsObject> graphics;
 			
 			

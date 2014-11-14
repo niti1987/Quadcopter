@@ -2,7 +2,17 @@
 #include "Orientation.h"
 #include "AngularVelocity.h"
 
-#include "vmath.h"
+//#include "vmath.h"
+
+
+#include "rim/rimEngine.h"
+#include "rim/rimGraphicsGUI.h"
+
+
+using namespace rim;
+using namespace rim::graphics;
+using namespace rim::graphics::gui;
+using namespace rim::engine;
 
 /**
  * This class represents the state of the vehicle and includes fields for

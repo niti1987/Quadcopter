@@ -25,7 +25,7 @@ private:
      *            The <code>Orientation</code> to be copied.
      */
 public:
-	Orientation(Orientation orientationToCopy) {
+	Orientation(const Orientation& orientationToCopy) {
         yaw = orientationToCopy.yaw;
         pitch = orientationToCopy.pitch;
         roll = orientationToCopy.roll;
@@ -69,7 +69,7 @@ private:
 public:
 	static Orientation buildOrientationFromRadians(double yawRadians,
             double pitchRadians, double rollRadians) {
-        return new Orientation(yawRadians, pitchRadians, rollRadians);
+        return Orientation(yawRadians, pitchRadians, rollRadians);
     }
 
     /**
@@ -77,7 +77,7 @@ public:
      * 
      * @return The rotation about the Z-axis in radians.
      */
-    double getYawRadians() {
+    double getYawRadians() const {
         return yaw;
     }
 
@@ -86,7 +86,7 @@ public:
      * 
      * @return The rotation about the Y-axis in radians.
      */
-    double getPitchRadians() {
+    double getPitchRadians() const {
         return pitch;
     }
 
@@ -95,7 +95,7 @@ public:
      * 
      * @return The rotation about the X axis-in radians.
      */
-    double getRollRadians() {
+    double getRollRadians() const {
         return roll;
     }
 };

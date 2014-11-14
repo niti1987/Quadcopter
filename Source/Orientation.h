@@ -14,7 +14,7 @@ private:
      *            The <code>Orientation</code> to be copied.
      */
 public:
-	Orientation(Orientation);
+	Orientation(const Orientation&);
 
 	/*
      * Internal use only. This should only be called by the
@@ -46,7 +46,7 @@ public:
      * 
      * @return The rotation about the Z-axis in radians.
      */
-    double getYawRadians(void);
+    double getYawRadians (void);
 
 	 /**
      * Returns the pitch in radians.

@@ -22,7 +22,7 @@ public:
 	 * @param angularVelocityToCopy
 	 *            The <code>AngularVelocity</code> to copy.
 	 */
-	AngularVelocity(AngularVelocity);
+	AngularVelocity(const AngularVelocity&);
 
 	/**
 	 * Constructs a new <code>AngularVelocity</code> with the values passed.

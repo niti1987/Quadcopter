@@ -1,11 +1,21 @@
 #include "VehicleAttitudeHelpers.h"
 
-#include "vmath.h"
+//#include "vmath.h"
 #include <math.h>
 
 #include "AngularVelocity.h"
 #include "Orientation.h"
 #include "VehicleState.h"
+
+
+#include "rim/rimEngine.h"
+#include "rim/rimGraphicsGUI.h"
+
+
+using namespace rim;
+using namespace rim::graphics;
+using namespace rim::graphics::gui;
+using namespace rim::engine;
 
 /**
  * 
@@ -128,9 +138,9 @@
 
 		float barray[9] = {bxi, byi, bzi, bxj, byj, bzj, bxk, byk, bzk};
 
-		return Matrix3f(barray);
+		//return Matrix3f(barray);
 
-		//return Matrix3f(bxi, byi, bzi, bxj, byj, bzj, bxk, byk, bzk);
+		return Matrix3f(bxi, bxj, bxk, byi, byj, byk, bzi, bzj, bzk);
     }
 
     /**
@@ -186,7 +196,7 @@
             Matrix3f bodyAttitudeG, Matrix3f newBodyAttitudeG) {
         Matrix3f bodyAttitudeGTranspose = bodyAttitudeG.transpose();
         // Multiplies newBodyAttitudeG by bodyAttitudeGTranspose
-        return bodyAttitudeGTranspose.operator*(newBodyAttitudeG);
+        return bodyAttitudeGTranspose*(newBodyAttitudeG);
     }
 
     /**
@@ -214,7 +224,7 @@
             Vector3f vectorG) {
         Matrix3f bodyAttitudeGTranspose = bodyAttitudeG.transpose();
         // Multiplies newBodyAttitudeG by bodyAttitudeGTranspose
-        return bodyAttitudeGTranspose.operator*(vectorG);
+        return bodyAttitudeGTranspose*(vectorG);
     }
 
     /**
@@ -274,8 +284,8 @@
 		float barray[9] = {bxi, byi, bzi, bxj, byj, bzj,
                 bxk, byk, bzk};
 
-        Matrix3f rotationMatrix = Matrix3f(barray);
-        return rotationMatrix.operator*(currentAttitude).transpose();
+        Matrix3f rotationMatrix = Matrix3f(bxi, bxj, bxk, byi, byj, byk, bzi, bzj, bzk); //Matrix3f(barray);
+        return rotationMatrix*(currentAttitude).transpose();
 
     }
 
@@ -338,9 +348,9 @@
 		float barray[9] = {bxi, byi, bzi, bxj, byj, bzj,
                 bxk, byk, bzk};
 
-        Matrix3f rotationMatrix = Matrix3f(barray);
+        Matrix3f rotationMatrix = Matrix3f(bxi, bxj, bxk, byi, byj, byk, bzi, bzj, bzk); //Matrix3f(barray);
 
-        return rotationMatrix.operator*(currentAttitude);
+        return rotationMatrix*(currentAttitude);
     }
 
     /**

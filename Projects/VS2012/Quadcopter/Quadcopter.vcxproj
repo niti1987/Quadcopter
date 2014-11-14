@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\..\Source\Quadcopter.cpp" />
+    <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Source\Quadcopter.h" />
+    <ClInclude Include="..\..\..\Source\QuadcopterDemo.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6525ED7B-C16C-4491-8CC2-EAB50961BE8D}</ProjectGuid>
+    <RootNamespace>RimFramework</RootNamespace>
+    <ProjectName>Quadcopter</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\..\Release\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\..\Release\</OutDir>
+    <TargetName>$(ProjectName)_x64</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\..\Release\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\Release\</OutDir>
+    <TargetName>$(ProjectName)_x64</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <DisableSpecificWarnings>4290;4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI\include;$(SolutionDir)..\..\Libraries\Rim Graphics\include;$(SolutionDir)..\..\Libraries\Rim GUI\include;$(SolutionDir)..\..\Libraries\Rim Images\include;$(SolutionDir)..\..\Libraries\Rim Entities\include;$(SolutionDir)..\..\Libraries\Rim Engine\include;$(SolutionDir)..\..\Libraries\Rim Sound\include;$(SolutionDir)..\..\Libraries\Rim XML\include;$(SolutionDir)..\..\Libraries\Rim Framework\include;$(SolutionDir)..\..\Libraries\Rim BVH\include;$(SolutionDir)..\..\Libraries\Rim Physics\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;RimEntities.lib;RimPhysics.lib;RimBVH.lib;RimEngine.lib;RimFramework.lib;RimGraphics.lib;RimGraphicsGUI.lib;RimGUI.lib;RimImages.lib;RimSound.lib;RimXML.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI;$(SolutionDir)..\..\Libraries\Rim Graphics;$(SolutionDir)..\..\Libraries\Rim GUI;$(SolutionDir)..\..\Libraries\Rim Images;$(SolutionDir)..\..\Libraries\Rim Entities;$(SolutionDir)..\..\Libraries\Rim Engine;$(SolutionDir)..\..\Libraries\Rim Sound;$(SolutionDir)..\..\Libraries\Rim XML;$(SolutionDir)..\..\Libraries\Rim Framework;$(SolutionDir)..\..\Libraries\Rim BVH;$(SolutionDir)..\..\Libraries\Rim Physics</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <DisableSpecificWarnings>4290;4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI\include;$(SolutionDir)..\..\Libraries\Rim Graphics\include;$(SolutionDir)..\..\Libraries\Rim GUI\include;$(SolutionDir)..\..\Libraries\Rim Images\include;$(SolutionDir)..\..\Libraries\Rim Entities\include;$(SolutionDir)..\..\Libraries\Rim Engine\include;$(SolutionDir)..\..\Libraries\Rim Sound\include;$(SolutionDir)..\..\Libraries\Rim XML\include;$(SolutionDir)..\..\Libraries\Rim Framework\include;$(SolutionDir)..\..\Libraries\Rim BVH\include;$(SolutionDir)..\..\Libraries\Rim Physics\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>opengl32.lib;RimEntities_x64.lib;RimPhysics_x64.lib;RimBVH_x64.lib;RimEngine_x64.lib;RimFramework_x64.lib;RimGraphics_x64.lib;RimGraphicsGUI_x64.lib;RimGUI_x64.lib;RimImages_x64.lib;RimSound_x64.lib;RimXML_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI;$(SolutionDir)..\..\Libraries\Rim Graphics;$(SolutionDir)..\..\Libraries\Rim GUI;$(SolutionDir)..\..\Libraries\Rim Images;$(SolutionDir)..\..\Libraries\Rim Entities;$(SolutionDir)..\..\Libraries\Rim Engine;$(SolutionDir)..\..\Libraries\Rim Sound;$(SolutionDir)..\..\Libraries\Rim XML;$(SolutionDir)..\..\Libraries\Rim Framework;$(SolutionDir)..\..\Libraries\Rim BVH;$(SolutionDir)..\..\Libraries\Rim Physics</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <DisableSpecificWarnings>4290;4996</DisableSpecificWarnings>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI\include;$(SolutionDir)..\..\Libraries\Rim Graphics\include;$(SolutionDir)..\..\Libraries\Rim GUI\include;$(SolutionDir)..\..\Libraries\Rim Images\include;$(SolutionDir)..\..\Libraries\Rim Entities\include;$(SolutionDir)..\..\Libraries\Rim Engine\include;$(SolutionDir)..\..\Libraries\Rim Sound\include;$(SolutionDir)..\..\Libraries\Rim XML\include;$(SolutionDir)..\..\Libraries\Rim Framework\include;$(SolutionDir)..\..\Libraries\Rim BVH\include;$(SolutionDir)..\..\Libraries\Rim Physics\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;RimEntities.lib;RimPhysics.lib;RimBVH.lib;RimEngine.lib;RimFramework.lib;RimGraphics.lib;RimGraphicsGUI.lib;RimGUI.lib;RimImages.lib;RimSound.lib;RimXML.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI;$(SolutionDir)..\..\Libraries\Rim Graphics;$(SolutionDir)..\..\Libraries\Rim GUI;$(SolutionDir)..\..\Libraries\Rim Images;$(SolutionDir)..\..\Libraries\Rim Entities;$(SolutionDir)..\..\Libraries\Rim Engine;$(SolutionDir)..\..\Libraries\Rim Sound;$(SolutionDir)..\..\Libraries\Rim XML;$(SolutionDir)..\..\Libraries\Rim Framework;$(SolutionDir)..\..\Libraries\Rim BVH;$(SolutionDir)..\..\Libraries\Rim Physics</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <DisableSpecificWarnings>4290;4996</DisableSpecificWarnings>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI\include;$(SolutionDir)..\..\Libraries\Rim Graphics\include;$(SolutionDir)..\..\Libraries\Rim GUI\include;$(SolutionDir)..\..\Libraries\Rim Images\include;$(SolutionDir)..\..\Libraries\Rim Entities\include;$(SolutionDir)..\..\Libraries\Rim Engine\include;$(SolutionDir)..\..\Libraries\Rim Sound\include;$(SolutionDir)..\..\Libraries\Rim XML\include;$(SolutionDir)..\..\Libraries\Rim Framework\include;$(SolutionDir)..\..\Libraries\Rim BVH\include;$(SolutionDir)..\..\Libraries\Rim Physics\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;RimEntities_x64.lib;RimPhysics_x64.lib;RimBVH_x64.lib;RimEngine_x64.lib;RimFramework_x64.lib;RimGraphics_x64.lib;RimGraphicsGUI_x64.lib;RimGUI_x64.lib;RimImages_x64.lib;RimSound_x64.lib;RimXML_x64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\..\Libraries\Rim Graphics GUI;$(SolutionDir)..\..\Libraries\Rim Graphics;$(SolutionDir)..\..\Libraries\Rim GUI;$(SolutionDir)..\..\Libraries\Rim Images;$(SolutionDir)..\..\Libraries\Rim Entities;$(SolutionDir)..\..\Libraries\Rim Engine;$(SolutionDir)..\..\Libraries\Rim Sound;$(SolutionDir)..\..\Libraries\Rim XML;$(SolutionDir)..\..\Libraries\Rim Framework;$(SolutionDir)..\..\Libraries\Rim BVH;$(SolutionDir)..\..\Libraries\Rim Physics</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

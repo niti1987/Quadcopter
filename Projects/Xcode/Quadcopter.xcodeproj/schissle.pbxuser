@@ -1,0 +1,126 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Release;
+		activeExecutable = AD71CC3B19E86F0700DB96E3 /* Quadcopter */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* Quadcopter */;
+		addToTargets = (
+			8DD76FA90486AB0100D96B5E /* Quadcopter */,
+		);
+		codeSenseManager = AD71CC5F19E86F1C00DB96E3 /* Code sense */;
+		executables = (
+			AD71CC3B19E86F0700DB96E3 /* Quadcopter */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					434,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 437612621;
+			PBXWorkspaceStateSaveDate = 437612621;
+		};
+		sourceControlManager = AD71CC5E19E86F1C00DB96E3 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8DD76FA90486AB0100D96B5E /* Quadcopter */ = {
+		activeExec = 0;
+		executables = (
+			AD71CC3B19E86F0700DB96E3 /* Quadcopter */,
+		);
+	};
+	AD71CC3B19E86F0700DB96E3 /* Quadcopter */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = Quadcopter;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	AD71CC5E19E86F1C00DB96E3 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	AD71CC5F19E86F1C00DB96E3 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	AD90C99F19F9A2F10000F13F /* Quadcopter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1059, 1204}}";
+			sepNavSelRange = "{1034, 0}";
+			sepNavVisRange = "{387, 1252}";
+			sepNavWindowFrame = "{{363, 65}, {1106, 813}}";
+		};
+	};
+	AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {451, 574}}";
+			sepNavSelRange = "{479, 36}";
+			sepNavVisRange = "{381, 251}";
+			sepNavWindowFrame = "{{360, 65}, {1106, 813}}";
+		};
+	};
+	C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1059, 5068}}";
+			sepNavSelRange = "{10635, 0}";
+			sepNavVisRange = "{1608, 1880}";
+			sepNavWindowFrame = "{{297, 65}, {1106, 813}}";
+		};
+	};
+	C30956A719E7A59E0023DB2C /* QuadcopterDemo.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1059, 2212}}";
+			sepNavSelRange = "{2552, 0}";
+			sepNavVisRange = "{1298, 1124}";
+			sepNavWindowFrame = "{{24, -27}, {1106, 813}}";
+		};
+	};
+}

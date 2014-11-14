@@ -1,0 +1,234 @@
+THW 1
+v7
+r1
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004B99A23900000000000000EE
+t1268359737
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/Cocoa.framework/Cocoa
+c000000004B99A2330000000000003430
+t1268359731
+s13360
+
+N/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL
+c000000004B99A233000000000000DB14
+t1268359731
+s56084
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim BVH/RimBVH.a
+c000000005424DF180000000000017538
+t1411702552
+s95544
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Engine/RimEngine.a
+c0000000054264A3800000000000882F8
+t1411795512
+s557816
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Entities/RimEntities.a
+c000000005424DF4C000000000002DE28
+t1411702604
+s187944
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Framework/RimFramework.a
+c000000005434BF5200000000001357F8
+t1412742994
+s1267704
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim GUI/RimGUI.a
+c000000005424DF1600000000000BC748
+t1411702550
+s771912
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Graphics GUI/RimGraphicsGUI.a
+c00000000541E424A000000000029E910
+t1411269194
+s2746640
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Graphics/RimGraphics.a
+c0000000054264A6A000000000040F218
+t1411795562
+s4256280
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Images/RimImages.a
+c000000005424DF0E0000000000140C00
+t1411702542
+s1313792
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Physics/RimPhysics.a
+c000000005424DF500000000000192A30
+t1411702608
+s1649200
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../../Rim Software/Release/Rim Sound/RimSound.a
+c000000005424DF4A000000000055ABA0
+t1411702602
+s5614496
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim BVH/RimBVH.a
+c000000005424DF180000000000017538
+t1411702552
+s95544
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Engine/RimEngine.a
+c0000000054264A3800000000000882F8
+t1411795512
+s557816
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Entities/RimEntities.a
+c000000005424DF4C000000000002DE28
+t1411702604
+s187944
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Framework/RimFramework.a
+c000000005434BF5200000000001357F8
+t1412742994
+s1267704
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim GUI/RimGUI.a
+c000000005424DF1600000000000BC748
+t1411702550
+s771912
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Graphics GUI/RimGraphicsGUI.a
+c00000000541E424A000000000029E910
+t1411269194
+s2746640
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Graphics/RimGraphics.a
+c0000000054264A6A000000000040F218
+t1411795562
+s4256280
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Images/RimImages.a
+c000000005424DF0E0000000000140C00
+t1411702542
+s1313792
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Physics/RimPhysics.a
+c000000005424DF500000000000192A30
+t1411702608
+s1649200
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim Sound/RimSound.a
+c000000005424DF4A000000000055ABA0
+t1411702602
+s5614496
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Libraries/Rim XML/RimXML.a
+c000000005424DF52000000000001C268
+t1411702610
+s115304
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Source/BallisticDemo.cpp
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Source/BallisticDemo.h
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Source/ParticleSystem.cpp
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/../../Source/main.cpp
+c0000000054108938000000000000017B
+t1410369848
+s379
+i"BallisticDemo.h"
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/BallisticDemo.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/HW 1
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/HW 1.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/ParticleSystem.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/main.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/BallisticDemo.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/HW 1
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/HW 1.LinkFileList
+c00000000000000000000000000000000
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/ParticleSystem.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/main.o
+t2
+s0
+
+N/Volumes/DMZ/Code/Projects/Xcode/build/Release/HW 1
+t2
+s0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/BallisticDemo.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/BallisticDemo.cpp normal i386 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/ParticleSystem.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/ParticleSystem.cpp normal i386 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/main.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/main.cpp normal i386 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/BallisticDemo.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/BallisticDemo.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/ParticleSystem.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/ParticleSystem.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCompileC "build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/main.o" /Volumes/DMZ/Code/Projects/Xcode/../../Source/main.cpp normal x86_64 c++ com.apple.compilers.llvmgcc42
+r0
+
+CCreateUniversalBinary "/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1" normal "i386 x86_64"
+r0
+
+CLd "/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/i386/HW 1" normal i386
+r0
+
+CLd "/Volumes/DMZ/Code/Projects/Xcode/build/Quadcopter.build/Release/HW 1.build/Objects-normal/x86_64/HW 1" normal x86_64
+r0
+
+CSetMode u+w,go-w,a+rX "/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1"
+r0
+
+CSetOwnerAndGroup carl:staff "/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1"
+r0
+
+CStrip "/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1"
+r0
+
+CSymLink "/Volumes/DMZ/Code/Projects/Xcode/build/Release/HW 1" "/Volumes/DMZ/Code/Projects/Xcode/../../Release/HW 1"
+r0
+

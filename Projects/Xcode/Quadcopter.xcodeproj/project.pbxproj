@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AD6145D419C0C0D800B714A9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6145D319C0C0D800B714A9 /* OpenGL.framework */; };
+		AD90C9A119F9A2F10000F13F /* Quadcopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */; };
+		ADAAC87D19BF861100DF9F6C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADAAC87C19BF861100DF9F6C /* main.cpp */; };
+		ADF4DBF819BF8A9C00B72FCF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF4DBF719BF8A9C00B72FCF /* Cocoa.framework */; };
+		C30956A819E7A59E0023DB2C /* QuadcopterDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */; };
+		C3CDD19F19E7A478004116F5 /* RimBVH.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19419E7A478004116F5 /* RimBVH.a */; };
+		C3CDD1A019E7A478004116F5 /* RimEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19519E7A478004116F5 /* RimEngine.a */; };
+		C3CDD1A119E7A478004116F5 /* RimEntities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19619E7A478004116F5 /* RimEntities.a */; };
+		C3CDD1A219E7A478004116F5 /* RimFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19719E7A478004116F5 /* RimFramework.a */; };
+		C3CDD1A319E7A478004116F5 /* RimGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19819E7A478004116F5 /* RimGraphics.a */; };
+		C3CDD1A419E7A478004116F5 /* RimGraphicsGUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19919E7A478004116F5 /* RimGraphicsGUI.a */; };
+		C3CDD1A519E7A478004116F5 /* RimGUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19A19E7A478004116F5 /* RimGUI.a */; };
+		C3CDD1A619E7A478004116F5 /* RimImages.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19B19E7A478004116F5 /* RimImages.a */; };
+		C3CDD1A719E7A478004116F5 /* RimPhysics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19C19E7A478004116F5 /* RimPhysics.a */; };
+		C3CDD1A819E7A478004116F5 /* RimSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19D19E7A478004116F5 /* RimSound.a */; };
+		C3CDD1A919E7A478004116F5 /* RimXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19E19E7A478004116F5 /* RimXML.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76FAF0486AB0100D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		8DD76FB20486AB0100D96B5E /* Quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD6145D319C0C0D800B714A9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		AD90C99F19F9A2F10000F13F /* Quadcopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quadcopter.h; sourceTree = "<group>"; };
+		AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quadcopter.cpp; sourceTree = "<group>"; };
+		ADAAC87C19BF861100DF9F6C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		ADF4DBF719BF8A9C00B72FCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadcopterDemo.cpp; sourceTree = "<group>"; };
+		C30956A719E7A59E0023DB2C /* QuadcopterDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadcopterDemo.h; sourceTree = "<group>"; };
+		C3CDD19419E7A478004116F5 /* RimBVH.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimBVH.a; path = "../../Libraries/Rim BVH/RimBVH.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19519E7A478004116F5 /* RimEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimEngine.a; path = "../../Libraries/Rim Engine/RimEngine.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19619E7A478004116F5 /* RimEntities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimEntities.a; path = "../../Libraries/Rim Entities/RimEntities.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19719E7A478004116F5 /* RimFramework.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimFramework.a; path = "../../Libraries/Rim Framework/RimFramework.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19819E7A478004116F5 /* RimGraphics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimGraphics.a; path = "../../Libraries/Rim Graphics/RimGraphics.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19919E7A478004116F5 /* RimGraphicsGUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimGraphicsGUI.a; path = "../../Libraries/Rim Graphics GUI/RimGraphicsGUI.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19A19E7A478004116F5 /* RimGUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimGUI.a; path = "../../Libraries/Rim GUI/RimGUI.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19B19E7A478004116F5 /* RimImages.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimImages.a; path = "../../Libraries/Rim Images/RimImages.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19C19E7A478004116F5 /* RimPhysics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimPhysics.a; path = "../../Libraries/Rim Physics/RimPhysics.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19D19E7A478004116F5 /* RimSound.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimSound.a; path = "../../Libraries/Rim Sound/RimSound.a"; sourceTree = SOURCE_ROOT; };
+		C3CDD19E19E7A478004116F5 /* RimXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimXML.a; path = "../../Libraries/Rim XML/RimXML.a"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76FAD0486AB0100D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADF4DBF819BF8A9C00B72FCF /* Cocoa.framework in Frameworks */,
+				AD6145D419C0C0D800B714A9 /* OpenGL.framework in Frameworks */,
+				C3CDD19F19E7A478004116F5 /* RimBVH.a in Frameworks */,
+				C3CDD1A019E7A478004116F5 /* RimEngine.a in Frameworks */,
+				C3CDD1A119E7A478004116F5 /* RimEntities.a in Frameworks */,
+				C3CDD1A219E7A478004116F5 /* RimFramework.a in Frameworks */,
+				C3CDD1A319E7A478004116F5 /* RimGraphics.a in Frameworks */,
+				C3CDD1A419E7A478004116F5 /* RimGraphicsGUI.a in Frameworks */,
+				C3CDD1A519E7A478004116F5 /* RimGUI.a in Frameworks */,
+				C3CDD1A619E7A478004116F5 /* RimImages.a in Frameworks */,
+				C3CDD1A719E7A478004116F5 /* RimPhysics.a in Frameworks */,
+				C3CDD1A819E7A478004116F5 /* RimSound.a in Frameworks */,
+				C3CDD1A919E7A478004116F5 /* RimXML.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* HW 1 */ = {
+			isa = PBXGroup;
+			children = (
+				ADAAC87B19BF861100DF9F6C /* Source */,
+				ADAAC88B19BF86B200DF9F6C /* Libraries */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+			);
+			name = "HW 1";
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FB20486AB0100D96B5E /* Quadcopter */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ADAAC87B19BF861100DF9F6C /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				ADAAC87C19BF861100DF9F6C /* main.cpp */,
+				C30956A719E7A59E0023DB2C /* QuadcopterDemo.h */,
+				C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */,
+				AD90C99F19F9A2F10000F13F /* Quadcopter.h */,
+				AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = SOURCE_ROOT;
+		};
+		ADAAC88B19BF86B200DF9F6C /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				C3CDD19419E7A478004116F5 /* RimBVH.a */,
+				C3CDD19519E7A478004116F5 /* RimEngine.a */,
+				C3CDD19619E7A478004116F5 /* RimEntities.a */,
+				C3CDD19719E7A478004116F5 /* RimFramework.a */,
+				C3CDD19819E7A478004116F5 /* RimGraphics.a */,
+				C3CDD19919E7A478004116F5 /* RimGraphicsGUI.a */,
+				C3CDD19A19E7A478004116F5 /* RimGUI.a */,
+				C3CDD19B19E7A478004116F5 /* RimImages.a */,
+				C3CDD19C19E7A478004116F5 /* RimPhysics.a */,
+				C3CDD19D19E7A478004116F5 /* RimSound.a */,
+				C3CDD19E19E7A478004116F5 /* RimXML.a */,
+				ADF4DBF719BF8A9C00B72FCF /* Cocoa.framework */,
+				AD6145D319C0C0D800B714A9 /* OpenGL.framework */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76FA90486AB0100D96B5E /* Quadcopter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "Quadcopter" */;
+			buildPhases = (
+				8DD76FAB0486AB0100D96B5E /* Sources */,
+				8DD76FAD0486AB0100D96B5E /* Frameworks */,
+				8DD76FAF0486AB0100D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Quadcopter;
+			productInstallPath = "$(HOME)/bin";
+			productName = "HW 1";
+			productReference = 8DD76FB20486AB0100D96B5E /* Quadcopter */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Quadcopter" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 08FB7794FE84155DC02AAC07 /* HW 1 */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76FA90486AB0100D96B5E /* Quadcopter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76FAB0486AB0100D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ADAAC87D19BF861100DF9F6C /* main.cpp in Sources */,
+				C30956A819E7A59E0023DB2C /* QuadcopterDemo.cpp in Sources */,
+				AD90C9A119F9A2F10000F13F /* Quadcopter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB928608733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries\"/**";
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = Quadcopter;
+			};
+			name = Debug;
+		};
+		1DEB928708733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					i386,
+					x86_64,
+				);
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = "$(SRCROOT)/../../Release";
+				GCC_ALTIVEC_EXTENSIONS = YES;
+				GCC_DYNAMIC_NO_PIC = YES;
+				GCC_ENABLE_SSE3_EXTENSIONS = YES;
+				GCC_ENABLE_SSE41_EXTENSIONS = YES;
+				GCC_ENABLE_SSE42_EXTENSIONS = YES;
+				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../Libraries\"/**";
+				INSTALL_PATH = /;
+				PRODUCT_NAME = Quadcopter;
+			};
+			name = Release;
+		};
+		1DEB928A08733DD80010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB928B08733DD80010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB928508733DD80010E9CD /* Build configuration list for PBXNativeTarget "Quadcopter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928608733DD80010E9CD /* Debug */,
+				1DEB928708733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB928908733DD80010E9CD /* Build configuration list for PBXProject "Quadcopter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB928A08733DD80010E9CD /* Debug */,
+				1DEB928B08733DD80010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

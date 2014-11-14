@@ -1,3 +1,13 @@
+00000000546579260000000000005c20 46d7ea96d32fdfb691f02c47fbc75a39 ffffffffffffffffffffffffffffffff 53564 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/x86_64/QuadcopterDemo.o
+00000000546579440000000000005c25 ddefe846e5a3633dd6d0dacf6bb60426 ffffffffffffffffffffffffffffffff 49908 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/i386/QuadcopterDemo.o
+0541766e98b754979746e4d8716a4f67 a7e7c40cf4966f3ffd41ccdfccda11ba ffffffffffffffffffffffffffffffff 6044800 /Volumes/DMZ/Quadcopter/Projects/Xcode/../../Release/Quadcopter
+6a1505f26f1910cb7bec7ee2e5f2e34d 30465c7492590b1728b8a6a1bc715a4d ffffffffffffffffffffffffffffffff 3814888 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/x86_64/Quadcopter
+f5a7d69056c34d7c2cd0d29e7bfa3e51 aab5f97833340237e8c2ee055313c836 ffffffffffffffffffffffffffffffff 2858176 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/i386/Quadcopter
+000000005061314200000000000022dd 7e182312b50f4bb4876e223f4443efad ffffffffffffffffffffffffffffffff 10096 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/x86_64/Quadcopter.o
+000000005061314200000000000022dd cece7ff6372f9a86f841cccaa403226a ffffffffffffffffffffffffffffffff 9180 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/i386/Quadcopter.o
+0000000054658e4c0000000000001a77 52dacc7646a4df706d72709a5a57de34 ffffffffffffffffffffffffffffffff 11820 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/x86_64/main.o
+0000000054658e4c0000000000001a77 e6864120cbd2ef7e0241c49bb46e90f0 ffffffffffffffffffffffffffffffff 10860 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/i386/main.o
+00000000000000000000000000000000 e729657e73c6c70a9a5019f361a0e52c ffffffffffffffffffffffffffffffff 63 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Release/Quadcopter
 64219603259419f58c6c5ca6f62004ed a7e7c40cf4966f3ffd41ccdfccda11ba ffffffffffffffffffffffffffffffff 6016120 /Volumes/DMZ/Quadcopter/Projects/Xcode/../../Release/Quadcopter
 bd665dcbb734b386d92cdf080f7bac1c 30465c7492590b1728b8a6a1bc715a4d ffffffffffffffffffffffffffffffff 3792584 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/x86_64/Quadcopter
 43b46ec433cda353953acb0a16393a8a aab5f97833340237e8c2ee055313c836 ffffffffffffffffffffffffffffffff 2840140 /Volumes/DMZ/Quadcopter/Projects/Xcode/build/Quadcopter.build/Release/Quadcopter.build/Objects-normal/i386/Quadcopter

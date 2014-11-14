@@ -23,7 +23,8 @@ Quadcopter:: Quadcopter()
 		mass( 0 ),
 		inverseMass( 0 ),
 		inertia( Matrix3f::IDENTITY ),
-		camera( Pointer<PerspectiveCamera>::construct() )
+		frontCamera( Pointer<PerspectiveCamera>::construct() ),
+		downCamera( Pointer<PerspectiveCamera>::construct() )
 {
 }
 
@@ -33,8 +34,21 @@ Quadcopter:: Quadcopter()
 
 void Quadcopter:: updateGraphics()
 {
-	graphics->setPosition( position );
-	graphics->setOrientation( orientation );
-	camera->setPosition( position );
-	camera->setOrientation( orientation );
+	if ( graphics.isSet() )
+	{
+		graphics->setPosition( position );
+		graphics->setOrientation( orientation );
+	}
+	
+	if ( frontCamera.isSet() )
+	{
+		frontCamera->setPosition( position );
+		frontCamera->setOrientation( orientation );
+	}
+	
+	if ( downCamera.isSet() )
+	{
+		downCamera->setPosition( position );
+		downCamera->setOrientation( orientation * Matrix3f::rotationXDegrees(90) );
+	}
 }

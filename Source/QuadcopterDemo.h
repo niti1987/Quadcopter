@@ -22,6 +22,8 @@ using namespace rim::graphics::gui;
 using namespace rim::engine;
 
 
+#include "Quadcopter.h"
+
 
 
 class QuadcopterDemo : public SimpleDemo
@@ -101,6 +103,27 @@ class QuadcopterDemo : public SimpleDemo
 		//********************************************************************************
 		//********************************************************************************
 		//********************************************************************************
+		//******	Quadcopter Management Methods
+			
+			
+			
+			
+			/// Create a new quadcopter with the specified initial position.
+			Pointer<Quadcopter> newQuadcopter( const Vector3f& position ) const;
+			
+			
+			
+			
+			/// Add the specified quadcopter to the current scene.
+			Bool addQuadcopterToScene( const Pointer<Quadcopter>& newQuadcopter );
+			
+			
+			
+			
+			
+		//********************************************************************************
+		//********************************************************************************
+		//********************************************************************************
 		//******	Private Rendering Data Members
 			
 			
@@ -129,6 +152,29 @@ class QuadcopterDemo : public SimpleDemo
 			Vector3f cameraVelocity;
 			Float cameraSpeed;
 			Float cameraFriction;
+			Float cameraYaw;
+			Float cameraPitch;
+			
+			/// The distance that the camera is from its target.
+			Float cameraDistance;
+			
+			/// The target point that the camera is looking at.
+			Vector3f cameraTarget;
+			
+			
+			/// The current goal position for the quadcopter.
+			Vector3f goal;
+			
+			
+			/// A list of the quadcopters that are in the current scene.
+			ArrayList< Pointer<Quadcopter> > quadcopters;
+			
+			
+			
+			
+			/// A pointer to a mesh to use for quadcopters.
+			Pointer<MeshShape> quadcopterMesh;
+			
 			
 			
 			

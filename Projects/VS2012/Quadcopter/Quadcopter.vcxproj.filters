@@ -15,19 +15,19 @@
     <ClCompile Include="..\..\..\Source\Quadcopter.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\AngularVelocity.cpp">
+    <ClCompile Include="..\..\..\Source\Vehicle.h">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\Orientation.cpp">
+    <ClCompile Include="..\..\..\Source\VehicleState.h">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\VehicleAttitudeHelpers.cpp">
+    <ClCompile Include="..\..\..\Source\VehicleAttitudeHelpers.h">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\VehicleState.cpp">
+    <ClCompile Include="..\..\..\Source\Orientation.h">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\Vehicle.cpp">
+    <ClCompile Include="..\..\..\Source\AngularVelocity.h">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -36,21 +36,6 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\Quadcopter.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\AngularVelocity.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\Orientation.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\VehicleAttitudeHelpers.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\VehicleState.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\Vehicle.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

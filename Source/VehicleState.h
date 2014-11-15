@@ -1,24 +1,28 @@
 #pragma once
 
 #include "Orientation.h"
-
 #include "AngularVelocity.h"
 
-//#include "vmath.h"
-
-
 #include "rim/rimEngine.h"
-#include "rim/rimGraphicsGUI.h"
-
 
 using namespace rim;
-using namespace rim::graphics;
-using namespace rim::graphics::gui;
-using namespace rim::engine;
+using namespace rim::math;
 
-class VehicleState
-{
-	/**
+/**
+ * This class represents the state of the vehicle and includes fields for
+ * position, <code>Orientation</code>, and velocity.
+ * <p>
+ * The <code>VehicleState</code> is only a data holder and values within it are
+ * public and may be accessed and changed by anyone with a reference. If a safe
+ * copy needs to be shared be sure to provide a deep copy instead of simply
+ * passing the reference.
+ * </p>
+ * 
+ * Author: Niti Madhugiri
+ * 
+ */
+class VehicleState {
+    /**
      * A <code>Vector3f</code> object containing the position of the object.
      * <ul>
      * <li>The global x coordinate is stored in <code>x</code>.</li>
@@ -54,9 +58,14 @@ public:
      * Blank constructor which constructs a new <code>VehicleState</code> object
      * having position (0,0,0), orientation (0,0,0), and velocity, (0,0,0).
      */
-    VehicleState(void);
+    VehicleState() {
+        position = Vector3f();
+        orientation = Orientation();
+        velocity = Vector3f();
+		
+    }
 
-	/**
+    /**
      * Constructor for building a new <code>VehicleState</code> object with the
      * passed position, orientation, and velocity.
      * 
@@ -70,9 +79,14 @@ public:
      *            A <code>Vector3f</code> object containing the velocity of the
      *            object.
      */
-    VehicleState(Vector3f, Orientation, Vector3f);
+    VehicleState(Vector3f pos, Orientation ori,
+            Vector3f vel) {
+        position = pos;
+        orientation = ori;
+        velocity = vel;
+    }
 
-	/**
+    /**
      * This function produces a safe deep copy of the <code>VehicleState</code>
      * object passed.
      * 
@@ -81,9 +95,14 @@ public:
      * @return A new <code>VehicleState</code> object identical to the passed
      *         object.
      */
-    static VehicleState deepCopy(VehicleState);
-
-
-	//~Vehicle(void);
+    static VehicleState deepCopy(VehicleState state) {
+        Vector3f pos = Vector3f(state.position.x,
+                state.position.y, state.position.z);
+        Orientation ori = Orientation(state.orientation);
+        Vector3f vel = Vector3f(state.velocity.x,
+                state.velocity.y, state.velocity.z);
+        return VehicleState(pos, ori, vel);
+    }
 };
+
 

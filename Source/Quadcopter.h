@@ -12,13 +12,13 @@
 
 
 #include "rim/rimEngine.h"
-#include "rim/rimGraphicsGUI.h"
+//#include "rim/rimGraphicsGUI.h"
 
 
 using namespace rim;
 using namespace rim::graphics;
-using namespace rim::graphics::gui;
-using namespace rim::engine;
+//using namespace rim::graphics::gui;
+//using namespace rim::engine;
 
 
 

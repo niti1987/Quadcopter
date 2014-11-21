@@ -31,15 +31,19 @@ using namespace rim::math;
 
 #define PI 3.1416
 
-    /**
+   
+	class VehicleAttitudeHelpers {
+
+		 /**
      * The i index for the components of a coordinate system represented as a
      * matrix.
      * 
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * 
      */
+	public:
 
-	static int INDEX_i = 0;
+	const static int INDEX_i = 0;
 
     /**
      * The j index for the components of a coordinate system represented as a
@@ -48,7 +52,7 @@ using namespace rim::math;
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * </p>
      */
-    static int INDEX_j = 1;
+    const static int INDEX_j = 1;
 
     /**
      * The k index for the components of a coordinate system represented as a
@@ -57,7 +61,7 @@ using namespace rim::math;
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * </p>
      */
-    static int INDEX_k = 2;
+    const static int INDEX_k = 2;
 
     /**
      * The x index for the components of a coordinate system represented as a
@@ -66,7 +70,7 @@ using namespace rim::math;
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * </p>
      */
-    static int INDEX_X = 0;
+    const static int INDEX_X = 0;
 
     /**
      * The y index for the components of a coordinate system represented as a
@@ -75,7 +79,7 @@ using namespace rim::math;
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * </p>
      */
-    static int INDEX_Y = 1;
+    const static int INDEX_Y = 1;
 
     /**
      * The z index for the components of a coordinate system represented as a
@@ -84,9 +88,7 @@ using namespace rim::math;
      * \(\begin{bmatrix} xi&yi&zi\\ xj&yj&zj\\ xk&yk&zk \end{bmatrix}\)
      * </p>
      */
-    static int INDEX_Z = 2;
-
-	class VehicleAttitudeHelpers {
+    const static int INDEX_Z = 2;
 
 
 		/**

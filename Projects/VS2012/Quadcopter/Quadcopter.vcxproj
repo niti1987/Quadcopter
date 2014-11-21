@@ -20,20 +20,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\AngularVelocity.h">
-      <FileType>CppClass</FileType>
+      <FileType>CppHeader</FileType>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\main.cpp" />
     <ClCompile Include="..\..\..\Source\Orientation.h">
-      <FileType>CppClass</FileType>
+      <FileType>CppHeader</FileType>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\Quadcopter.cpp" />
     <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp" />
     <ClCompile Include="..\..\..\Source\Vehicle.h">
-      <FileType>CppClass</FileType>
+      <FileType>CppHeader</FileType>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\VehicleAttitudeHelpers.h" />
     <ClCompile Include="..\..\..\Source\VehicleState.h">
-      <FileType>CppClass</FileType>
+      <FileType>CppHeader</FileType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

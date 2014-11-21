@@ -155,7 +155,7 @@ public:
 
 			returnNegativeZAxis = vehiclehelpers
 					.getAttitudeMatrix(yaw, pitch, roll)
-					.getColumn(vehiclehelpers.INDEX_Z).negate();
+					.getColumn(vehiclehelpers.INDEX_Z)*(-1);
 		
 		return returnNegativeZAxis;
 	}

@@ -30,12 +30,18 @@
     <ClCompile Include="..\..\..\Source\AngularVelocity.h">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Global_planner.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\QuadcopterDemo.h">
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Source\Quadcopter.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Global_planner.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

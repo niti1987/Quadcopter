@@ -35,10 +35,12 @@
     <ClCompile Include="..\..\..\Source\VehicleState.h">
       <FileType>CppHeader</FileType>
     </ClCompile>
+    <ClCompile Include="Global_planner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\Quadcopter.h" />
     <ClInclude Include="..\..\..\Source\QuadcopterDemo.h" />
+    <ClInclude Include="Global_planner.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6525ED7B-C16C-4491-8CC2-EAB50961BE8D}</ProjectGuid>

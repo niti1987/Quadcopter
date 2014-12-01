@@ -140,9 +140,11 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	
 	//********************************************************************************
 	
+	goal = Vector3f( 0, 20, 0 );
 	
 	// Create a quadcopter.
-	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 10, 0 ) ) );
+	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 0, 0 ) ) );
+	
 	
 	
 	return true;
@@ -188,10 +190,11 @@ void QuadcopterDemo:: update( const Time& dt )
 	
 	//********************************************************************************
 	// Update the simulation.
+	
 	Timer timer;
 	
-	
-	
+	// Update the simulation using a fixed time step.
+	simulation.update( timeStep );
 	
 	simulationTime = timer.getElapsedTime();
 	
@@ -340,6 +343,10 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	Float t = (targetY - camera->getPosition().y) / mouseDirection.y;
 	
 	goal = (camera->getPosition() + mouseDirection*t);
+	
+	// Set the goal for each quadcopter.
+	for ( Index i = 0; i < quadcopters.getSize(); i++ )
+		quadcopters[i]->nextWaypoint = goal;
 }
 
 
@@ -395,17 +402,41 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	//****************************************************************************
 	// Draw debug information in the scene.
 	
+	// Draw the goal location.
 	immediateRenderer->setPointSize( 10 );
 	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
 	immediateRenderer->color( 0.0f, 1.0f, 0.0f );
 	immediateRenderer->vertex( goal );
+	immediateRenderer->render();
 	
-	
+	// Draw quadcopter positions.
+	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
 	immediateRenderer->color( 1.0f, 0.0f, 0.0f );
 	
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
 		immediateRenderer->vertex( quadcopters[i]->graphics->getPosition() );
 	
+	immediateRenderer->render();
+	
+	// Draw the quadcopter thrusters.
+	immediateRenderer->setLineWidth( 1 );
+	immediateRenderer->begin( IndexedPrimitiveType::LINES );
+	immediateRenderer->color( 0.0f, 1.0f, 0.0f );
+	
+	for ( Index i = 0; i < quadcopters.getSize(); i++ )
+	{
+		const Quadcopter& quadcopter = *quadcopters[i];
+		
+		for ( Index m = 0; m < quadcopter.motors.getSize(); m++ )
+		{
+			const Quadcopter::Motor& motor = quadcopter.motors[m];
+			Vector3f motorPoint = quadcopter.currentState.transformToWorld( motor.comOffset );
+			Vector3f motorVector = quadcopter.currentState.rotateVectorToWorld( motor.thrustDirection );
+			
+			immediateRenderer->vertex( motorPoint );
+			immediateRenderer->vertex( motorPoint - motorVector );
+		}
+	}
 	
 	immediateRenderer->render();
 	
@@ -457,7 +488,7 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 {
 	// Create a new quadcopter at the given position.
 	Pointer<Quadcopter> quadcopter = Pointer<Quadcopter>::construct();
-	quadcopter->position = position;
+	quadcopter->currentState.position = position;
 	
 	// Create a graphics object for the quadcopter.
 	Pointer<GraphicsObject> graphics = Pointer<GraphicsObject>::construct( quadcopterMesh );
@@ -473,6 +504,18 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 	quadcopter->downCamera->setHorizontalFieldOfView( 90 );
 	quadcopter->downCamera->setNearPlaneDistance( 1.0f );
 	quadcopter->downCamera->setFarPlaneDistance( 1000 );
+	
+	// Configure the motors of the quadcopter.
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0, -0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0, -0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0, 0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0, 0.35f ), Vector3f( 0, 1, 0 ) ) );
+	
+	// The mass of the quadcopter.
+	quadcopter->mass = 1.0f;
+	
+	// Set the goal position.
+	quadcopter->nextWaypoint = goal;
 	
 	return quadcopter;
 }
@@ -523,6 +566,7 @@ Bool QuadcopterDemo:: addQuadcopterToScene( const Pointer<Quadcopter>& newQuadco
 	}
 	
 	quadcopters.add( newQuadcopter );
+	simulation.addQuadcopter( newQuadcopter );
 	
 	return true;
 }

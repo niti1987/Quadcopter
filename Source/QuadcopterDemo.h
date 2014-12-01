@@ -23,6 +23,7 @@ using namespace rim::engine;
 
 
 #include "Quadcopter.h"
+#include "Simulation.h"
 
 
 
@@ -174,6 +175,20 @@ class QuadcopterDemo : public SimpleDemo
 			
 			/// A pointer to a mesh to use for quadcopters.
 			Pointer<MeshShape> quadcopterMesh;
+			
+			
+			
+			
+		//********************************************************************************
+		//********************************************************************************
+		//********************************************************************************
+		//******	Simulation Data Members
+			
+			
+			
+			
+			/// An object which handles the simulation of quadcopters in a virtual scene.
+			Simulation simulation;
 			
 			
 			

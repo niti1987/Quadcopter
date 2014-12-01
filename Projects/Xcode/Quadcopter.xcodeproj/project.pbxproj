@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD02BC2A1A2CF738009D4E1B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD02BC201A2CF738009D4E1B /* main.cpp */; };
+		AD02BC2B1A2CF738009D4E1B /* Quadcopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD02BC221A2CF738009D4E1B /* Quadcopter.cpp */; };
+		AD02BC2C1A2CF738009D4E1B /* QuadcopterDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD02BC241A2CF738009D4E1B /* QuadcopterDemo.cpp */; };
+		AD02BC531A2CF7B8009D4E1B /* Simulation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD02BC511A2CF7B8009D4E1B /* Simulation.cpp */; };
 		AD6145D419C0C0D800B714A9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD6145D319C0C0D800B714A9 /* OpenGL.framework */; };
-		AD90C9A119F9A2F10000F13F /* Quadcopter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */; };
-		ADAAC87D19BF861100DF9F6C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ADAAC87C19BF861100DF9F6C /* main.cpp */; };
 		ADF4DBF819BF8A9C00B72FCF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADF4DBF719BF8A9C00B72FCF /* Cocoa.framework */; };
-		C30956A819E7A59E0023DB2C /* QuadcopterDemo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */; };
 		C3CDD19F19E7A478004116F5 /* RimBVH.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19419E7A478004116F5 /* RimBVH.a */; };
 		C3CDD1A019E7A478004116F5 /* RimEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19519E7A478004116F5 /* RimEngine.a */; };
 		C3CDD1A119E7A478004116F5 /* RimEntities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CDD19619E7A478004116F5 /* RimEntities.a */; };
@@ -39,13 +40,22 @@
 
 /* Begin PBXFileReference section */
 		8DD76FB20486AB0100D96B5E /* Quadcopter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Quadcopter; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD02BC1D1A2CF738009D4E1B /* AngularVelocity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AngularVelocity.h; sourceTree = "<group>"; };
+		AD02BC1E1A2CF738009D4E1B /* Global_planner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Global_planner.cpp; sourceTree = "<group>"; };
+		AD02BC1F1A2CF738009D4E1B /* Global_planner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Global_planner.h; sourceTree = "<group>"; };
+		AD02BC201A2CF738009D4E1B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		AD02BC211A2CF738009D4E1B /* Orientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Orientation.h; sourceTree = "<group>"; };
+		AD02BC221A2CF738009D4E1B /* Quadcopter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quadcopter.cpp; sourceTree = "<group>"; };
+		AD02BC231A2CF738009D4E1B /* Quadcopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quadcopter.h; sourceTree = "<group>"; };
+		AD02BC241A2CF738009D4E1B /* QuadcopterDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadcopterDemo.cpp; sourceTree = "<group>"; };
+		AD02BC251A2CF738009D4E1B /* QuadcopterDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadcopterDemo.h; sourceTree = "<group>"; };
+		AD02BC261A2CF738009D4E1B /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
+		AD02BC271A2CF738009D4E1B /* VehicleAttitudeHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleAttitudeHelpers.h; sourceTree = "<group>"; };
+		AD02BC281A2CF738009D4E1B /* VehicleState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleState.h; sourceTree = "<group>"; };
+		AD02BC511A2CF7B8009D4E1B /* Simulation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Simulation.cpp; sourceTree = "<group>"; };
+		AD02BC521A2CF7B8009D4E1B /* Simulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simulation.h; sourceTree = "<group>"; };
 		AD6145D319C0C0D800B714A9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
-		AD90C99F19F9A2F10000F13F /* Quadcopter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Quadcopter.h; sourceTree = "<group>"; };
-		AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Quadcopter.cpp; sourceTree = "<group>"; };
-		ADAAC87C19BF861100DF9F6C /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ADF4DBF719BF8A9C00B72FCF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QuadcopterDemo.cpp; sourceTree = "<group>"; };
-		C30956A719E7A59E0023DB2C /* QuadcopterDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuadcopterDemo.h; sourceTree = "<group>"; };
 		C3CDD19419E7A478004116F5 /* RimBVH.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimBVH.a; path = "../../Libraries/Rim BVH/RimBVH.a"; sourceTree = SOURCE_ROOT; };
 		C3CDD19519E7A478004116F5 /* RimEngine.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimEngine.a; path = "../../Libraries/Rim Engine/RimEngine.a"; sourceTree = SOURCE_ROOT; };
 		C3CDD19619E7A478004116F5 /* RimEntities.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = RimEntities.a; path = "../../Libraries/Rim Entities/RimEntities.a"; sourceTree = SOURCE_ROOT; };
@@ -104,11 +114,20 @@
 		ADAAC87B19BF861100DF9F6C /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				ADAAC87C19BF861100DF9F6C /* main.cpp */,
-				C30956A719E7A59E0023DB2C /* QuadcopterDemo.h */,
-				C30956A619E7A59E0023DB2C /* QuadcopterDemo.cpp */,
-				AD90C99F19F9A2F10000F13F /* Quadcopter.h */,
-				AD90C9A019F9A2F10000F13F /* Quadcopter.cpp */,
+				AD02BC1D1A2CF738009D4E1B /* AngularVelocity.h */,
+				AD02BC1E1A2CF738009D4E1B /* Global_planner.cpp */,
+				AD02BC1F1A2CF738009D4E1B /* Global_planner.h */,
+				AD02BC201A2CF738009D4E1B /* main.cpp */,
+				AD02BC211A2CF738009D4E1B /* Orientation.h */,
+				AD02BC221A2CF738009D4E1B /* Quadcopter.cpp */,
+				AD02BC231A2CF738009D4E1B /* Quadcopter.h */,
+				AD02BC511A2CF7B8009D4E1B /* Simulation.cpp */,
+				AD02BC521A2CF7B8009D4E1B /* Simulation.h */,
+				AD02BC241A2CF738009D4E1B /* QuadcopterDemo.cpp */,
+				AD02BC251A2CF738009D4E1B /* QuadcopterDemo.h */,
+				AD02BC261A2CF738009D4E1B /* Vehicle.h */,
+				AD02BC271A2CF738009D4E1B /* VehicleAttitudeHelpers.h */,
+				AD02BC281A2CF738009D4E1B /* VehicleState.h */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -177,9 +196,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADAAC87D19BF861100DF9F6C /* main.cpp in Sources */,
-				C30956A819E7A59E0023DB2C /* QuadcopterDemo.cpp in Sources */,
-				AD90C9A119F9A2F10000F13F /* Quadcopter.cpp in Sources */,
+				AD02BC2A1A2CF738009D4E1B /* main.cpp in Sources */,
+				AD02BC2B1A2CF738009D4E1B /* Quadcopter.cpp in Sources */,
+				AD02BC2C1A2CF738009D4E1B /* QuadcopterDemo.cpp in Sources */,
+				AD02BC531A2CF7B8009D4E1B /* Simulation.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

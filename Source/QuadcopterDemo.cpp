@@ -58,7 +58,7 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	
 	sceneRenderer->setFlag( SceneRendererFlags::SHADOWS_ENABLED, false );
 	sceneRenderer->setFlag( SceneRendererFlags::DEBUG_CAMERAS, false );
-	sceneRenderer->setFlag( SceneRendererFlags::DEBUG_BOUNDING_BOXES, true );
+	sceneRenderer->setFlag( SceneRendererFlags::DEBUG_BOUNDING_BOXES, false );
 	sceneRenderer->setFlag( SceneRendererFlags::DEBUG_OBJECTS, false );
 	
 	// Initialize the viewport.
@@ -143,7 +143,7 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	goal = Vector3f( 0, 20, 0 );
 	
 	// Create a quadcopter.
-	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 0, 0 ) ) );
+	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 1, 0 ) ) );
 	
 	
 	
@@ -440,6 +440,31 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	
 	immediateRenderer->render();
 	
+	/*
+	// Draw the quadcopter target basis.
+	immediateRenderer->setLineWidth( 2 );
+	immediateRenderer->begin( IndexedPrimitiveType::LINES );
+	
+	for ( Index i = 0; i < quadcopters.getSize(); i++ )
+	{
+		const Quadcopter& quadcopter = *quadcopters[i];
+		const Matrix3f& m = quadcopter.prefRot;
+		
+		immediateRenderer->color( 1.0f, 0.0f, 0.0f );
+		immediateRenderer->vertex( quadcopter.currentState.position );
+		immediateRenderer->vertex( quadcopter.currentState.position + m.x*5 );
+		
+		immediateRenderer->color( 0.0f, 1.0f, 0.0f );
+		immediateRenderer->vertex( quadcopter.currentState.position );
+		immediateRenderer->vertex( quadcopter.currentState.position + m.y*5 );
+		
+		immediateRenderer->color( 0.0f, 0.0f, 1.0f );
+		immediateRenderer->vertex( quadcopter.currentState.position );
+		immediateRenderer->vertex( quadcopter.currentState.position + m.z*5 );
+	}
+	
+	immediateRenderer->render();
+	*/
 	
 	//****************************************************************************
 	// Draw the UI

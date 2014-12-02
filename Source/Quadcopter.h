@@ -63,6 +63,10 @@ class Quadcopter
 			void computeAcceleration( const TransformState& state, Float timeStep, Vector3f& linearAcceleration, Vector3f& angularAcceleration ) const;
 			
 			
+			Matrix3f computePreferredRotation( const TransformState& newState, const Vector3f& look,
+												const Vector3f& preferredThrust ) const;
+			
+			
 			
 			Matrix3f getNewAttitudeMatrix();
 			Vector3f getPreferredAccelerationVector( Float timeStep );
@@ -139,6 +143,12 @@ class Quadcopter
 			static const float MAX_SPEED;
 			static const float MAX_TILT_ANGLE;
 			
+			/// The maximum allowed angular velocity, in radians per second.
+			static const float MAX_ROLL_RATE;
+			
+			/// The maximum allowed tolerance in radians in the rotation from the preferred rotation.
+			static const float MAX_ANGLE_ERROR;
+			
 			/// The maximum thrust that the quadcopter can produce from all motors combined.
 			static const float MAX_THRUST;
 			
@@ -178,6 +188,7 @@ class Quadcopter
 			/// The current target waypoint for the quadcopter in world space.
 			Vector3f nextWaypoint;
 			
+			mutable Matrix3f prefRot;
 			
 			/// The mass of the quadcopter in kg.
 			Float mass;

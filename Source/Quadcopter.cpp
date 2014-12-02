@@ -13,8 +13,10 @@
 #include "VehicleAttitudeHelpers.h"
 
 
-const float Quadcopter:: MAX_SPEED = 10.0f;
-const float Quadcopter:: MAX_TILT_ANGLE = 0.26f;
+const float Quadcopter:: MAX_SPEED = 7.0f;
+const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 15.0f );
+const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 50.0f );
+const float Quadcopter:: MAX_ANGLE_ERROR = math::degreesToRadians( 1.0f );
 const float Quadcopter:: MAX_THRUST = 20;
 const float Quadcopter:: MIN_THRUST = 1;
 const float Quadcopter:: MAX_DELTA_THRUST = 20.0f;
@@ -159,24 +161,51 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	// Once we have the preferred acceleration, compute the target orientation that
 	// the quadcopter should rotate to acheive that acceleration.
 	
-	Vector3f look = newState.rotation.z;
-	Vector3f up = preferredThrust.normalize();
-	Vector3f right = math::cross( up, look );
-	
-	Matrix3f preferredRotation( right, up, math::cross( right, up ) );
+	Matrix3f preferredRotation = computePreferredRotation( newState, deltaPosition.normalize(), preferredThrust );
+	prefRot = preferredRotation;
 	
 	// Compute the rotational difference between the new rotation and the target rotation.
-	Matrix3f deltaRotation = newState.rotation.transpose()*preferredRotation;
+	Quaternion<Float> qNew( newState.rotation );
+	Quaternion<Float> qPref( preferredRotation );
+	Quaternion<Float> deltaQ = qPref*qNew.invert();
 	
-	// Compute the preferred angular velocity from the rotation matrix delta.
-	Vector3f preferredAngularVelocity = Vector3f( deltaRotation.y.z, deltaRotation.z.x, deltaRotation.x.y ) / planningTimestep;
+	Vector3f preferredAngularVelocity;
+	
+	// Make sure there is a substantial difference in the orientations.
+	if ( math::abs(deltaQ.a) < math::cos(MAX_ANGLE_ERROR/2) )
+	{
+		// There is a significant difference in the current and preferred orientation.
+		// Determine the preferred rotation rate in radians per second around the rotation axis.
+		Float deltaTheta = 2*math::acos( deltaQ.a ) / planningTimestep;
+		
+		// Compute the rotation axis.
+		Vector3f rotationAxis = Vector3f( deltaQ.b, deltaQ.c, deltaQ.d );
+		
+		if ( rotationAxis.getMagnitude() > math::epsilon<Float>() )
+			rotationAxis = rotationAxis.normalize();
+		
+		// Compute the preferred angular velocity.
+		preferredAngularVelocity = deltaTheta * rotationAxis;
+		
+		// Make sure the preferred angular velocity is within the limits.
+		Float preferredAngularVelocityMag = preferredAngularVelocity.getMagnitude();
+		
+		if  ( preferredAngularVelocityMag > MAX_ROLL_RATE )
+		{
+			preferredAngularVelocity *= (MAX_ROLL_RATE / preferredAngularVelocityMag);
+			preferredAngularVelocityMag = MAX_ROLL_RATE;
+		}
+		
+		// Scale down the angular velocity if we are close to the goal.
+		if ( distance < VEHICLE_CLOSE_RANGE )
+			preferredAngularVelocity *= (distance / VEHICLE_CLOSE_RANGE);
+	}
 	
 	//****************************************************************************
-	// Determine the preferred angular acceleration of the quadcopter.
+	// Determine the preferred angular acceleration from the preferred velocity.
 	
 	Vector3f deltaAngularVelocity = preferredAngularVelocity - newState.angularVelocity;
 	Vector3f preferredAngularAcceleration = deltaAngularVelocity / planningTimestep;
-	
 	
 	//****************************************************************************
 	// Determine the final acceleration due to the motors.
@@ -201,8 +230,10 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	
 	/// Apply the motor acceleration.
 	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
+	//linearAcceleration = Vector3f();
 	//angularAcceleration += worldInverseInertia*torque;
 	linearAcceleration += preferredThrust;
+	angularAcceleration += preferredAngularAcceleration;
 }
 
 
@@ -215,6 +246,83 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 //############		
 //##########################################################################################
 //##########################################################################################
+
+
+
+
+Matrix3f rotationFromUpLook( const Vector3f& up, const Vector3f& look, const Matrix3f& oldRotation )
+{
+	const Float epsilon = math::degreesToRadians( 0.01f );
+	const Float cosEpsilon = math::cos( epsilon );
+	const Float cosTheta = math::abs(math::dot( up, look ));
+	
+	// Generate an orthonormal rotation matrix based on that up vector and the desired look direction.
+	/*Vector3f right = cosTheta < cosEpsilon ?
+						math::cross( up, oldRotation.z ).normalize() :
+						math::cross( up, -look ).normalize();*/
+	Vector3f right = math::cross( up, -look ).normalize();
+	Vector3f back = math::cross( right, up ).normalize();
+	
+	return Matrix3f( right, up, back ).orthonormalize();
+}
+
+
+
+
+Matrix3f Quadcopter:: computePreferredRotation( const TransformState& newState, const Vector3f& look,
+												const Vector3f& preferredThrust ) const
+{
+	// Determine the up vector based on the preferred thrust vector.
+	// The preferred rotation needs to be close to horizontal, within a tolerance angle.
+	// The up vector should be as close to the preferred thrust vector as allowed.
+	Vector3f up( 0, 1, 0 );
+	Vector3f thrustDirection = preferredThrust.normalize();
+	Float angle = math::acos( math::dot( thrustDirection, up ) );
+	
+	if ( angle > MAX_TILT_ANGLE )
+	{
+		// Clamp the up vector to be no more than the max tilt value.
+		
+		// Compute the rotation axis and angle relative to the horizontal.
+		Vector3f axis = math::cross( thrustDirection, up );
+		angle = MAX_TILT_ANGLE;
+		
+		// Compute the quaternion from the axis-angle representation.
+		Float s = math::sin( angle/2 );
+		Quaternion<Float> q( math::cos( angle/2 ), axis.x*s, axis.y*s, axis.z*s );
+		Matrix3f horizontal;
+		
+		// Determine the rotation matrix for the horizontal frame.
+		if ( math::abs(math::dot( up, look )) < math::cos( 0.001f ) )
+			horizontal = rotationFromUpLook( up, look, newState.rotation );
+		else
+			horizontal = rotationFromUpLook( up, -newState.rotation.z, newState.rotation );
+		
+		// Apply the quaternion to the horizontal frame to get the target rotation.
+		return q.toMatrix().transpose()*horizontal;
+	}
+	else
+	{
+		// The preferred thrust vector is suitable for use as the up vector.
+		up = thrustDirection;
+		
+		if ( math::abs(math::dot( up, look )) < math::cos( 0.001f ) )
+			return rotationFromUpLook( up, look, newState.rotation );
+		else
+			return rotationFromUpLook( up, -newState.rotation.z, newState.rotation );
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 # if 0

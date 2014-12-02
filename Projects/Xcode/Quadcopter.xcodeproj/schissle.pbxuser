@@ -34,8 +34,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 439154474;
-			PBXWorkspaceStateSaveDate = 439154474;
+			PBXPerProjectTemplateStateSaveDate = 439181817;
+			PBXWorkspaceStateSaveDate = 439181817;
 		};
 		sourceControlManager = AD71CC5E19E86F1C00DB96E3 /* Source Control */;
 		userBuildSettings = {
@@ -65,18 +65,33 @@
 	};
 	AD02BC221A2CF738009D4E1B /* Quadcopter.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {798, 756}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 852}";
-			sepNavWindowFrame = "{{15, 65}, {845, 813}}";
+			sepNavIntBoundsRect = "{{0, 0}, {942, 7252}}";
+			sepNavSelRange = "{11657, 3}";
+			sepNavVisRange = "{8725, 738}";
+			sepNavWindowFrame = "{{355, 65}, {845, 813}}";
 		};
 	};
 	AD02BC231A2CF738009D4E1B /* Quadcopter.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {874, 3192}}";
-			sepNavSelRange = "{286, 29}";
-			sepNavVisRange = "{0, 317}";
-			sepNavWindowFrame = "{{15, 65}, {845, 813}}";
+			sepNavIntBoundsRect = "{{0, 0}, {918, 2870}}";
+			sepNavSelRange = "{4746, 15}";
+			sepNavVisRange = "{4096, 1596}";
+			sepNavWindowFrame = "{{640, 65}, {845, 813}}";
+		};
+	};
+	AD02BC241A2CF738009D4E1B /* QuadcopterDemo.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {798, 8456}}";
+			sepNavSelRange = "{11768, 0}";
+			sepNavVisRange = "{12336, 1744}";
+			sepNavWindowFrame = "{{89, 65}, {845, 813}}";
+		};
+	};
+	AD02BC271A2CF738009D4E1B /* VehicleAttitudeHelpers.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {874, 7350}}";
+			sepNavSelRange = "{9838, 52}";
+			sepNavVisRange = "{9518, 826}";
 		};
 	};
 	AD71CC3B19E86F0700DB96E3 /* Quadcopter */ = {

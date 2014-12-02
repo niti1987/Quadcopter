@@ -1,9 +1,33 @@
-﻿Build started 11/20/2014 6:48:30 PM.
-     1>Project "C:\Users\niti1987\Documents\GitHub\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         Quadcopter.vcxproj -> C:\Users\niti1987\Documents\GitHub\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe
-     1>Done Building Project "C:\Users\niti1987\Documents\GitHub\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" (Build target(s)).
+﻿Build started 12/2/2014 1:24:27 AM.
+     1>Project "\\psf\DMZ\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Creating "x64\Release\Quadcopter.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /errorReport:prompt ..\..\..\Source\Quadcopter.cpp ..\..\..\Source\QuadcopterDemo.cpp ..\..\..\Source\Simulation.cpp ..\..\..\Source\main.cpp
+         Quadcopter.cpp
+         QuadcopterDemo.cpp
+         Simulation.cpp
+         main.cpp
+     1>..\..\..\Source\QuadcopterDemo.cpp(32): warning C4305: 'initializing' : truncation from 'double' to 'rim::Float'
+     1>..\..\..\Source\QuadcopterDemo.cpp(93): warning C4305: 'argument' : truncation from 'double' to 'rim::graphics::Real'
+     1>..\..\..\Source\QuadcopterDemo.cpp(236): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(237): warning C4244: 'initializing' : conversion from 'rim::Double' to 'const rim::Float', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(271): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
+     1>..\..\..\Source\QuadcopterDemo.cpp(277): warning C4244: 'argument' : conversion from 'rim::Double' to 'const rim::Float32', possible loss of data
+     1>..\..\..\Source\Simulation.cpp(25): warning C4305: 'argument' : truncation from 'double' to 'rim::Float32'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe" /NOLOGO /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH" /LIBPATH:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics" opengl32.lib RimEntities_x64.lib RimPhysics_x64.lib RimBVH_x64.lib RimEngine_x64.lib RimFramework_x64.lib RimGraphics_x64.lib RimGraphicsGUI_x64.lib RimGUI_x64.lib RimImages_x64.lib RimSound_x64.lib RimXML_x64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.lib" /MACHINE:X64 x64\Release\main.obj
+         x64\Release\Quadcopter.obj
+         x64\Release\QuadcopterDemo.obj
+         x64\Release\Simulation.obj
+         Generating code
+         Finished generating code
+         Quadcopter.vcxproj -> \\psf\DMZ\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe
+       FinalizeBuildStatus:
+         Deleting file "x64\Release\Quadcopter.unsuccessfulbuild".
+         Touching "x64\Release\Quadcopter.lastbuildstate".
+     1>Done Building Project "\\psf\DMZ\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.09
+Time Elapsed 00:00:20.19

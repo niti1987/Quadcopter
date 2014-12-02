@@ -6,43 +6,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp">
+    <ClInclude Include="..\..\..\Source\AngularVelocity.h">
       <Filter>Source</Filter>
-    </ClCompile>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Orientation.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Quadcopter.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\QuadcopterDemo.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Simulation.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\TransformState.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\Vehicle.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\VehicleAttitudeHelpers.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Source\VehicleState.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\..\Source\main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\Quadcopter.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\Vehicle.h">
+    <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\VehicleState.h">
+    <ClCompile Include="..\..\..\Source\Simulation.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Source\VehicleAttitudeHelpers.h">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Source\Orientation.h">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Source\AngularVelocity.h">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="Global_planner.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\Source\QuadcopterDemo.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Source\Quadcopter.h">
-      <Filter>Source</Filter>
-    </ClInclude>
-    <ClInclude Include="Global_planner.h">
-      <Filter>Source</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

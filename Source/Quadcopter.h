@@ -63,19 +63,37 @@ class Quadcopter
 			void computeAcceleration( const TransformState& state, Float timeStep, Vector3f& linearAcceleration, Vector3f& angularAcceleration ) const;
 			
 			
-			Matrix3f computePreferredRotation( const TransformState& newState, const Vector3f& look,
+			
+			
+			/// Compute the ideal thrust vector based on the given goal position, transform stsate, and external acceleration.
+			Vector3f computePreferredThrust( const TransformState& state, const Vector3f& goalPosition,
+											const Vector3f& externalAcceleration ) const;
+			
+			
+			
+			
+			/// Compute and return the ideal net angular acceleration that will acheive the target orientation.
+			Vector3f computePreferredAngularAcceleration( const TransformState& state, const Vector3f& goalPosition,
+														const Vector3f& preferredThrust ) const;
+			
+			
+			
+			
+			/// Compute and return the preferred rotation matrix.
+			Matrix3f computePreferredRotation( const TransformState& state, const Vector3f& look,
 												const Vector3f& preferredThrust ) const;
 			
 			
 			
-			Matrix3f getNewAttitudeMatrix();
-			Vector3f getPreferredAccelerationVector( Float timeStep );
-			Vector3f getZComponentOfThrustVector( const Vector3f& accelerationVector, const Vector3f& globalGravity );
-			Vector3f calculateXAndYComponentsOfThrust( Float timeStep, const Vector3f& thrustVector, const Vector3f& accelerationVector );
-			Vector3f adjustLimitDeltaThrustVector( Float timeStep, const Vector3f& thrustVector );
-			Vector3f calculatePreferredLinearAcceleration( Float timeStep );
-			Vector3f calculateAngularVelocity( Float timeStep );
-			
+			/// Compute and return an orthonormal rotation matrix from the given up and look vectors.
+			static Matrix3f rotationFromUpLook( const Vector3f& up, const Vector3f& look )
+			{
+				// Generate an orthonormal rotation matrix based on that up vector and the desired look direction.
+				Vector3f right = math::cross( up, -look ).normalize();
+				Vector3f back = math::cross( right, up ).normalize();
+				
+				return Matrix3f( right, up, back ).orthonormalize();
+			}
 			
 			
 			

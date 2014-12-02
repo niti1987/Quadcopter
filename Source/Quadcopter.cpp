@@ -10,9 +10,6 @@
 #include "Quadcopter.h"
 
 
-#include "VehicleAttitudeHelpers.h"
-
-
 const float Quadcopter:: MAX_SPEED = 7.0f;
 const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 15.0f );
 const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 50.0f );
@@ -104,8 +101,69 @@ void Quadcopter:: updateGraphics()
 void Quadcopter:: computeAcceleration( const TransformState& newState, Float timeStep,
 										Vector3f& linearAcceleration, Vector3f& angularAcceleration ) const
 {
+	//****************************************************************************
+	// Determine the preferred thrust vector based on the next waypoint.
+	
+	Vector3f preferredThrust = computePreferredThrust( newState, nextWaypoint, linearAcceleration );
+	
+	//****************************************************************************
+	// Once we have the preferred acceleration, compute the target orientation that
+	// the quadcopter should rotate to acheive that acceleration, then determine
+	// the angular acceleration required.
+	
+	Vector3f preferredAngularAcceleration = computePreferredAngularAcceleration( newState, nextWaypoint, preferredThrust );
+	
+	// Add the preferred accelerations to the output parameters.
+	linearAcceleration += preferredThrust;
+	angularAcceleration += preferredAngularAcceleration;
+	
+	//****************************************************************************
+	// Determine the final acceleration due to the motors.
+	/*
+	Vector3f localThrust = currentState.rotateVectorToWorld( preferredThrust );
+	
+	Vector3f force, torque;
+	
+	for ( Index m = 0; m < motors.getSize(); m++ )
+	{
+		const Motor& motor = motors[m];
+		
+		// Transform the center-of mass offset into world space.
+		Vector3f motorPoint = currentState.transformToWorld( motor.comOffset );
+		Vector3f motorForce = currentState.rotateVectorToWorld( motor.thrustDirection*math::dot( motor.thrustDirection, localThrust ) / motors.getSize() );
+		
+		applyForce( motorPoint, motorForce, force, torque );
+	}
+	
+	// Compute the inverse world-space inertia tensor (similarity transform).
+	Matrix3f worldInverseInertia = newState.rotation * inertia.invert() * newState.rotation.transpose();
+	
+	/// Apply the motor acceleration.
+	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
+	//linearAcceleration = Vector3f();
+	//angularAcceleration += worldInverseInertia*torque;
+	*/
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Preferred Thrust Computation Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+Vector3f Quadcopter:: computePreferredThrust( const TransformState& newState, const Vector3f& goalPosition,
+											const Vector3f& externalAcceleration ) const
+{
 	// Compute the delta vector for position between the target position and the new state position.
-	Vector3f deltaPosition = nextWaypoint - newState.position;
+	Vector3f deltaPosition = goalPosition - newState.position;
 	Float distance = deltaPosition.getMagnitude();
 	
 	//****************************************************************************
@@ -141,7 +199,7 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	Vector3f preferredThrust = deltaVelocity / planningTimestep;
 	
 	// Compensate in the preferred thrust for the effects of environmental forces (i.e. gravity, drag).
-	preferredThrust -= linearAcceleration;
+	preferredThrust -= externalAcceleration;
 	
 	// Make sure the preferred velocity is within the limits of thrust produced by the motors.
 	Float preferredThrustMag = preferredThrust.getMagnitude();
@@ -157,17 +215,41 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 		preferredThrustMag = MIN_THRUST;
 	}
 	
-	//****************************************************************************
-	// Once we have the preferred acceleration, compute the target orientation that
-	// the quadcopter should rotate to acheive that acceleration.
+	return preferredThrust;
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Preferred Angular Acceleration Computation Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+Vector3f Quadcopter:: computePreferredAngularAcceleration( const TransformState& state, const Vector3f& goalPosition,
+															const Vector3f& preferredThrust ) const
+{
+	// Compute the delta vector for position between the target position and the new state position.
+	Vector3f deltaPosition = goalPosition - state.position;
+	Float distance = deltaPosition.getMagnitude();
 	
-	Matrix3f preferredRotation = computePreferredRotation( newState, deltaPosition.normalize(), preferredThrust );
+	//****************************************************************************
+	
+	Matrix3f preferredRotation = computePreferredRotation( state, deltaPosition.normalize(), preferredThrust );
 	prefRot = preferredRotation;
 	
 	// Compute the rotational difference between the new rotation and the target rotation.
-	Quaternion<Float> qNew( newState.rotation );
+	Quaternion<Float> qNew( state.rotation );
 	Quaternion<Float> qPref( preferredRotation );
 	Quaternion<Float> deltaQ = qPref*qNew.invert();
+	
+	//****************************************************************************
 	
 	Vector3f preferredAngularVelocity;
 	
@@ -204,36 +286,10 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	//****************************************************************************
 	// Determine the preferred angular acceleration from the preferred velocity.
 	
-	Vector3f deltaAngularVelocity = preferredAngularVelocity - newState.angularVelocity;
+	Vector3f deltaAngularVelocity = preferredAngularVelocity - state.angularVelocity;
 	Vector3f preferredAngularAcceleration = deltaAngularVelocity / planningTimestep;
 	
-	//****************************************************************************
-	// Determine the final acceleration due to the motors.
-	
-	Vector3f localThrust = currentState.rotateVectorToWorld( preferredThrust );
-	
-	Vector3f force, torque;
-	
-	for ( Index m = 0; m < motors.getSize(); m++ )
-	{
-		const Motor& motor = motors[m];
-		
-		// Transform the center-of mass offset into world space.
-		Vector3f motorPoint = currentState.transformToWorld( motor.comOffset );
-		Vector3f motorForce = currentState.rotateVectorToWorld( motor.thrustDirection*math::dot( motor.thrustDirection, localThrust ) / motors.getSize() );
-		
-		applyForce( motorPoint, motorForce, force, torque );
-	}
-	
-	// Compute the inverse world-space inertia tensor (similarity transform).
-	Matrix3f worldInverseInertia = newState.rotation * inertia.invert() * newState.rotation.transpose();
-	
-	/// Apply the motor acceleration.
-	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
-	//linearAcceleration = Vector3f();
-	//angularAcceleration += worldInverseInertia*torque;
-	linearAcceleration += preferredThrust;
-	angularAcceleration += preferredAngularAcceleration;
+	return preferredAngularAcceleration;
 }
 
 
@@ -242,29 +298,10 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 //##########################################################################################
 //##########################################################################################
 //############		
-//############		Thrust Computation Methods
+//############		Preferred Rotation Computation Method
 //############		
 //##########################################################################################
 //##########################################################################################
-
-
-
-
-Matrix3f rotationFromUpLook( const Vector3f& up, const Vector3f& look, const Matrix3f& oldRotation )
-{
-	const Float epsilon = math::degreesToRadians( 0.01f );
-	const Float cosEpsilon = math::cos( epsilon );
-	const Float cosTheta = math::abs(math::dot( up, look ));
-	
-	// Generate an orthonormal rotation matrix based on that up vector and the desired look direction.
-	/*Vector3f right = cosTheta < cosEpsilon ?
-						math::cross( up, oldRotation.z ).normalize() :
-						math::cross( up, -look ).normalize();*/
-	Vector3f right = math::cross( up, -look ).normalize();
-	Vector3f back = math::cross( right, up ).normalize();
-	
-	return Matrix3f( right, up, back ).orthonormalize();
-}
 
 
 
@@ -293,10 +330,10 @@ Matrix3f Quadcopter:: computePreferredRotation( const TransformState& newState, 
 		Matrix3f horizontal;
 		
 		// Determine the rotation matrix for the horizontal frame.
-		if ( math::abs(math::dot( up, look )) < math::cos( 0.001f ) )
-			horizontal = rotationFromUpLook( up, look, newState.rotation );
+		if ( math::abs(math::dot( up, look )) < math::cos( MAX_ANGLE_ERROR ) )
+			horizontal = rotationFromUpLook( up, look );
 		else
-			horizontal = rotationFromUpLook( up, -newState.rotation.z, newState.rotation );
+			horizontal = rotationFromUpLook( up, -newState.rotation.z );
 		
 		// Apply the quaternion to the horizontal frame to get the target rotation.
 		return q.toMatrix().transpose()*horizontal;
@@ -306,204 +343,11 @@ Matrix3f Quadcopter:: computePreferredRotation( const TransformState& newState, 
 		// The preferred thrust vector is suitable for use as the up vector.
 		up = thrustDirection;
 		
-		if ( math::abs(math::dot( up, look )) < math::cos( 0.001f ) )
-			return rotationFromUpLook( up, look, newState.rotation );
+		if ( math::abs(math::dot( up, look )) < math::cos( MAX_ANGLE_ERROR ) )
+			return rotationFromUpLook( up, look );
 		else
-			return rotationFromUpLook( up, -newState.rotation.z, newState.rotation );
+			return rotationFromUpLook( up, -newState.rotation.z );
 	}
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-# if 0
-
-Vector3f Quadcopter:: getPreferredAccelerationVector( Float timeStep )
-{
-	/*
-	 * Divide positionCorrection by its magnitude to get a unit vector
-	 * \hat{\rho} and Multiply \hat{\rho} by max velocity to get
-	 * newVelocityVector. This limits speed.
-	 */
-	Vector3f positionCorrectionVector = nextWaypoint - currentState.position;
-
-	float vehicleCalculatedMaxSpeed = VEHICLE_MAX_SPEED_MPS;
-	
-	if ( positionCorrectionVector.getMagnitude() < VEHICLE_CLOSE_RANGE )
-		vehicleCalculatedMaxSpeed = VEHICLE_MAX_SPEED_MPS * VEHICLE_CLOSE_RANGE_SCALE_FACTOR;
-	
-	Vector3f newVelocityVector = positionCorrectionVector.normalize()*vehicleCalculatedMaxSpeed;
-	
-	// Calculate thrust needed to correct velocity.
-	Vector3f deltaVelocityVector = newVelocityVector - lastState.velocity;
-	
-	return deltaVelocityVector / timeStep;
-}
-
-
-
-
-Vector3f Quadcopter:: getZComponentOfThrustVector( const Vector3f& accelerationVector, const Vector3f& globalGravity )
-{
-	Vector3f thrustVector = Vector3f();
-	if ( accelerationVector.z < globalGravity.z )
-	{
-		// If we need to accelerate downward faster than gravity, the best
-		// we can do is VEHICLE_MIN_THRUST.
-		thrustVector.z = VEHICLE_MIN_THRUST;
-	}
-	else if ( accelerationVector.z >= VEHICLE_MAX_THRUST )
-	{
-		// If we need to accelerate upward harder than we are capable of,
-		// the best we can do is most of MAX_THRUST.
-		thrustVector.z = VEHICLE_MAX_THRUST - VEHICLE_MIN_THRUST;
-	}
-	else
-	{
-		// Otherwise we have to calculate our z thrust as what we want
-		// vector plus gravity vector.
-		thrustVector.z = accelerationVector.z + globalGravity.z;
-	}
-	
-	return thrustVector;
-}
-
-
-
-
-Vector3f Quadcopter:: calculateXAndYComponentsOfThrust( Float timeStep, const Vector3f& inputThrust, const Vector3f& accelerationVector )
-{
-	Vector3f thrustVector = inputThrust;
-	
-	// Now we know what z must be.
-	// Get the R component of the desired acceleration vector.
-	Vector3f rOfAcceleration = Vector3f(accelerationVector.x,
-			accelerationVector.y, 0);
-
-	// Get the amount of MAX_THRUST we have left to utilize
-	float remainingThrust = math::square( VEHICLE_MAX_THRUST ) - math::square( thrustVector.z );
-	float magnitudeOfThrustLeftForR = remainingThrust < 0 ? 0 : math::sqrt( remainingThrust );
-	
-	// Calculate components of available thrust in x and y to thrust in the
-	// direction of acceleration R.
-	float xComponentOfThrustRInAccelerationR = magnitudeOfThrustLeftForR * rOfAcceleration.normalize().x;
-	float yComponentOfThrustRInAccelerationR = magnitudeOfThrustLeftForR * rOfAcceleration.normalize().y;
-	
-	// Make a thrustVectorR
-	Vector3f thrustR = Vector3f( xComponentOfThrustRInAccelerationR, yComponentOfThrustRInAccelerationR, 0 );
-	
-	// thrustR.length() and thrustVector.z will be zero or positive from above.
-	if ( math::abs( thrustVector.z ) < 0.5f ||
-		 math::abs( math::atan(thrustR.getMagnitude() / thrustVector.z) ) > VEHICLE_MAX_TILT_ANGLE_RADIANS )
-	{
-		// If the angle phi is greater than our
-		// VEHICLE_MAX_TILT_ANGLE_RADIANS, reduce the angle and deal with
-		// reduced R thrust.
-		float newThrustRMagnitude = math::abs(thrustVector.z) * math::tan(VEHICLE_MAX_TILT_ANGLE_RADIANS);
-		thrustVector.x = thrustR.normalize().x * newThrustRMagnitude;
-		thrustVector.y = thrustR.normalize().y * newThrustRMagnitude;
-	}
-	else
-	{
-		// If phi is not greater than VEHICLE_MAX_TILT_ANGLE_RADIANS, let it roll.
-		thrustVector.x = thrustR.x;
-		thrustVector.y = thrustR.y;
-	}
-
-	thrustVector = adjustLimitDeltaThrustVector(timeStep, thrustVector);
-
-	return thrustVector;
-}
-
-
-
-
-Vector3f Quadcopter:: adjustLimitDeltaThrustVector( Float timeStep, const Vector3f& inputThurst )
-{
-	Vector3f thrustVector = inputThurst;
-	Vector3f deltaThrust = thrustVector - (lastThrust);
-	
-	if ( deltaThrust.getMagnitude() / timeStep > VEHICLE_DELTA_THRUST.getMagnitude() )
-	{
-		deltaThrust = deltaThrust.normalize()*( VEHICLE_DELTA_THRUST*((float) timeStep) );
-		thrustVector = Vector3f(lastThrust + (deltaThrust));
-		
-		Vector3f thrustR = Vector3f(thrustVector.x, thrustVector.y, 0);
-		float maxR = thrustVector.z / sin(VEHICLE_MAX_TILT_ANGLE_RADIANS);
-		
-		if (thrustR.getMagnitude() > maxR)
-		{
-			thrustVector.x = thrustR.normalize().x * maxR;
-			thrustVector.y = thrustR.normalize().y * maxR;
-		}
-	}
-	
-	return thrustVector;
-}
-
-
-
-/*
-Matrix3f Quadcopter:: getNewAttitudeMatrix()
-{
-	float yaw = (float) currentState.orientation.getYawRadians();
-	float pitch = (float) currentState.orientation.getPitchRadians();
-	float roll = (float) currentState.orientation.getRollRadians();
-	
-	return VehicleAttitudeHelpers::getAttitudeMatrix(yaw, pitch, roll);
-}
-*/
-
-/*
-
-Vector3f Quadcopter:: calculatePreferredLinearAcceleration( Float timeStep )
-{
-	Vector3f lastVelocityBodyFrame = Vector3f(currentVelocityBodyFrame);
-	currentVelocityBodyFrame = VehicleAttitudeHelpers::translateVectorToBodyFrame( currentAttitudeMatrix, currentState.velocity );
-	
-	return (currentVelocityBodyFrame - lastVelocityBodyFrame) / timeStep;
-}
-
-
-
-
-Vector3f Quadcopter:: calculatePreferredAngularVelocity( Float timeStep )
-{
-	float oldYaw = (float) lastState.orientation.getYawRadians();
-	float oldPitch = (float) lastState.orientation.getPitchRadians();
-	float oldRoll = (float) lastState.orientation.getRollRadians();
-
-	VehicleAttitudeHelpers vehiclehelpers;
-
-	Matrix3f oldAttitudeMatrix = VehicleAttitudeHelpers::getAttitudeMatrix(
-			oldYaw, oldPitch, oldRoll);
-
-	Matrix3f newAttitudeMatrixBodyFrame = VehicleAttitudeHelpers::
-			translateCoordinateSystemToBodyFrame( oldAttitudeMatrix, currentAttitudeMatrix );
-
-	// Get yaw, pitch, and roll from newAttitudeMatrixBodyFrame
-	Vector3f yawPitchRollBodyFrame = vehiclehelpers
-			.getYawPitchRollFromCoordinateSystemInRadians(newAttitudeMatrixBodyFrame);
-
-	float angularVelocityX = (float) (yawPitchRollBodyFrame.z / timeStep);
-	float angularVelocityY = (float) (yawPitchRollBodyFrame.y / timeStep);
-	float angularVelocityZ = (float) (yawPitchRollBodyFrame.x / timeStep);
-	
-	
-	setAngularVelocities(AngularVelocity(angularVelocityZ,
-			angularVelocityY, angularVelocityX));
-}
-
-*/
-
-
-#endif

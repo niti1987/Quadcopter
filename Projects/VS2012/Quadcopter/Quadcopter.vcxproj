@@ -19,28 +19,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Source\AngularVelocity.h">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Source\main.cpp" />
-    <ClCompile Include="..\..\..\Source\Orientation.h">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Source\Quadcopter.cpp" />
-    <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp" />
-    <ClCompile Include="..\..\..\Source\Vehicle.h">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Source\VehicleAttitudeHelpers.h" />
-    <ClCompile Include="..\..\..\Source\VehicleState.h">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
-    <ClCompile Include="Global_planner.cpp" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="..\..\..\Source\AngularVelocity.h" />
+    <ClInclude Include="..\..\..\Source\Orientation.h" />
     <ClInclude Include="..\..\..\Source\Quadcopter.h" />
     <ClInclude Include="..\..\..\Source\QuadcopterDemo.h" />
-    <ClInclude Include="Global_planner.h" />
+    <ClInclude Include="..\..\..\Source\Simulation.h" />
+    <ClInclude Include="..\..\..\Source\TransformState.h" />
+    <ClInclude Include="..\..\..\Source\Vehicle.h" />
+    <ClInclude Include="..\..\..\Source\VehicleAttitudeHelpers.h" />
+    <ClInclude Include="..\..\..\Source\VehicleState.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Source\main.cpp" />
+    <ClCompile Include="..\..\..\Source\Quadcopter.cpp" />
+    <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp" />
+    <ClCompile Include="..\..\..\Source\Simulation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6525ED7B-C16C-4491-8CC2-EAB50961BE8D}</ProjectGuid>

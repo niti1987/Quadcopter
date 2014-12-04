@@ -23,8 +23,8 @@
 
 QuadcopterDemo:: QuadcopterDemo()
 	:	SimpleDemo( "Quadcopter Demo", Size2D( 1024, 768 ) ),
-		cameraSpeed( 300 ),
-		cameraFriction( 0.15 ),
+		cameraSpeed( 300.0f ),
+		cameraFriction( 0.15f ),
 		cameraPitch( 40.0f ),
 		cameraYaw( 0 ),
 		cameraDistance( 50.0f ),
@@ -89,9 +89,9 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	{
 		Pointer<DirectionalLight> light = Pointer<DirectionalLight>::construct();
 		light->setColor( Color3f( 1.0f, 1.0f, 1.0f ) );
-		light->setIntensity( 1.0 );
-		light->setAmbientContribution( 0.1 );
-		light->setDirection( Vector3f( -0.5, -1, -0.5 ).normalize() );
+		light->setIntensity( 1.0f );
+		light->setAmbientContribution( 0.1f );
+		light->setDirection( Vector3f( -0.5f, -1.0f, -0.5f ).normalize() );
 		light->setFlag( LightFlags::SHADOWS_ENABLED, true );
 		scene->addLight( light );
 	}
@@ -233,8 +233,8 @@ void QuadcopterDemo:: handleInput( const Time& dt )
 	//********************************************************************************
 	// Turn the camera.
 	
-	const Float yawSpeed = 120.0f*dt;
-	const Float pitchSpeed = 60.0f*dt;
+	const Float yawSpeed = 120.0f*Float(dt);
+	const Float pitchSpeed = 60.0f*Float(dt);
 	
 	if ( keyboard->keyIsPressed( Key::LEFT_ARROW ) )
 		cameraYaw -= yawSpeed;
@@ -268,13 +268,13 @@ void QuadcopterDemo:: handleInput( const Time& dt )
 		cameraAcceleration -= camera->getLeftDirection()*cameraSpeed;
 	
 	// Integrate the camera's velocity.
-	cameraVelocity += cameraAcceleration*dt;
+	cameraVelocity += cameraAcceleration*Float(dt);
 	
 	// Apply camera friction.
 	cameraVelocity *= (Float(1) - cameraFriction);
 	
 	// Integrate the camera's position.
-	cameraTarget += cameraVelocity*dt;
+	cameraTarget += cameraVelocity*Float(dt);
 }
 
 
@@ -531,10 +531,10 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 	quadcopter->downCamera->setFarPlaneDistance( 1000 );
 	
 	// Configure the motors of the quadcopter.
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0, -0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0, -0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0, 0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0, 0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0.05f, -0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0.05f, -0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0.05f, 0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0.05f, 0.35f ), Vector3f( 0, 1, 0 ) ) );
 	
 	// The mass of the quadcopter.
 	quadcopter->mass = 1.0f;

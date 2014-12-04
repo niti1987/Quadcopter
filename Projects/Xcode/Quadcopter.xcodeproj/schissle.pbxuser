@@ -7,6 +7,8 @@
 		addToTargets = (
 			8DD76FA90486AB0100D96B5E /* Quadcopter */,
 		);
+		breakpoints = (
+		);
 		codeSenseManager = AD71CC5F19E86F1C00DB96E3 /* Code sense */;
 		executables = (
 			AD71CC3B19E86F0700DB96E3 /* Quadcopter */,
@@ -34,8 +36,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 439193119;
-			PBXWorkspaceStateSaveDate = 439193119;
+			PBXPerProjectTemplateStateSaveDate = 439337199;
+			PBXWorkspaceStateSaveDate = 439337199;
 		};
 		sourceControlManager = AD71CC5E19E86F1C00DB96E3 /* Source Control */;
 		userBuildSettings = {
@@ -65,25 +67,25 @@
 	};
 	AD02BC221A2CF738009D4E1B /* Quadcopter.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {874, 4914}}";
-			sepNavSelRange = "{10807, 0}";
-			sepNavVisRange = "{12511, 633}";
-			sepNavWindowFrame = "{{221, 65}, {845, 813}}";
+			sepNavIntBoundsRect = "{{0, 0}, {798, 8666}}";
+			sepNavSelRange = "{4060, 0}";
+			sepNavVisRange = "{0, 1623}";
+			sepNavWindowFrame = "{{317, 65}, {845, 813}}";
 		};
 	};
 	AD02BC231A2CF738009D4E1B /* Quadcopter.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {918, 3444}}";
-			sepNavSelRange = "{2340, 0}";
-			sepNavVisRange = "{1105, 1955}";
-			sepNavWindowFrame = "{{467, 65}, {845, 813}}";
+			sepNavIntBoundsRect = "{{0, 0}, {918, 4326}}";
+			sepNavSelRange = "{2562, 1}";
+			sepNavVisRange = "{1770, 1515}";
+			sepNavWindowFrame = "{{595, 65}, {845, 813}}";
 		};
 	};
 	AD02BC241A2CF738009D4E1B /* QuadcopterDemo.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {798, 8442}}";
-			sepNavSelRange = "{11768, 0}";
-			sepNavVisRange = "{14573, 1720}";
+			sepNavIntBoundsRect = "{{0, 0}, {798, 8302}}";
+			sepNavSelRange = "{5423, 0}";
+			sepNavVisRange = "{16285, 1757}";
 			sepNavWindowFrame = "{{89, 65}, {845, 813}}";
 		};
 	};
@@ -92,6 +94,14 @@
 			sepNavIntBoundsRect = "{{0, 0}, {874, 7364}}";
 			sepNavSelRange = "{3991, 68}";
 			sepNavVisRange = "{3671, 692}";
+			sepNavWindowFrame = "{{15, 65}, {845, 813}}";
+		};
+	};
+	AD02BC511A2CF7B8009D4E1B /* Simulation.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {798, 3080}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1215}";
 			sepNavWindowFrame = "{{15, 65}, {845, 813}}";
 		};
 	};

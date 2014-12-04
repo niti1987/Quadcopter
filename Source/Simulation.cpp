@@ -21,7 +21,7 @@
 
 
 Simulation:: Simulation()
-	:	gravity( 0, -9.81, 0 )
+	:	gravity( 0, -9.81f, 0 )
 {
 }
 

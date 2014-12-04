@@ -65,48 +65,6 @@ class Quadcopter
 			
 			
 			
-			/// Compute the ideal thrust vector based on the given goal position, transform stsate, and external acceleration.
-			Vector3f computePreferredThrust( const TransformState& state, const Vector3f& goalPosition,
-											const Vector3f& externalAcceleration ) const;
-			
-			
-			
-			
-			/// Compute and return the ideal net angular acceleration that will acheive the target orientation.
-			Vector3f computePreferredAngularAcceleration( const TransformState& state, const Vector3f& goalPosition,
-														const Vector3f& preferredThrust ) const;
-			
-			
-			
-			
-			/// Compute and return the preferred rotation matrix.
-			Matrix3f computePreferredRotation( const TransformState& state, const Vector3f& look,
-												const Vector3f& preferredThrust ) const;
-			
-			
-			
-			/// Compute and return an orthonormal rotation matrix from the given up and look vectors.
-			static Matrix3f rotationFromUpLook( const Vector3f& up, const Vector3f& look )
-			{
-				// Generate an orthonormal rotation matrix based on that up vector and the desired look direction.
-				Vector3f right = math::cross( up, -look ).normalize();
-				Vector3f back = math::cross( right, up ).normalize();
-				
-				return Matrix3f( right, up, back ).orthonormalize();
-			}
-			
-			
-			
-			/// Apply a force vector at the given radial arm in world space, adding to the linear and angular acceleration.
-			static void applyForce( const Vector3f& r, const Vector3f& forceVector,
-									Vector3f& force, Vector3f& torque )
-			{
-				force += forceVector;
-				torque += math::cross( r, forceVector );
-			}
-			
-			
-			
 			
 		//********************************************************************************
 		//********************************************************************************
@@ -125,7 +83,8 @@ class Quadcopter
 					RIM_INLINE Motor( const Vector3f& newCOMOffset, const Vector3f& newThrustDirection )
 						:	comOffset( newCOMOffset ),
 							thrustDirection( newThrustDirection.normalize() ),
-							thrust( 0 )
+							thrust( 0 ),
+							thrustRange( 0, MAX_MOTOR_THRUST )
 					{
 					}
 					
@@ -144,6 +103,9 @@ class Quadcopter
 					
 					/// The current thrust of the motor in newtons.
 					Float thrust;
+					
+					/// The range of valid thrust of the motor in newtons.
+					AABB1f thrustRange;
 					
 			};
 			
@@ -176,6 +138,12 @@ class Quadcopter
 			/// The maximum change in thrust per second for a quadcopter motor.
 			static const float MAX_DELTA_THRUST;
 			
+			/// The maximum thrust that the quadcopter can produce from a single motor.
+			static const float MAX_MOTOR_THRUST;
+			
+			/// The maximum torque magnitude that the quadcopter should have, to limit spin.
+			static const float MAX_ANGULAR_ACCELERATION;
+			
 			static const Vector3f VEHICLE_DELTA_THRUST;
 			
 			static const float VEHICLE_CLOSE_RANGE;
@@ -196,7 +164,7 @@ class Quadcopter
 			
 			
 			/// A list of the motors that are part of the quadcopter.
-			ShortArrayList<Motor,4> motors;
+			ArrayList<Motor> motors;
 			
 			
 			
@@ -230,6 +198,96 @@ class Quadcopter
 			
 			/// The graphical representation of the quadcopter.
 			Pointer<GraphicsObject> graphics;
+			
+			
+			
+			
+	private:
+		
+		//********************************************************************************
+		//********************************************************************************
+		//********************************************************************************
+		//******	Private Functions
+			
+			
+			
+			
+			/// Compute the ideal thrust vector based on the given goal position, transform stsate, and external acceleration.
+			Vector3f computePreferredThrust( const TransformState& state, const Vector3f& goalPosition,
+											const Vector3f& externalAcceleration ) const;
+			
+			
+			
+			
+			/// Compute and return the ideal net angular acceleration that will acheive the target orientation.
+			Vector3f computePreferredAngularAcceleration( const TransformState& state, const Vector3f& goalPosition,
+														const Vector3f& preferredThrust ) const;
+			
+			
+			
+			
+			/// Compute and return the preferred rotation matrix.
+			Matrix3f computePreferredRotation( const TransformState& state, const Vector3f& look,
+												const Vector3f& preferredThrust ) const;
+			
+			
+			
+			
+			static void solveForMotorThrusts( const TransformState& state, const ArrayList<Motor>& motors,
+												const Vector3f& preferredForce, const Vector3f& preferredTorque,
+												Array<Float>& thrusts );
+			
+			
+			
+			
+			
+			/// Optimize for the best set of motor thrusts for the specified preferred force and torque.
+			static void optimizeThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts,
+										const Vector3f& localForce, const Vector3f& localTorque );
+			
+			
+			
+			/// Use a hill-climbing algorithm to find the best thrusts given starting thrusts.
+			/**
+			  * The final best cost is returned.
+			  */
+			static Float hillClimbThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts,
+										const Vector3f& localForce, const Vector3f& localTorque );
+			
+			
+			
+			/// Constrain the thrust values for the motors to be within the valid range for the motors.
+			static void constrainThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts );
+			
+			
+			
+			
+			/// Compute the cost for a new set of thrust values for the given quadcopter state and preferred accelerations.
+			static Float getCost( const ArrayList<Motor>& motors, const Array<Float>& thrusts,
+									const Vector3f& localForce, const Vector3f& localTorque );
+			
+			
+			
+			
+			/// Compute and return an orthonormal rotation matrix from the given up and look vectors.
+			static Matrix3f rotationFromUpLook( const Vector3f& up, const Vector3f& look )
+			{
+				// Generate an orthonormal rotation matrix based on that up vector and the desired look direction.
+				Vector3f right = math::cross( up, -look ).normalize();
+				Vector3f back = math::cross( right, up ).normalize();
+				
+				return Matrix3f( right, up, back ).orthonormalize();
+			}
+			
+			
+			
+			/// Apply a force vector at the given radial arm in world space, adding to the linear and angular acceleration.
+			static void applyForce( const Vector3f& r, const Vector3f& forceVector,
+									Vector3f& force, Vector3f& torque )
+			{
+				force += forceVector;
+				torque += math::cross( r, forceVector );
+			}
 			
 			
 			

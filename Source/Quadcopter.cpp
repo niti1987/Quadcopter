@@ -10,13 +10,15 @@
 #include "Quadcopter.h"
 
 
-const float Quadcopter:: MAX_SPEED = 7.0f;
-const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 15.0f );
-const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 50.0f );
+const float Quadcopter:: MAX_SPEED = 2.0f;
+const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 5.0f );
+const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 20.0f );
 const float Quadcopter:: MAX_ANGLE_ERROR = math::degreesToRadians( 1.0f );
 const float Quadcopter:: MAX_THRUST = 20;
 const float Quadcopter:: MIN_THRUST = 1;
-const float Quadcopter:: MAX_DELTA_THRUST = 20.0f;
+const float Quadcopter:: MAX_MOTOR_THRUST = MAX_THRUST / 4;
+const float Quadcopter:: MAX_ANGULAR_ACCELERATION = 1;
+const float Quadcopter:: MAX_DELTA_THRUST = 1.0f;
 
 const Vector3f Quadcopter:: VEHICLE_DELTA_THRUST = Vector3f(20, 20, 25);
 
@@ -39,8 +41,10 @@ const float Quadcopter:: VEHICLE_CLOSE_RANGE_SCALE_FACTOR = 0.2f;
 Quadcopter:: Quadcopter()
 	:	currentState(),
 		mass( 1 ),
-		inertia( Matrix3f::IDENTITY ),
-		planningTimestep( 0.5f ),
+		inertia( 10, 0, 0,
+				0, 1, 0,
+				0, 0, 10 ),
+		planningTimestep( 0.016f ),
 		frontCamera( Pointer<PerspectiveCamera>::construct() ),
 		downCamera( Pointer<PerspectiveCamera>::construct() )
 {
@@ -114,23 +118,29 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	Vector3f preferredAngularAcceleration = computePreferredAngularAcceleration( newState, nextWaypoint, preferredThrust );
 	
 	// Add the preferred accelerations to the output parameters.
-	linearAcceleration += preferredThrust;
+	//linearAcceleration += preferredThrust;
 	angularAcceleration += preferredAngularAcceleration;
 	
 	//****************************************************************************
-	// Determine the final acceleration due to the motors.
-	/*
-	Vector3f localThrust = currentState.rotateVectorToWorld( preferredThrust );
+	// Solve for the thrust (scalar value) at each motor given the current state.
+	
+	Array<Float> thrusts( motors.getSize(), 0 );
+	
+	solveForMotorThrusts( currentState, motors, mass*preferredThrust, inertia*preferredAngularAcceleration, thrusts );
+	
+	//****************************************************************************
+	// Apply the force and torque due to each motor.
 	
 	Vector3f force, torque;
 	
 	for ( Index m = 0; m < motors.getSize(); m++ )
 	{
 		const Motor& motor = motors[m];
+		const Float motorThrust = thrusts[m];
 		
 		// Transform the center-of mass offset into world space.
 		Vector3f motorPoint = currentState.transformToWorld( motor.comOffset );
-		Vector3f motorForce = currentState.rotateVectorToWorld( motor.thrustDirection*math::dot( motor.thrustDirection, localThrust ) / motors.getSize() );
+		Vector3f motorForce = currentState.rotateVectorToWorld( motor.thrustDirection*motorThrust );
 		
 		applyForce( motorPoint, motorForce, force, torque );
 	}
@@ -139,10 +149,10 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	Matrix3f worldInverseInertia = newState.rotation * inertia.invert() * newState.rotation.transpose();
 	
 	/// Apply the motor acceleration.
-	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
-	//linearAcceleration = Vector3f();
+	linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
 	//angularAcceleration += worldInverseInertia*torque;
-	*/
+	//linearAcceleration = Vector3f();
+	//angularAcceleration = Vector3f();
 }
 
 
@@ -289,6 +299,16 @@ Vector3f Quadcopter:: computePreferredAngularAcceleration( const TransformState&
 	Vector3f deltaAngularVelocity = preferredAngularVelocity - state.angularVelocity;
 	Vector3f preferredAngularAcceleration = deltaAngularVelocity / planningTimestep;
 	
+	// Make sure the preferred angular acceleration is within the limits.
+	Float preferredAngularAccelerationMag = preferredAngularAcceleration.getMagnitude();
+	
+	if  ( preferredAngularAccelerationMag > MAX_ANGULAR_ACCELERATION )
+		preferredAngularAcceleration *= (MAX_ANGULAR_ACCELERATION / preferredAngularAccelerationMag);
+	
+	//Vector3f localAcceleration = state.rotateVectorToBody( preferredAngularAcceleration );
+	//localAcceleration.y = 0;
+	//preferredAngularAcceleration = state.rotateVectorToWorld( localAcceleration );
+	
 	return preferredAngularAcceleration;
 }
 
@@ -349,5 +369,250 @@ Matrix3f Quadcopter:: computePreferredRotation( const TransformState& newState, 
 			return rotationFromUpLook( up, -newState.rotation.z );
 	}
 }
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Motor Thrust Computation Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+void Quadcopter:: solveForMotorThrusts( const TransformState& state, const ArrayList<Motor>& motors,
+										const Vector3f& preferredForce, const Vector3f& preferredTorque,
+										Array<Float>& thrusts )
+{
+	Vector3f localForce = state.rotateVectorToBody( preferredForce );
+	Vector3f localTorque = state.rotateVectorToBody( preferredTorque );
+	localTorque.y = 0;
+	
+	// Pick a decent initial guess.
+	thrusts.setAll( localForce.getMagnitude() / thrusts.getSize() );
+	
+	optimizeThrusts( motors, thrusts, localForce, localTorque );
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Thrust Optimization Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+void Quadcopter:: optimizeThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts,
+									const Vector3f& localForce, const Vector3f& localTorque )
+{
+	const Size numTrys = 100;
+	const Size numMotors = motors.getSize();
+	Array<Float> currentThrusts = thrusts;
+	Float currentCost = getCost( motors, currentThrusts, localForce, localTorque );
+	
+	for ( Index i = 0; i < numTrys; i++ )
+	{
+		// Pick a random starting thrust value.
+		Array<Float> tempThrusts = currentThrusts;
+		
+		for ( Index m = 0; m < numMotors; m++ )
+		{
+			const Motor& motor = motors[m];
+			tempThrusts[m] = math::random( motor.thrustRange.min, motor.thrustRange.max );
+		}
+		
+		Float cost = hillClimbThrusts( motors, tempThrusts, localForce, localTorque );
+		
+		if ( cost < currentCost )
+		{
+			currentThrusts = tempThrusts;
+			currentCost = cost;
+		}
+	}
+	
+	thrusts = currentThrusts;
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Thrust Optimization Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+Float Quadcopter:: hillClimbThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts,
+									const Vector3f& localForce, const Vector3f& localTorque )
+{
+	const Float stepSize = 0.1f; // Newtons.
+	const Float acceleration = 1.2f; // unitless
+	const Float epsilon = 0.0001f;
+	const Size maxIterations = 50;
+	const Size numCandidates = 5;
+	const Float candidates[numCandidates] = { -acceleration, -1.0f / acceleration, 0, 1.0f / acceleration, acceleration };
+	
+	const Size numMotors = motors.getSize();
+	Array<Float> currentThrusts = thrusts;
+	Array<Float> currentStepSize( numMotors, stepSize );
+	Float currentCost = getCost( motors, currentThrusts, localForce, localTorque );
+	
+	for ( Index iteration = 0; iteration < maxIterations; iteration++ )
+	{
+		// Hill climb for each variable.
+		for ( Index m = 0; m < numMotors; m++ )
+		{
+			Float bestCost = math::max<Float>();
+			const Float startPoint = currentThrusts[m];
+			Index bestCandidate = numCandidates / 2;
+			
+			// Try each candidate location to see which has the best cost.
+			for ( Index c = 0; c < numCandidates; c++ )
+			{
+				currentThrusts[m] = startPoint + candidates[c]*currentStepSize[m];
+				
+				Float candidateCost = getCost( motors, currentThrusts, localForce, localTorque );
+				
+				if ( candidateCost < bestCost )
+				{
+					bestCost = candidateCost;
+					bestCandidate = c;
+				}
+			}
+			
+			if ( bestCost > math::min<Float>() )
+			{
+				currentThrusts[m] = startPoint + candidates[bestCandidate]*currentStepSize[m];
+				currentStepSize[m] *= candidates[bestCandidate]; // accelerate.
+			}
+		}
+		
+		constrainThrusts( motors, currentThrusts );
+		Float newCost = getCost( motors, currentThrusts, localForce, localTorque );
+		
+		// Check to see if there is convergence.
+		if ( math::abs( newCost - currentCost ) < epsilon )
+		{
+			thrusts = currentThrusts;
+			return newCost;
+		}
+		
+		currentCost = newCost;
+	}
+	
+	thrusts = currentThrusts;
+	
+	return currentCost;
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Motor Constraint Enforcement Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+void Quadcopter:: constrainThrusts( const ArrayList<Motor>& motors, Array<Float>& thrusts )
+{
+	const Size numMotors = motors.getSize();
+	
+	if ( thrusts.getSize() < motors.getSize() )
+		thrusts.setSize( motors.getSize() );
+	
+	for ( Index m = 0; m < numMotors; m++ )
+	{
+		const Motor& motor = motors[m];
+		Float thrust = thrusts[m];
+		
+		thrust = math::clamp( thrust, motor.thrustRange.min, motor.thrustRange.max );
+		
+		thrusts[m] = thrust;
+	}
+}
+
+
+
+
+//##########################################################################################
+//##########################################################################################
+//############		
+//############		Thrust Cost Method
+//############		
+//##########################################################################################
+//##########################################################################################
+
+
+
+
+Float Quadcopter:: getCost( const ArrayList<Motor>& motors, const Array<Float>& thrusts,
+							const Vector3f& localForce, const Vector3f& localTorque )
+{
+	// Weight constants for each of the terms in the cost function.
+	const Float deltaWeight = 0;
+	const Float linearWeight = 1.0f;
+	const Float angleWeight = 0.0f;
+	
+	const Size numMotors = motors.getSize();
+	
+	//****************************************************************************
+	// Compute the cost due to change in thrust.
+	
+	Float deltaCost = 0;
+	
+	for ( Index m = 0; m < numMotors; m++ )
+		deltaCost += math::square( thrusts[m] - motors[m].thrust );
+	
+	//****************************************************************************
+	// Compute the cost due to not meeting the target force/torque.
+	
+	Vector3f newForce;
+	Vector3f newTorque;
+	
+	for ( Index m = 0; m < numMotors; m++ )
+	{
+		const Motor& motor = motors[m];
+		const Float motorThrust = thrusts[m];
+		Vector3f motorForce = motor.thrustDirection*motorThrust;
+		
+		applyForce( motor.comOffset, motorForce, newForce, newTorque );
+	}
+	
+	Float linearCost = localForce.getDistanceToSquared( newForce );
+	Float angleCost = localTorque.getDistanceToSquared( newTorque );
+	
+	//****************************************************************************
+	// Accumulate the final weighted costs.
+	
+	Float cost = 0;
+	cost += deltaWeight*deltaCost;
+	cost += linearWeight*linearCost;
+	cost += angleWeight*angleCost;
+	
+	return cost;
+}
+
+
 
 

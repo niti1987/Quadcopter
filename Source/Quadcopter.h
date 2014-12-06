@@ -16,6 +16,8 @@
 
 #include "TransformState.h"
 
+#include "Global_planner.h"
+
 
 using namespace rim;
 using namespace rim::graphics;
@@ -174,6 +176,9 @@ class Quadcopter
 			
 			/// The current target waypoint for the quadcopter in world space.
 			Vector3f nextWaypoint;
+
+			/// The goal position for the quadcopter in world space.
+			Vector3f goalpoint;
 			
 			mutable Matrix3f prefRot;
 			
@@ -210,6 +215,9 @@ class Quadcopter
 		//********************************************************************************
 		//******	Private Functions
 			
+			/// Compute the path based on goal position and transform state
+			vertices getpath(const TransformState& state, const Vector3f& goalPosition, int numsamples) const;
+
 			
 			
 			

@@ -90,6 +90,16 @@ void Quadcopter:: updateGraphics()
 }
 
 
+//############
+// Path to the goal
+//###############
+
+vertices Quadcopter::getpath(const TransformState& state, const Vector3f& goalPosition, int numsamples) const
+{
+	
+	return (Global_planner::prm(state.position,goalPosition,numsamples));
+}
+
 
 
 //##########################################################################################

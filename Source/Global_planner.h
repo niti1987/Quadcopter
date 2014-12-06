@@ -168,6 +168,12 @@ public:
 	}
 
 
+	static vertices prm(const Vector3f start, const Vector3f goal,int numsamples) 
+	{
+
+
+
+	}
 
 
 

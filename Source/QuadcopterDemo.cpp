@@ -349,7 +349,7 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	
 	// Set the goal for each quadcopter.
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
-		quadcopters[i]->nextWaypoint = goal;
+		quadcopters[i]->goalpoint = goal;
 }
 
 
@@ -588,7 +588,7 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 									0, 0, (2.0f/5.0f)*M*R*R + 2.0f*m*l*l );
 	
 	// Set the goal position.
-	quadcopter->nextWaypoint = goal;
+	quadcopter->goalpoint = goal;
 	
 	return quadcopter;
 }

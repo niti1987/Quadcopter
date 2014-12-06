@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Source\AngularVelocity.h" />
+    <ClInclude Include="..\..\..\Source\Global_planner.h" />
     <ClInclude Include="..\..\..\Source\Orientation.h" />
     <ClInclude Include="..\..\..\Source\Quadcopter.h" />
     <ClInclude Include="..\..\..\Source\QuadcopterDemo.h" />

@@ -147,6 +147,9 @@ class QuadcopterDemo : public SimpleDemo
 			
 			Pointer<GraphicsScene> scene;
 			
+			/// A pointer to a BVH used for ray tracing in the scene.
+			Pointer<bvh::BVH> bvh;
+			
 			
 			
 			Pointer<PerspectiveCamera> camera;

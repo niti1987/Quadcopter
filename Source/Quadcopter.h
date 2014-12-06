@@ -121,6 +121,7 @@ class Quadcopter
 			
 			
 			static const float MAX_SPEED;
+			static const float MAX_ACCELERATION;
 			static const float MAX_TILT_ANGLE;
 			
 			/// The maximum allowed angular velocity, in radians per second.

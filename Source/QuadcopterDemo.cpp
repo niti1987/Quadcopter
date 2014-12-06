@@ -10,6 +10,7 @@
 #include "QuadcopterDemo.h"
 
 
+
 //##########################################################################################
 //##########################################################################################
 //############		
@@ -28,7 +29,7 @@ QuadcopterDemo:: QuadcopterDemo()
 		cameraPitch( 40.0f ),
 		cameraYaw( 0 ),
 		cameraDistance( 50.0f ),
-		timeStep( 1/60.0f )
+		timeStep( 0.5/60.0f )
 {
 }
 
@@ -112,7 +113,9 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	{
 		Resource<GraphicsShape> mesh = getResourceManager()->getResource<GraphicsShape>( 
 											ResourceID( rootPath + "Data/Port City/Port City.obj" ) );
-		Pointer<MeshShape> shape = getGraphicsConverter()->convertGenericMesh( mesh.getData().dynamicCast<GenericMeshShape>() );
+		Pointer<GenericMeshShape> genericMesh = mesh.getData().dynamicCast<GenericMeshShape>();
+		bvh = Pointer<AABBTree4>::construct();
+		Pointer<MeshShape> shape = getGraphicsConverter()->convertGenericMesh( genericMesh );
 		Pointer<GraphicsObject> object = Pointer<GraphicsObject>::construct( shape );
 		object->setPosition( Vector3f( 0, 0, 0 ) );
 		scene->addObject( object );
@@ -530,14 +533,24 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 	quadcopter->downCamera->setNearPlaneDistance( 1.0f );
 	quadcopter->downCamera->setFarPlaneDistance( 1000 );
 	
+	Float l = 0.5f; // distance to motors from center,
+	
 	// Configure the motors of the quadcopter.
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0.05f, -0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0.05f, -0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( 0.35f, 0.05f, 0.35f ), Vector3f( 0, 1, 0 ) ) );
-	quadcopter->motors.add( Quadcopter::Motor( Vector3f( -0.35f, 0.05f, 0.35f ), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( l*Vector3f( -1, 0, -1 ).normalize(), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( l*Vector3f( 1, 0, -1 ).normalize(), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( l*Vector3f( 1, 0, 1 ).normalize(), Vector3f( 0, 1, 0 ) ) );
+	quadcopter->motors.add( Quadcopter::Motor( l*Vector3f( -1, 0, 1 ).normalize(), Vector3f( 0, 1, 0 ) ) );
+	
+	Float mass = 1.0f;
+	Float M = 0.6f; // mass of center
+	Float R = 0.05f; // center sphere radius
+	Float m = (mass - M) / quadcopter->motors.getSize();
 	
 	// The mass of the quadcopter.
-	quadcopter->mass = 1.0f;
+	quadcopter->mass = mass;
+	quadcopter->inertia = Matrix3f( (2.0f/5.0f)*M*R*R + 2.0f*m*l*l, 0, 0,
+									0, (2.0f/5.0f)*M*R*R + 4.0f*m*l*l, 0,
+									0, 0, (2.0f/5.0f)*M*R*R + 2.0f*m*l*l );
 	
 	// Set the goal position.
 	quadcopter->nextWaypoint = goal;

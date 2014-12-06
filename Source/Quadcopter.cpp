@@ -10,8 +10,9 @@
 #include "Quadcopter.h"
 
 
-const float Quadcopter:: MAX_SPEED = 2.0f;
-const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 5.0f );
+const float Quadcopter:: MAX_SPEED = 4.0f;
+const float Quadcopter:: MAX_ACCELERATION = 10.0f;
+const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 15.0f );
 const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 20.0f );
 const float Quadcopter:: MAX_ANGLE_ERROR = math::degreesToRadians( 1.0f );
 const float Quadcopter:: MAX_THRUST = 20;
@@ -22,7 +23,7 @@ const float Quadcopter:: MAX_DELTA_THRUST = 1.0f;
 
 const Vector3f Quadcopter:: VEHICLE_DELTA_THRUST = Vector3f(20, 20, 25);
 
-const float Quadcopter:: VEHICLE_CLOSE_RANGE = 7;
+const float Quadcopter:: VEHICLE_CLOSE_RANGE = 1;
 const float Quadcopter:: VEHICLE_CLOSE_RANGE_SCALE_FACTOR = 0.2f;
 
 
@@ -41,10 +42,10 @@ const float Quadcopter:: VEHICLE_CLOSE_RANGE_SCALE_FACTOR = 0.2f;
 Quadcopter:: Quadcopter()
 	:	currentState(),
 		mass( 1 ),
-		inertia( 10, 0, 0,
+		inertia( 1, 0, 0,
 				0, 1, 0,
-				0, 0, 10 ),
-		planningTimestep( 0.016f ),
+				0, 0, 1 ),
+		planningTimestep( 0.016f / 2 ),
 		frontCamera( Pointer<PerspectiveCamera>::construct() ),
 		downCamera( Pointer<PerspectiveCamera>::construct() )
 {
@@ -118,15 +119,17 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	Vector3f preferredAngularAcceleration = computePreferredAngularAcceleration( newState, nextWaypoint, preferredThrust );
 	
 	// Add the preferred accelerations to the output parameters.
-	//linearAcceleration += preferredThrust;
+	linearAcceleration += preferredThrust;
 	angularAcceleration += preferredAngularAcceleration;
 	
 	//****************************************************************************
 	// Solve for the thrust (scalar value) at each motor given the current state.
 	
 	Array<Float> thrusts( motors.getSize(), 0 );
+	Vector3f localPreferredForce = mass*newState.rotateVectorToBody( preferredThrust );
+	Vector3f localPreferredTorque = inertia*newState.rotateVectorToBody( preferredAngularAcceleration );
 	
-	solveForMotorThrusts( currentState, motors, mass*preferredThrust, inertia*preferredAngularAcceleration, thrusts );
+	solveForMotorThrusts( newState, motors, localPreferredForce, localPreferredTorque, thrusts );
 	
 	//****************************************************************************
 	// Apply the force and torque due to each motor.
@@ -149,9 +152,9 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	Matrix3f worldInverseInertia = newState.rotation * inertia.invert() * newState.rotation.transpose();
 	
 	/// Apply the motor acceleration.
-	linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
+	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
 	//angularAcceleration += worldInverseInertia*torque;
-	//linearAcceleration = Vector3f();
+	linearAcceleration = Vector3f();
 	//angularAcceleration = Vector3f();
 }
 
@@ -207,12 +210,19 @@ Vector3f Quadcopter:: computePreferredThrust( const TransformState& newState, co
 	// Determine the additional thrust necessary to acheive the desired change in velocity
 	// within the planning time step.
 	Vector3f preferredThrust = deltaVelocity / planningTimestep;
-	
+	Float preferredThrustMag = preferredThrust.getMagnitude();
+	/*
+	if ( preferredThrustMag > MAX_ACCELERATION )
+	{
+		preferredThrust *= (MAX_ACCELERATION / preferredThrustMag);
+		preferredThrustMag = MAX_ACCELERATION;
+	}
+	*/
 	// Compensate in the preferred thrust for the effects of environmental forces (i.e. gravity, drag).
 	preferredThrust -= externalAcceleration;
 	
 	// Make sure the preferred velocity is within the limits of thrust produced by the motors.
-	Float preferredThrustMag = preferredThrust.getMagnitude();
+	preferredThrustMag = preferredThrust.getMagnitude();
 	
 	if  ( preferredThrustMag > MAX_THRUST )
 	{
@@ -251,7 +261,7 @@ Vector3f Quadcopter:: computePreferredAngularAcceleration( const TransformState&
 	
 	//****************************************************************************
 	
-	Matrix3f preferredRotation = computePreferredRotation( state, deltaPosition.normalize(), preferredThrust );
+	Matrix3f preferredRotation = computePreferredRotation( state, -state.rotation.z/*deltaPosition.normalize()*/, preferredThrust );
 	prefRot = preferredRotation;
 	
 	// Compute the rotational difference between the new rotation and the target rotation.
@@ -385,11 +395,11 @@ Matrix3f Quadcopter:: computePreferredRotation( const TransformState& newState, 
 
 
 void Quadcopter:: solveForMotorThrusts( const TransformState& state, const ArrayList<Motor>& motors,
-										const Vector3f& preferredForce, const Vector3f& preferredTorque,
+										const Vector3f& localPreferredForce, const Vector3f& localPreferredTorque,
 										Array<Float>& thrusts )
 {
-	Vector3f localForce = state.rotateVectorToBody( preferredForce );
-	Vector3f localTorque = state.rotateVectorToBody( preferredTorque );
+	Vector3f localForce = localPreferredForce;
+	Vector3f localTorque = localPreferredTorque;
 	localTorque.y = 0;
 	
 	// Pick a decent initial guess.

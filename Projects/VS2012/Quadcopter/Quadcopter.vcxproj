@@ -23,6 +23,7 @@
     <ClInclude Include="..\..\..\Source\Orientation.h" />
     <ClInclude Include="..\..\..\Source\Quadcopter.h" />
     <ClInclude Include="..\..\..\Source\QuadcopterDemo.h" />
+    <ClInclude Include="..\..\..\Source\Roadmap.h" />
     <ClInclude Include="..\..\..\Source\Simulation.h" />
     <ClInclude Include="..\..\..\Source\TransformState.h" />
     <ClInclude Include="..\..\..\Source\Vehicle.h" />
@@ -33,6 +34,7 @@
     <ClCompile Include="..\..\..\Source\main.cpp" />
     <ClCompile Include="..\..\..\Source\Quadcopter.cpp" />
     <ClCompile Include="..\..\..\Source\QuadcopterDemo.cpp" />
+    <ClCompile Include="..\..\..\Source\Roadmap.cpp" />
     <ClCompile Include="..\..\..\Source\Simulation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

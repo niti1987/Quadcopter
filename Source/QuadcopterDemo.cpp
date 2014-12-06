@@ -114,7 +114,7 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 		Resource<GraphicsShape> mesh = getResourceManager()->getResource<GraphicsShape>( 
 											ResourceID( rootPath + "Data/Port City/Port City.obj" ) );
 		Pointer<GenericMeshShape> genericMesh = mesh.getData().dynamicCast<GenericMeshShape>();
-		bvh = Pointer<AABBTree4>::construct();
+		roadmap = Pointer<Roadmap>::construct( genericMesh );
 		Pointer<MeshShape> shape = getGraphicsConverter()->convertGenericMesh( genericMesh );
 		Pointer<GraphicsObject> object = Pointer<GraphicsObject>::construct( shape );
 		object->setPosition( Vector3f( 0, 0, 0 ) );
@@ -148,7 +148,7 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	// Create a quadcopter.
 	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 1, 0 ) ) );
 	
-	
+	roadmap->rebuild( AABB3f( -300, 300, 0, 50, -300, 300 ), 1000 );
 	
 	return true;
 }
@@ -405,6 +405,8 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	//****************************************************************************
 	// Draw debug information in the scene.
 	
+	immediateRenderer->getRenderMode().setFlag( RenderFlags::BLENDING, true );
+	
 	// Draw the goal location.
 	immediateRenderer->setPointSize( 10 );
 	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
@@ -468,6 +470,39 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	
 	immediateRenderer->render();
 	*/
+	
+	
+	// Draw the roadmap nodes.
+	immediateRenderer->setPointSize( 5 );
+	immediateRenderer->color( 0.0f, 0.0f, 0.5f );
+	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
+	
+	for ( Index i = 0; i < roadmap->getNodeCount(); i++ )
+	{
+		immediateRenderer->vertex( roadmap->getNode(i).position );
+	}
+	
+	immediateRenderer->render();
+	
+	
+	// Draw the roadmap connections.
+	immediateRenderer->setLineWidth( 1 );
+	immediateRenderer->color( 1.0f, 1.0f, 1.0f, 0.1f );
+	immediateRenderer->begin( IndexedPrimitiveType::LINES );
+	
+	for ( Index i = 0; i < roadmap->getNodeCount(); i++ )
+	{
+		const ArrayList<Index>& neighbors = roadmap->getNode(i).neighbors;
+		const Size numNeighbors = neighbors.getSize();
+		
+		for ( Index n = 0; n < numNeighbors; n++ )
+		{
+			immediateRenderer->vertex( roadmap->getNode(i).position );
+			immediateRenderer->vertex( roadmap->getNode(neighbors[n]).position );
+		}
+	}
+	
+	immediateRenderer->render();
 	
 	//****************************************************************************
 	// Draw the UI

@@ -154,7 +154,7 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	/// Apply the motor acceleration.
 	//linearAcceleration += mass > math::epsilon<Float>() ? force / mass : Vector3f();
 	//angularAcceleration += worldInverseInertia*torque;
-	linearAcceleration = Vector3f();
+	//linearAcceleration = Vector3f();
 	//angularAcceleration = Vector3f();
 }
 

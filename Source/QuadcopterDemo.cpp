@@ -116,6 +116,7 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 											ResourceID( rootPath + "Data/Port City/Port City.obj" ) );
 		Pointer<GenericMeshShape> genericMesh = mesh.getData().dynamicCast<GenericMeshShape>();
 		roadmap = Pointer<Roadmap>::construct( genericMesh );
+
 		Pointer<MeshShape> shape = getGraphicsConverter()->convertGenericMesh( genericMesh );
 		Pointer<GraphicsObject> object = Pointer<GraphicsObject>::construct( shape );
 		object->setPosition( Vector3f( 0, 0, 0 ) );
@@ -352,6 +353,7 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
 		{
 			quadcopters[i]->goalpoint = goal;
+			quadcopters[i]->roadmap = roadmap;
 			quadcopters[i]->roadmap->rebuild(AABB3f(quadcopters[i]->currentState.position.x,quadcopters[i]->goalpoint.x,
 													quadcopters[i]->currentState.position.y,quadcopters[i]->goalpoint.y,
 													quadcopters[i]->currentState.position.z,quadcopters[i]->goalpoint.z),1000);

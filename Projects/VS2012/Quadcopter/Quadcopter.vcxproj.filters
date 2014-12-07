@@ -36,6 +36,9 @@
     <ClInclude Include="..\..\..\Source\Global_planner.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Source\Roadmap.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Source\main.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Source\Simulation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Source\Roadmap.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

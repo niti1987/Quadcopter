@@ -1,5 +1,20 @@
 #pragma once
 
+
+/**
+ * 
+ * This class has been roughly tested but due to the importance of the
+ * operations in the class to the rest of the simulation system, extensive
+ * testing should be performed on all of the contained functions.
+ * 
+ * This class contains static helper functions for calculating coordinate
+ * matrices and various transformations and rotations upon them.
+ * 
+ * 
+ * Author: Niti Madhugiri
+ * 
+ */
+
 //#include "vmath.h"
 #include <math.h>
 
@@ -15,19 +30,6 @@ using namespace rim;
 using namespace rim::math;
 
 
-/**
- * 
- * This class has been roughly tested but due to the importance of the
- * operations in the class to the rest of the simulation system, extensive
- * testing should be performed on all of the contained functions.
- * 
- * This class contains static helper functions for calculating coordinate
- * matrices and various transformations and rotations upon them.
- * 
- * 
- * Author: Niti Madhugiri
- * 
- */
 
 #define PI 3.1416
 

@@ -3,6 +3,7 @@
  *  Quadcopter
  *
  *  Created by Carl Schissler on 10/23/14.
+ *  Co-author: Niti Madhugiri
  *  Copyright 2014 __MyCompanyName__. All rights reserved.
  *
  */
@@ -17,7 +18,7 @@
 #include "TransformState.h"
 
 #include "Global_planner.h"
-
+#include "Roadmap.h"
 
 using namespace rim;
 using namespace rim::graphics;
@@ -169,13 +170,16 @@ class Quadcopter
 			/// A list of the motors that are part of the quadcopter.
 			ArrayList<Motor> motors;
 			
+			Pointer<Roadmap> roadmap;
 			
+			vertices path;
+			mutable int nextid;
 			
 			/// The previous thrust vector in the world coordinate frame.
 			Vector3f lastThrust;
 			
 			/// The current target waypoint for the quadcopter in world space.
-			Vector3f nextWaypoint;
+			mutable Vector3f nextWaypoint;
 
 			/// The goal position for the quadcopter in world space.
 			Vector3f goalpoint;
@@ -216,7 +220,7 @@ class Quadcopter
 		//******	Private Functions
 			
 			/// Compute the path based on goal position and transform state
-			vertices getpath(const TransformState& state, const Vector3f& goalPosition, int numsamples) const;
+			vertices getpath(const TransformState& state, const Vector3f& goalPosition, Pointer<Roadmap> rmap) const;
 
 			
 			

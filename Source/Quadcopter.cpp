@@ -3,6 +3,7 @@
  *  Quadcopter
  *
  *  Created by Carl Schissler on 10/23/14.
+ *  Co-author: Niti Madhugiri
  *  Copyright 2014 __MyCompanyName__. All rights reserved.
  *
  */
@@ -25,6 +26,7 @@ const Vector3f Quadcopter:: VEHICLE_DELTA_THRUST = Vector3f(20, 20, 25);
 
 const float Quadcopter:: VEHICLE_CLOSE_RANGE = 1;
 const float Quadcopter:: VEHICLE_CLOSE_RANGE_SCALE_FACTOR = 0.2f;
+
 
 
 
@@ -69,6 +71,7 @@ void Quadcopter:: updateGraphics()
 {
 	const Vector3f& position = currentState.position;
 	const Matrix3f& rotation = currentState.rotation;
+
 	
 	if ( graphics.isSet() )
 	{
@@ -94,10 +97,10 @@ void Quadcopter:: updateGraphics()
 // Path to the goal
 //###############
 
-vertices Quadcopter::getpath(const TransformState& state, const Vector3f& goalPosition, int numsamples) const
+vertices Quadcopter::getpath(const TransformState& state, const Vector3f& goalPosition, Pointer<Roadmap> rmap) const
 {
-	
-	return (Global_planner::prm(state.position,goalPosition,numsamples));
+	Global_planner g_plan = Global_planner(); 
+	return (g_plan.prm(state.position,goalPosition,rmap));
 }
 
 
@@ -116,6 +119,19 @@ vertices Quadcopter::getpath(const TransformState& state, const Vector3f& goalPo
 void Quadcopter:: computeAcceleration( const TransformState& newState, Float timeStep,
 										Vector3f& linearAcceleration, Vector3f& angularAcceleration ) const
 {
+
+	if((float)((nextWaypoint - goalpoint).getMagnitude()) != 0)
+	{
+		if((float)((nextWaypoint-newState.position).getMagnitude()) < (VEHICLE_CLOSE_RANGE/1.5))
+		{
+			nextid = nextid + 1;
+			nextWaypoint = path[nextid];
+			
+		}
+
+	}
+	
+
 	//****************************************************************************
 	// Determine the preferred thrust vector based on the next waypoint.
 	

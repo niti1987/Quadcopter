@@ -1,13 +1,5 @@
 #pragma once
 
-#include "Orientation.h"
-#include "AngularVelocity.h"
-
-#include "rim/rimEngine.h"
-
-using namespace rim;
-using namespace rim::math;
-
 /**
  * This class represents the state of the vehicle and includes fields for
  * position, <code>Orientation</code>, and velocity.
@@ -21,6 +13,16 @@ using namespace rim::math;
  * Author: Niti Madhugiri
  * 
  */
+
+#include "Orientation.h"
+#include "AngularVelocity.h"
+
+#include "rim/rimEngine.h"
+
+using namespace rim;
+using namespace rim::math;
+
+
 class VehicleState {
     /**
      * A <code>Vector3f</code> object containing the position of the object.
@@ -42,7 +44,8 @@ public:
      * are in radians.
      * </p>
      */
-    Orientation orientation;
+    //Orientation orientation;
+	Vector3f orientation;
 
     /**
      * A <code>Vector3f</code> object containing the velocity of the object.
@@ -60,7 +63,7 @@ public:
      */
     VehicleState() {
         position = Vector3f();
-        orientation = Orientation();
+        orientation = Vector3f();//Orientation();
         velocity = Vector3f();
 		
     }
@@ -79,7 +82,7 @@ public:
      *            A <code>Vector3f</code> object containing the velocity of the
      *            object.
      */
-    VehicleState(Vector3f pos, Orientation ori,
+    VehicleState(Vector3f pos, Vector3f ori,
             Vector3f vel) {
         position = pos;
         orientation = ori;
@@ -98,7 +101,9 @@ public:
     static VehicleState deepCopy(VehicleState state) {
         Vector3f pos = Vector3f(state.position.x,
                 state.position.y, state.position.z);
-        Orientation ori = Orientation(state.orientation);
+		Vector3f ori = Vector3f(state.orientation.x,
+                state.orientation.y, state.orientation.z);
+        //Orientation ori = Orientation(state.orientation);
         Vector3f vel = Vector3f(state.velocity.x,
                 state.velocity.y, state.velocity.z);
         return VehicleState(pos, ori, vel);

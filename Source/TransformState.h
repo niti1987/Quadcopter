@@ -1,13 +1,5 @@
 #pragma once
 
-#include "Orientation.h"
-#include "AngularVelocity.h"
-
-#include "rim/rimEngine.h"
-
-using namespace rim;
-using namespace rim::math;
-
 /**
  * This class represents the transformation state of the vehicle and includes fields for
  * position, <code>Orientation</code>, and velocity.
@@ -21,6 +13,16 @@ using namespace rim::math;
  * Author: Niti Madhugiri
  * 
  */
+
+#include "Orientation.h"
+#include "AngularVelocity.h"
+
+#include "rim/rimEngine.h"
+
+using namespace rim;
+using namespace rim::math;
+
+
 class TransformState
 {
     
@@ -123,7 +125,6 @@ public:
 	{
 		return rotation*point;
 	}
-	
 	
 	
 	/// Rotate a vector in world space into body space.

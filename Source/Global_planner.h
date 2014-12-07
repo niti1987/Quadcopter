@@ -1,5 +1,13 @@
 #pragma once
 
+/*
+Global planner
+A* path optimization
+
+Author: Niti Madhugiri
+
+*/
+
 #include "VehicleState.h"
 #include "AngularVelocity.h"
 #include "Orientation.h"
@@ -11,17 +19,13 @@
 
 #include "rim/rimEngine.h"
 
+#include "Roadmap.h"
+
 //using namespace std;
 using namespace rim;
 using namespace rim::math;
 
-/*
-Global planner
-A* path optimization
 
-Author: Niti Madhugiri
-
-*/
 
 
 typedef std::vector<Vector3f> vertices;
@@ -168,16 +172,40 @@ public:
 	}
 
 
-	static vertices prm(const Vector3f start, const Vector3f goal,int numsamples) 
+	vertices prm(const Vector3f start, const Vector3f goal,Pointer<Roadmap> rmap) 
 	{
 
+		std::map<Vector3f,vertices> roadmp;
+		vertices sample;
+
+		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
+	{
+		
+		sample.push_back(rmap->getNode(i).position);
+
+		const ArrayList<Index>& neighbors = rmap->getNode(i).neighbors;
+		const Size numNeighbors = neighbors.getSize();
+		vertices nbr;
+
+		for ( Index n = 0; n < numNeighbors; n++ )
+		{
+			nbr.push_back(rmap->getNode(neighbors[n]).position );
+		}
+
+		roadmp[rmap->getNode(i).position] = nbr;
+
+	}
+
+
+		return astar(start,goal,roadmp,sample);
 
 
 	}
 
 
 
-	Global_planner(void);
+	Global_planner(){
+	};
 	
 
 };

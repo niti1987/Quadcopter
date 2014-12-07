@@ -1,19 +1,5 @@
 #pragma once
 
-#include "VehicleState.h"
-#include "AngularVelocity.h"
-#include "Orientation.h"
-#include "VehicleAttitudeHelpers.h"
-//#include "vmath.h"
-
-
-#include "rim/rimEngine.h"
-
-
-using namespace rim;
-using namespace rim::math;
-
-
 /**
  * This is supposed to be a "simple" rotorcraft but still have the ability to
  * test. As such a move method which adjusts attitude
@@ -31,6 +17,21 @@ using namespace rim::math;
  * Author: Niti Madhugiri
  * 
  */
+
+#include "VehicleState.h"
+#include "AngularVelocity.h"
+#include "Orientation.h"
+#include "VehicleAttitudeHelpers.h"
+//#include "vmath.h"
+
+
+#include "rim/rimEngine.h"
+
+
+using namespace rim;
+using namespace rim::math;
+
+
 
 static float VEHICLE_MAX_SPEED_MPS = 10.0f;
 static float VEHICLE_MAX_TILT_ANGLE_RADIANS = 0.26f;
@@ -81,9 +82,9 @@ public:
         lastStateGlobalFrame.deepCopy(startingState);
         lastThrustVector = Vector3f(GRAVITY_VECTOR*(-1));
 
-		float yaw = (float) getVehicleState().orientation.getYawRadians();
-        float pitch = (float) getVehicleState().orientation.getPitchRadians();
-        float roll = (float) getVehicleState().orientation.getRollRadians();
+		float yaw = (float) getVehicleState().orientation.x; //getYawRadians();
+        float pitch = (float) getVehicleState().orientation.y; //getPitchRadians();
+        float roll = (float) getVehicleState().orientation.z; //getRollRadians();
 
 		VehicleAttitudeHelpers vehiclehelpers;
 
@@ -109,9 +110,9 @@ public:
 	Vector3f getGravityVector() {
 		Vector3f gravityBodyFrame = Vector3f();
 		
-			float yaw = (float) getVehicleState().orientation.getYawRadians();
-			float pitch = (float) getVehicleState().orientation.getPitchRadians();
-			float roll = (float) getVehicleState().orientation.getRollRadians();
+			float yaw = (float) getVehicleState().orientation.x; //getYawRadians();
+			float pitch = (float) getVehicleState().orientation.y; //getPitchRadians();
+			float roll = (float) getVehicleState().orientation.z; //getRollRadians();
 
 			VehicleAttitudeHelpers vehiclehelpers;
 
@@ -147,9 +148,9 @@ public:
 	Vector3f getNegativeZAxis() {
 		Vector3f returnNegativeZAxis = Vector3f();
 		
-			float yaw = (float) vehicleState.orientation.getYawRadians();
-			float pitch = (float) vehicleState.orientation.getPitchRadians();
-			float roll = (float) vehicleState.orientation.getRollRadians();
+			float yaw = (float) vehicleState.orientation.x; //getYawRadians();
+			float pitch = (float) vehicleState.orientation.y; //getPitchRadians();
+			float roll = (float) vehicleState.orientation.z; //getRollRadians();
 
 			VehicleAttitudeHelpers vehiclehelpers;
 
@@ -450,9 +451,13 @@ public:
         VehicleState newState = VehicleState();
 		newState.deepCopy(getVehicleState());
 
-        newState.orientation.buildOrientationFromRadians(
+        /*newState.orientation.buildOrientationFromRadians(
                 yawPitchRollGlobalFrame.x, yawPitchRollGlobalFrame.y,
-                yawPitchRollGlobalFrame.z);
+                yawPitchRollGlobalFrame.z);*/
+
+		newState.orientation.x = yawPitchRollGlobalFrame.x;
+		newState.orientation.y = yawPitchRollGlobalFrame.y;
+		newState.orientation.z = yawPitchRollGlobalFrame.z;
 
         setVehicleState(newState);
     }
@@ -467,9 +472,9 @@ public:
      */
     Matrix3f getNewAttitudeMatrix() {
 
-        float yaw = (float) getVehicleState().orientation.getYawRadians();
-        float pitch = (float) getVehicleState().orientation.getPitchRadians();
-        float roll = (float) getVehicleState().orientation.getRollRadians();
+        float yaw = (float) getVehicleState().orientation.x; //getYawRadians();
+        float pitch = (float) getVehicleState().orientation.y; //getPitchRadians();
+        float roll = (float) getVehicleState().orientation.z; //getRollRadians();
 
 		VehicleAttitudeHelpers vehiclehelpers;
 
@@ -518,11 +523,11 @@ public:
      */
     void calculateAngularVelocities(double timeStep,
             Matrix3f currentAttitudeMatrix) {
-        float oldYaw = (float) lastStateGlobalFrame.orientation.getYawRadians();
+        float oldYaw = (float) lastStateGlobalFrame.orientation.x; //getYawRadians();
         float oldPitch = (float) lastStateGlobalFrame.orientation
-                .getPitchRadians();
+                .y; //getPitchRadians();
         float oldRoll = (float) lastStateGlobalFrame.orientation
-                .getRollRadians();
+                .z; //getRollRadians();
 
 		VehicleAttitudeHelpers vehiclehelpers;
 

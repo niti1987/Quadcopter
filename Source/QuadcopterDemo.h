@@ -3,6 +3,7 @@
  *  Quadcopter
  *
  *  Created by Carl Schissler on 9/10/14.
+ *  Additions: Niti Madhugiri
  *  Copyright 2014 __MyCompanyName__. All rights reserved.
  *
  */
@@ -25,7 +26,7 @@ using namespace rim::engine;
 #include "Quadcopter.h"
 #include "Simulation.h"
 #include "Roadmap.h"
-
+#include "Global_planner.h"
 
 
 class QuadcopterDemo : public SimpleDemo

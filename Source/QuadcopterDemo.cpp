@@ -3,6 +3,7 @@
  *  Quadcopter
  *
  *  Created by Carl Schissler on 9/10/14.
+ *  Additions : Niti Madhugiri
  *  Copyright 2014 __MyCompanyName__. All rights reserved.
  *
  */
@@ -349,7 +350,16 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	
 	// Set the goal for each quadcopter.
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
-		quadcopters[i]->goalpoint = goal;
+		{
+			quadcopters[i]->goalpoint = goal;
+			quadcopters[i]->roadmap->rebuild(AABB3f(quadcopters[i]->currentState.position.x,quadcopters[i]->goalpoint.x,
+													quadcopters[i]->currentState.position.y,quadcopters[i]->goalpoint.y,
+													quadcopters[i]->currentState.position.z,quadcopters[i]->goalpoint.z),1000);
+			Global_planner gplan = Global_planner();
+			quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
+			quadcopters[i]->nextid = 0;
+			quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
+		}
 }
 
 
@@ -503,6 +513,41 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	}
 	
 	immediateRenderer->render();
+
+
+
+	// Draw the path nodes.
+	immediateRenderer->setPointSize( 5 );
+	immediateRenderer->color( 0.5f, 0.0f, 0.5f );
+	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
+	
+	for (Index q = 0; q < quadcopters.getSize(); q++)
+	{
+	for ( Index i = 0; i < quadcopters[q]->path.size(); i++ )
+	{
+		immediateRenderer->vertex( quadcopters[q]->path[i]);
+	}
+	
+	immediateRenderer->render();
+	
+	
+	// Draw the path connections.
+	immediateRenderer->setLineWidth( 1 );
+	immediateRenderer->color( 1.0f, 0.0f, 0.0f, 0.1f );
+	immediateRenderer->begin( IndexedPrimitiveType::LINES );
+	
+	for ( Index i = 0; i < (quadcopters[q]->path.size()-1); i++ )
+	{
+		
+			immediateRenderer->vertex( quadcopters[q]->path[i] );
+			immediateRenderer->vertex( quadcopters[q]->path[i+1] );
+		
+	}
+	
+	immediateRenderer->render();
+	}
+
+
 	
 	//****************************************************************************
 	// Draw the UI

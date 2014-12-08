@@ -186,6 +186,26 @@ public:
 		std::map<Vector3f,vertices> roadmp;
 		vertices sample;
 
+		sample.push_back(start);
+
+		vertices nbr1;
+
+		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
+	{
+		const Vector3f& p11 = rmap->getNode(i).position;
+
+		if ( p11.getDistanceToSquared(start) < 10000.0 && rmap->link( p11, start) )
+			{
+				nbr1.push_back(rmap->getNode(i).position);
+				//rmap->getNode(i).neighbors. add( );
+				
+			}
+
+	}
+
+		roadmp[start] = nbr1;
+
+
 		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
 	{
 		
@@ -203,6 +223,26 @@ public:
 		roadmp[rmap->getNode(i).position] = nbr;
 
 	}
+
+		sample.push_back(goal);
+
+		vertices nbr2;
+
+		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
+	{
+		const Vector3f& p12 = rmap->getNode(i).position;
+
+		if ( p12.getDistanceToSquared(goal) < 10000.0 && rmap->link( p12, goal) )
+			{
+				nbr2.push_back(rmap->getNode(i).position);
+				//rmap->getNode(i).neighbors. add( );
+				
+				
+			}
+
+	}
+
+		roadmp[goal] = nbr2;
 
 
 		return astar(start,goal,roadmp,sample);

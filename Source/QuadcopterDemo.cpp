@@ -363,7 +363,7 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 		
 		Global_planner gplan = Global_planner();
 		quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
-		quadcopters[i]->nextid = 0;
+		quadcopters[i]->nextid = 1;
 		
 		if ( quadcopters[i]->path.size() > 0 )
 			quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];

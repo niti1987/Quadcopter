@@ -1,234 +1,31 @@
-﻿Build started 12/7/2014 6:03:29 PM.
+﻿Build started 12/8/2014 12:37:42 AM.
      1>Project "C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /errorReport:prompt ..\..\..\Source\main.cpp ..\..\..\Source\Quadcopter.cpp ..\..\..\Source\QuadcopterDemo.cpp ..\..\..\Source\Simulation.cpp
-         main.cpp
-         Quadcopter.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH\include" /I"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics\include" /Zi /nologo /W3 /WX- /MP /O2 /Ob2 /Oi /Ot /Oy /GL /D _UNICODE /D UNICODE /GF /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc110.pdb" /Gd /TP /wd4290 /wd4996 /errorReport:prompt ..\..\..\Source\QuadcopterDemo.cpp
          QuadcopterDemo.cpp
-         Simulation.cpp
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(398): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(401): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(412): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(425): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(434): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(437): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(473): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(475): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\QuadcopterDemo.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(398): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(401): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(412): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(425): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(434): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(437): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(473): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(475): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\main.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(398): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(401): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(412): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(425): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(434): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(437): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(473): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(475): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Quadcopter.cpp)
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(398): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(401): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(412): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(425): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(434): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(437): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(473): warning C4305: '=' : truncation from 'double' to 'float'
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(475): warning C4305: '=' : truncation from 'double' to 'float'
      1>..\..\..\Source\QuadcopterDemo.cpp(34): warning C4305: 'initializing' : truncation from 'double' to 'rim::Float'
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(398): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(401): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(412): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(425): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(434): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(437): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(473): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\VehicleAttitudeHelpers.h(475): warning C4305: '=' : truncation from 'double' to 'float' (..\..\..\Source\Simulation.cpp)
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Tree<_Traits> &,const std::_Tree<_Traits> &)' : could not deduce template argument for 'const std::_Tree<_Traits> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(2245) : see declaration of 'std::operator <'
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(179) : while compiling class template member function 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const'
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(194) : see reference to function template instantiation 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\type_traits(743) : see reference to class template instantiation 'std::less<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(1028) : see reference to class template instantiation 'std::is_empty<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=std::less<rim::math::Vector3f>
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(67) : see reference to class template instantiation 'std::_Tree<_Traits>' being compiled
-                 with
-                 [
-                     _Traits=std::_Tmap_traits<rim::math::Vector3f,rim::math::Vector3f,std::less<rim::math::Vector3f>,std::allocator<std::pair<const rim::math::Vector3f,rim::math::Vector3f>>,false>
-                 ]
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\source\Global_planner.h(39) : see reference to class template instantiation 'std::map<_Kty,_Ty>' being compiled
-                 with
-                 [
-                     _Kty=rim::math::Vector3f,
-                     _Ty=rim::math::Vector3f
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)' : could not deduce template argument for 'const std::vector<_Ty,_Alloc> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\vector(1726) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1983) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::reverse_iterator<_RanIt> &,const std::reverse_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::reverse_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1259) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Revranit<_RanIt,_Base> &,const std::_Revranit<_RanIt2,_Base2> &)' : could not deduce template argument for 'const std::_Revranit<_RanIt,_Base> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1075) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Ty1,_Ty2> &)' : could not deduce template argument for 'const std::pair<_Ty1,_Ty2> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\utility(232) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'rim::Bool rim::math::operator <(PrimitiveType,const rim::math::Fixed<BaseType,fractionalBits> &)' : could not deduce template argument for 'const rim::math::Fixed<BaseType,fractionalBits> &' from 'const rim::math::Vector3f' (..\..\..\Source\main.cpp)
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\libraries\rim framework\include\rim\math/rimFixed.h(665) : see declaration of 'rim::math::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2676: binary '<' : 'const rim::math::Vector3f' does not define this operator or a conversion to a type acceptable to the predefined operator (..\..\..\Source\main.cpp)
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Tree<_Traits> &,const std::_Tree<_Traits> &)' : could not deduce template argument for 'const std::_Tree<_Traits> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(2245) : see declaration of 'std::operator <'
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(179) : while compiling class template member function 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const'
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(194) : see reference to function template instantiation 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\type_traits(743) : see reference to class template instantiation 'std::less<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(1028) : see reference to class template instantiation 'std::is_empty<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=std::less<rim::math::Vector3f>
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(67) : see reference to class template instantiation 'std::_Tree<_Traits>' being compiled
-                 with
-                 [
-                     _Traits=std::_Tmap_traits<rim::math::Vector3f,rim::math::Vector3f,std::less<rim::math::Vector3f>,std::allocator<std::pair<const rim::math::Vector3f,rim::math::Vector3f>>,false>
-                 ]
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\source\Global_planner.h(39) : see reference to class template instantiation 'std::map<_Kty,_Ty>' being compiled
-                 with
-                 [
-                     _Kty=rim::math::Vector3f,
-                     _Ty=rim::math::Vector3f
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)' : could not deduce template argument for 'const std::vector<_Ty,_Alloc> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\vector(1726) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1983) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::reverse_iterator<_RanIt> &,const std::reverse_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::reverse_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1259) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Revranit<_RanIt,_Base> &,const std::_Revranit<_RanIt2,_Base2> &)' : could not deduce template argument for 'const std::_Revranit<_RanIt,_Base> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1075) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Ty1,_Ty2> &)' : could not deduce template argument for 'const std::pair<_Ty1,_Ty2> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\utility(232) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'rim::Bool rim::math::operator <(PrimitiveType,const rim::math::Fixed<BaseType,fractionalBits> &)' : could not deduce template argument for 'const rim::math::Fixed<BaseType,fractionalBits> &' from 'const rim::math::Vector3f' (..\..\..\Source\Quadcopter.cpp)
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\libraries\rim framework\include\rim\math/rimFixed.h(665) : see declaration of 'rim::math::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2676: binary '<' : 'const rim::math::Vector3f' does not define this operator or a conversion to a type acceptable to the predefined operator (..\..\..\Source\Quadcopter.cpp)
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Tree<_Traits> &,const std::_Tree<_Traits> &)' : could not deduce template argument for 'const std::_Tree<_Traits> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(2245) : see declaration of 'std::operator <'
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(179) : while compiling class template member function 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const'
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(194) : see reference to function template instantiation 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\type_traits(743) : see reference to class template instantiation 'std::less<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(1028) : see reference to class template instantiation 'std::is_empty<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=std::less<rim::math::Vector3f>
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(67) : see reference to class template instantiation 'std::_Tree<_Traits>' being compiled
-                 with
-                 [
-                     _Traits=std::_Tmap_traits<rim::math::Vector3f,rim::math::Vector3f,std::less<rim::math::Vector3f>,std::allocator<std::pair<const rim::math::Vector3f,rim::math::Vector3f>>,false>
-                 ]
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\source\Global_planner.h(39) : see reference to class template instantiation 'std::map<_Kty,_Ty>' being compiled
-                 with
-                 [
-                     _Kty=rim::math::Vector3f,
-                     _Ty=rim::math::Vector3f
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)' : could not deduce template argument for 'const std::vector<_Ty,_Alloc> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\vector(1726) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1983) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::reverse_iterator<_RanIt> &,const std::reverse_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::reverse_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1259) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Revranit<_RanIt,_Base> &,const std::_Revranit<_RanIt2,_Base2> &)' : could not deduce template argument for 'const std::_Revranit<_RanIt,_Base> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1075) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Ty1,_Ty2> &)' : could not deduce template argument for 'const std::pair<_Ty1,_Ty2> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\utility(232) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'rim::Bool rim::math::operator <(PrimitiveType,const rim::math::Fixed<BaseType,fractionalBits> &)' : could not deduce template argument for 'const rim::math::Fixed<BaseType,fractionalBits> &' from 'const rim::math::Vector3f' (..\..\..\Source\QuadcopterDemo.cpp)
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\libraries\rim framework\include\rim\math/rimFixed.h(665) : see declaration of 'rim::math::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2676: binary '<' : 'const rim::math::Vector3f' does not define this operator or a conversion to a type acceptable to the predefined operator (..\..\..\Source\QuadcopterDemo.cpp)
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Tree<_Traits> &,const std::_Tree<_Traits> &)' : could not deduce template argument for 'const std::_Tree<_Traits> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(2245) : see declaration of 'std::operator <'
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(179) : while compiling class template member function 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const'
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(194) : see reference to function template instantiation 'bool std::less<_Ty>::operator ()(const _Ty &,const _Ty &) const' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\type_traits(743) : see reference to class template instantiation 'std::less<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=rim::math::Vector3f
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xtree(1028) : see reference to class template instantiation 'std::is_empty<_Ty>' being compiled
-                 with
-                 [
-                     _Ty=std::less<rim::math::Vector3f>
-                 ]
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\map(67) : see reference to class template instantiation 'std::_Tree<_Traits>' being compiled
-                 with
-                 [
-                     _Traits=std::_Tmap_traits<rim::math::Vector3f,rim::math::Vector3f,std::less<rim::math::Vector3f>,std::allocator<std::pair<const rim::math::Vector3f,rim::math::Vector3f>>,false>
-                 ]
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\source\Global_planner.h(39) : see reference to class template instantiation 'std::map<_Kty,_Ty>' being compiled
-                 with
-                 [
-                     _Kty=rim::math::Vector3f,
-                     _Ty=rim::math::Vector3f
-                 ]
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::vector<_Ty,_Alloc> &,const std::vector<_Ty,_Alloc> &)' : could not deduce template argument for 'const std::vector<_Ty,_Alloc> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\vector(1726) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::move_iterator<_RanIt> &,const std::move_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::move_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1983) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::reverse_iterator<_RanIt> &,const std::reverse_iterator<_RanIt2> &)' : could not deduce template argument for 'const std::reverse_iterator<_RanIt> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1259) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::_Revranit<_RanIt,_Base> &,const std::_Revranit<_RanIt2,_Base2> &)' : could not deduce template argument for 'const std::_Revranit<_RanIt,_Base> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xutility(1075) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'bool std::operator <(const std::pair<_Ty1,_Ty2> &,const std::pair<_Ty1,_Ty2> &)' : could not deduce template argument for 'const std::pair<_Ty1,_Ty2> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\utility(232) : see declaration of 'std::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2784: 'rim::Bool rim::math::operator <(PrimitiveType,const rim::math::Fixed<BaseType,fractionalBits> &)' : could not deduce template argument for 'const rim::math::Fixed<BaseType,fractionalBits> &' from 'const rim::math::Vector3f' (..\..\..\Source\Simulation.cpp)
-                 c:\users\niti1987\documents\github\quadcopter\quadcopter\libraries\rim framework\include\rim\math/rimFixed.h(665) : see declaration of 'rim::math::operator <'
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xstddef(180): error C2676: binary '<' : 'const rim::math::Vector3f' does not define this operator or a conversion to a type acceptable to the predefined operator (..\..\..\Source\Simulation.cpp)
-     1>Done Building Project "C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" (Build target(s)) -- FAILED.
+     1>..\..\..\Source\QuadcopterDemo.cpp(359): warning C4305: 'initializing' : truncation from 'double' to 'const rim::Float'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe" /NOLOGO /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics GUI" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Graphics" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim GUI" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Images" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Entities" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Engine" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Sound" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim XML" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Framework" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim BVH" /LIBPATH:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Libraries\Rim Physics" opengl32.lib RimEntities_x64.lib RimPhysics_x64.lib RimBVH_x64.lib RimEngine_x64.lib RimFramework_x64.lib RimGraphics_x64.lib RimGraphicsGUI_x64.lib RimGUI_x64.lib RimImages_x64.lib RimSound_x64.lib RimXML_x64.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.lib" /MACHINE:X64 x64\Release\main.obj
+         x64\Release\Quadcopter.obj
+         x64\Release\QuadcopterDemo.obj
+         x64\Release\Roadmap.obj
+         x64\Release\Simulation.obj
+         Generating code
+     1>c:\users\niti1987\documents\github\quadcopter\quadcopter\source\global_planner.h(180): warning C4715: 'Global_planner::astar' : not all control paths return a value
+         Finished generating code
+         Quadcopter.vcxproj -> C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\..\..\Release\Quadcopter_x64.exe
+     1>Done Building Project "C:\Users\niti1987\Documents\GitHub\Quadcopter\Quadcopter\Projects\VS2012\Quadcopter\Quadcopter.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:26.02
+Time Elapsed 00:00:07.75

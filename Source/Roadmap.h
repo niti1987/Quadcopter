@@ -28,7 +28,8 @@ class Roadmap
 			public:
 				
 				Node( const Vector3f& newPosition )
-					:	position( newPosition )
+					:	position( newPosition ),
+						previous( 0 )
 				{
 				}
 				
@@ -37,6 +38,11 @@ class Roadmap
 				
 				/// A list of the node indices of the neighbors to this node.
 				ArrayList<Index> neighbors;
+				
+				/// In the A* algorithm, this value stores the index of the previous node in the path so it can be reconstructed.
+				Index previous;
+				
+				
 		};
 		
 		
@@ -51,7 +57,14 @@ class Roadmap
 		
 		
 		
-		void rebuild( const AABB3f& bounds, Size numSamples );
+		void rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal );
+		
+		
+		
+		
+		/// Return the index of the node in the roadmap that is closest (and visible to) the specified point.
+		Index getClosestNode( const Vector3f& position ) const;
+		
 		
 		
 		

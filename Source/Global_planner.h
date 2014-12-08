@@ -96,7 +96,7 @@ public:
 
 		tent_cost[start] = 0;
 		tent_f[start] = tent_cost[start] + start.getDistanceTo(goal);
-
+		
 		for(size_t a = 0; a < samples.size(); a++)
 		{
 			if(samples[a] != start)
@@ -106,7 +106,6 @@ public:
 			}
 
 		}
-
 
 		while(!openlist.empty())
 		{
@@ -177,6 +176,7 @@ public:
 		}
 
 		perror("path not found!\n ");
+		return vertices();
 	}
 
 

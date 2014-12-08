@@ -209,9 +209,11 @@ Bool Roadmap:: link( const Vector3f& start, const Vector3f& end ) const
 
 
 
-void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples )
+void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal )
 {
 	nodes.clear();
+	nodes.add( Node( start ) );
+	nodes.add( Node( goal ) );
 	
 	for ( Index i = 0; i < numSamples; i++ )
 	{
@@ -241,5 +243,29 @@ void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples )
 		}
 	}
 }
+
+
+
+
+Index Roadmap:: getClosestNode( const Vector3f& position ) const
+{
+	const Size numNodes = nodes.getSize();
+	Float minDistance = math::max<Float>();
+	Index minIndex = 0;
+	
+	for ( Index i = 0; i < numNodes; i++ )
+	{
+		Float distance = nodes[i].position.getDistanceTo( position );
+		
+		if ( distance < minDistance )
+		{
+			minDistance = distance;
+			minIndex = i;
+		}
+	}
+	
+	return minIndex;
+}
+
 
 

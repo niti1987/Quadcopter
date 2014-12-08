@@ -150,8 +150,6 @@ Bool QuadcopterDemo:: initialize( const Pointer<GraphicsContext>& context )
 	// Create a quadcopter.
 	addQuadcopterToScene( newQuadcopter( Vector3f( 0, 1, 0 ) ) );
 	
-	roadmap->rebuild( AABB3f( -300, 300, 0, 50, -300, 300 ), 1000 );
-	
 	return true;
 }
 
@@ -352,21 +350,36 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	// Set the goal for each quadcopter.
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
 	{
+		const Vector3f& start = quadcopters[i]->currentState.position;
 		quadcopters[i]->goalpoint = goal;
 		
-		AABB3f bounds( quadcopters[i]->currentState.position );
-		bounds.enlargeFor( quadcopters[i]->goalpoint );
+		AABB3f bounds( start );
+		bounds.enlargeFor( goal );
 		const Float samplesPerM3 = 0.001;
-		const Size roadmapSamples = math::min( Size(samplesPerM3*bounds.getVolume()), Size(1000) );
-		Console << roadmapSamples;
-		quadcopters[i]->roadmap->rebuild( bounds, roadmapSamples );
+		const Size roadmapSamples = math::clamp( Size(samplesPerM3*bounds.getVolume()), Size(100), Size(1000) );
+		
+		quadcopters[i]->roadmap->rebuild( bounds, roadmapSamples, start, goal );
 		
 		Global_planner gplan = Global_planner();
-		quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
-		quadcopters[i]->nextid = 1;
+		quadcopters[i]->path = gplan.prm( start, goal, quadcopters[i]->roadmap );
 		
 		if ( quadcopters[i]->path.size() > 0 )
-			quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
+		{
+			quadcopters[i]->nextid = 1;
+			
+			if ( quadcopters[i]->path.size() > 0 )
+				quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
+		}
+		else
+		{
+			// It was unable to find a path, try enlarging the search area.
+			quadcopters[i]->roadmap->rebuild( AABB3f( -300, 300, 0, 50, -500, 300 ), Size(1000), start, goal );
+			quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
+			quadcopters[i]->nextid = 1;
+			
+			if ( quadcopters[i]->path.size() > 0 )
+				quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
+		}
 	}
 }
 

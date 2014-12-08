@@ -123,6 +123,11 @@ class QuadcopterDemo : public SimpleDemo
 			
 			
 			
+			/// Draw the specified roadmap to the current viewport.
+			void drawRoadmap( const Roadmap& roadmap );
+			
+			
+			
 			
 		//********************************************************************************
 		//********************************************************************************

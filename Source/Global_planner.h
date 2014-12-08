@@ -26,6 +26,14 @@ using namespace rim;
 using namespace rim::math;
 
 
+/// Define a less-than comparison operator for the Vector3f.
+namespace rim { namespace math {
+inline bool operator < ( const Vector3f& a, const Vector3f& b )
+{
+	return a.x < b.x && a.y < b.y && a.z < b.z;
+}
+}; };
+
 
 
 typedef std::vector<Vector3f> vertices;

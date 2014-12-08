@@ -119,16 +119,16 @@ vertices Quadcopter::getpath(const TransformState& state, const Vector3f& goalPo
 void Quadcopter:: computeAcceleration( const TransformState& newState, Float timeStep,
 										Vector3f& linearAcceleration, Vector3f& angularAcceleration ) const
 {
-
+	
 	if((float)((nextWaypoint - goalpoint).getMagnitude()) != 0)
 	{
 		if((float)((nextWaypoint-newState.position).getMagnitude()) < (VEHICLE_CLOSE_RANGE/1.5))
 		{
 			nextid = nextid + 1;
-			nextWaypoint = path[nextid];
 			
+			if ( nextid < path.size() )
+				nextWaypoint = path[nextid];
 		}
-
 	}
 	
 

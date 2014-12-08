@@ -351,17 +351,23 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	
 	// Set the goal for each quadcopter.
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
-		{
-			quadcopters[i]->goalpoint = goal;
-			quadcopters[i]->roadmap = roadmap;
-			quadcopters[i]->roadmap->rebuild(AABB3f(quadcopters[i]->currentState.position.x,quadcopters[i]->goalpoint.x,
-													quadcopters[i]->currentState.position.y,quadcopters[i]->goalpoint.y,
-													quadcopters[i]->currentState.position.z,quadcopters[i]->goalpoint.z),1000);
-			Global_planner gplan = Global_planner();
-			quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
-			quadcopters[i]->nextid = 0;
+	{
+		quadcopters[i]->goalpoint = goal;
+		
+		AABB3f bounds( quadcopters[i]->currentState.position );
+		bounds.enlargeFor( quadcopters[i]->goalpoint );
+		const Float samplesPerM3 = 0.001;
+		const Size roadmapSamples = math::min( Size(samplesPerM3*bounds.getVolume()), Size(1000) );
+		Console << roadmapSamples;
+		quadcopters[i]->roadmap->rebuild( bounds, roadmapSamples );
+		
+		Global_planner gplan = Global_planner();
+		quadcopters[i]->path = gplan.prm(quadcopters[i]->currentState.position,quadcopters[i]->goalpoint,quadcopters[i]->roadmap);
+		quadcopters[i]->nextid = 0;
+		
+		if ( quadcopters[i]->path.size() > 0 )
 			quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
-		}
+	}
 }
 
 
@@ -483,41 +489,13 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	immediateRenderer->render();
 	*/
 	
-	
-	// Draw the roadmap nodes.
-	immediateRenderer->setPointSize( 5 );
-	immediateRenderer->color( 0.0f, 0.0f, 0.5f );
-	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
-	
-	for ( Index i = 0; i < roadmap->getNodeCount(); i++ )
+	for ( Index q = 0; q < quadcopters.getSize(); q++ )
 	{
-		immediateRenderer->vertex( roadmap->getNode(i).position );
+		drawRoadmap( *quadcopters[q]->roadmap );
 	}
 	
-	immediateRenderer->render();
 	
-	
-	// Draw the roadmap connections.
-	immediateRenderer->setLineWidth( 1 );
-	immediateRenderer->color( 1.0f, 1.0f, 1.0f, 0.1f );
-	immediateRenderer->begin( IndexedPrimitiveType::LINES );
-	
-	for ( Index i = 0; i < roadmap->getNodeCount(); i++ )
-	{
-		const ArrayList<Index>& neighbors = roadmap->getNode(i).neighbors;
-		const Size numNeighbors = neighbors.getSize();
-		
-		for ( Index n = 0; n < numNeighbors; n++ )
-		{
-			immediateRenderer->vertex( roadmap->getNode(i).position );
-			immediateRenderer->vertex( roadmap->getNode(neighbors[n]).position );
-		}
-	}
-	
-	immediateRenderer->render();
-
-
-
+	/*
 	// Draw the path nodes.
 	immediateRenderer->setPointSize( 5 );
 	immediateRenderer->color( 0.5f, 0.0f, 0.5f );
@@ -548,8 +526,7 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	
 	immediateRenderer->render();
 	}
-
-
+	*/
 	
 	//****************************************************************************
 	// Draw the UI
@@ -559,6 +536,43 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	fontDrawer->drawString( UTF8String("Time Step: ") + UTF8String(timeStep*1000,2) + " ms\n" +
 							UTF8String("Simulation Time: ") + UTF8String(simulationTime*1000,3) + " ms\n"
 							, fontStyle, textPosition );
+}
+
+
+
+
+void QuadcopterDemo:: drawRoadmap( const Roadmap& roadmap )
+{
+	immediateRenderer->setPointSize( 5 );
+	immediateRenderer->color( 0.0f, 0.0f, 0.5f );
+	immediateRenderer->begin( IndexedPrimitiveType::POINTS );
+	
+	for ( Index i = 0; i < roadmap.getNodeCount(); i++ )
+	{
+		immediateRenderer->vertex( roadmap.getNode(i).position );
+	}
+	
+	immediateRenderer->render();
+	
+	
+	// Draw the roadmap connections.
+	immediateRenderer->setLineWidth( 1 );
+	immediateRenderer->color( 1.0f, 1.0f, 1.0f, 0.1f );
+	immediateRenderer->begin( IndexedPrimitiveType::LINES );
+	
+	for ( Index i = 0; i < roadmap.getNodeCount(); i++ )
+	{
+		const ArrayList<Index>& neighbors = roadmap.getNode(i).neighbors;
+		const Size numNeighbors = neighbors.getSize();
+		
+		for ( Index n = 0; n < numNeighbors; n++ )
+		{
+			immediateRenderer->vertex( roadmap.getNode(i).position );
+			immediateRenderer->vertex( roadmap.getNode(neighbors[n]).position );
+		}
+	}
+	
+	immediateRenderer->render();
 }
 
 
@@ -636,6 +650,7 @@ Pointer<Quadcopter> QuadcopterDemo:: newQuadcopter( const Vector3f& position ) c
 	
 	// Set the goal position.
 	quadcopter->goalpoint = goal;
+	quadcopter->roadmap = Pointer<Roadmap>::construct( *roadmap );
 	
 	return quadcopter;
 }

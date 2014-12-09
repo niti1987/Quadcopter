@@ -30,7 +30,7 @@ using namespace rim::math;
 namespace rim { namespace math {
 inline bool operator < ( const Vector3f& a, const Vector3f& b )
 {
-	return a.x < b.x && a.y < b.y && a.z < b.z;
+	return a.x < b.x;// && a.y < b.y && a.z < b.z;
 }
 }; };
 
@@ -97,6 +97,7 @@ public:
 		tent_cost[start] = 0;
 		tent_f[start] = tent_cost[start] + start.getDistanceTo(goal);
 		
+		
 		for(size_t a = 0; a < samples.size(); a++)
 		{
 			if(samples[a] != start)
@@ -104,14 +105,13 @@ public:
 				tent_cost[samples[a]] = 50000000;
 				tent_f[samples[a]] = tent_cost[samples[a]] + samples[a].getDistanceTo(goal);
 			}
-
 		}
-
+		
 		while(!openlist.empty())
 		{
 			Vector3f current;
 			float mincost = 50000000;
-			size_t minid;
+			size_t minid = 0;
 
 			for(size_t b = 0; b < openlist.size(); b++)
 			{
@@ -122,7 +122,7 @@ public:
 					minid = b;
 				}
 			}
-
+			
 			if(current == goal)
 			{
 				float pathcost = cost(current,start,parent);
@@ -131,10 +131,10 @@ public:
 
 			openlist.erase(openlist.begin() + minid);
 			closedlist.push_back(current);
-
+			
 			for(size_t c = 0; c < rmap[current].size(); c++)
 			{
-				bool alreadychecked, openchecked;
+				bool alreadychecked = false, openchecked = false;
 				for(size_t d = 0; d < closedlist.size(); d++)
 				{
 					if(rmap[current][c] == closedlist[d])
@@ -143,7 +143,7 @@ public:
 							break;
 					    }
 				}
-
+				
 				if(alreadychecked)
 					continue;
 
@@ -156,9 +156,8 @@ public:
 					    }
 				}
 
-
 				float tentativecost = tent_cost[current] + current.getDistanceTo(rmap[current][c]);
-
+				
 				if((!openchecked) || (tentativecost < tent_cost[rmap[current][c]]))
 				{
 					parent[rmap[current][c]] = current;
@@ -167,7 +166,6 @@ public:
 
 					if(!openchecked)
 						openlist.push_back(rmap[current][c]);
-
 				}		
 
 
@@ -175,7 +173,7 @@ public:
 
 		}
 
-		perror("path not found!\n ");
+		//perror("path not found!\n ");
 		return vertices();
 	}
 
@@ -185,9 +183,9 @@ public:
 
 		std::map<Vector3f,vertices> roadmp;
 		vertices sample;
-
+/*
 		sample.push_back(start);
-
+		
 		vertices nbr1;
 
 		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
@@ -204,7 +202,7 @@ public:
 	}
 
 		roadmp[start] = nbr1;
-
+*/
 
 		for ( Index i = 0; i < rmap->getNodeCount(); i++ )
 	{
@@ -223,7 +221,7 @@ public:
 		roadmp[rmap->getNode(i).position] = nbr;
 
 	}
-
+/*
 		sample.push_back(goal);
 
 		vertices nbr2;
@@ -243,7 +241,7 @@ public:
 	}
 
 		roadmp[goal] = nbr2;
-
+*/
 
 		return astar(start,goal,roadmp,sample);
 

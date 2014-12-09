@@ -11,15 +11,15 @@
 #include "Quadcopter.h"
 
 
-const float Quadcopter:: MAX_SPEED = 4.0f;
+const float Quadcopter:: MAX_SPEED = 10.0f;
 const float Quadcopter:: MAX_ACCELERATION = 10.0f;
 const float Quadcopter:: MAX_TILT_ANGLE = math::degreesToRadians( 15.0f );
-const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 20.0f );
+const float Quadcopter:: MAX_ROLL_RATE = math::degreesToRadians( 30.0f );
 const float Quadcopter:: MAX_ANGLE_ERROR = math::degreesToRadians( 1.0f );
 const float Quadcopter:: MAX_THRUST = 20;
 const float Quadcopter:: MIN_THRUST = 1;
 const float Quadcopter:: MAX_MOTOR_THRUST = MAX_THRUST / 4;
-const float Quadcopter:: MAX_ANGULAR_ACCELERATION = 1;
+const float Quadcopter:: MAX_ANGULAR_ACCELERATION = 10;
 const float Quadcopter:: MAX_DELTA_THRUST = 1.0f;
 
 const Vector3f Quadcopter:: VEHICLE_DELTA_THRUST = Vector3f(20, 20, 25);
@@ -122,16 +122,26 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 	
 	if((float)((nextWaypoint - goalpoint).getMagnitude()) != 0)
 	{
-		if((float)((nextWaypoint-newState.position).getMagnitude()) < (VEHICLE_CLOSE_RANGE/1.5))
+		if ((float)((nextWaypoint-newState.position).getMagnitude()) < (VEHICLE_CLOSE_RANGE/1.5))
 		{
 			nextid = nextid + 1;
 			
 			if ( nextid < path.size() )
 				nextWaypoint = path[nextid];
+			
+		}
+		
+		for ( Index i = nextid; i < path.size(); i++ )
+		{
+			if ( roadmap->link( newState.position, path[i] ) )
+			{
+				nextWaypoint = path[i];
+				nextid = i;
+			}
 		}
 	}
 	
-
+	
 	//****************************************************************************
 	// Determine the preferred thrust vector based on the next waypoint.
 	
@@ -287,7 +297,9 @@ Vector3f Quadcopter:: computePreferredAngularAcceleration( const TransformState&
 	
 	//****************************************************************************
 	
-	Matrix3f preferredRotation = computePreferredRotation( state, -state.rotation.z/*deltaPosition.normalize()*/, preferredThrust );
+	//Vector3f look = -state.rotation.z;
+	Vector3f look = deltaPosition.normalize();
+	Matrix3f preferredRotation = computePreferredRotation( state, look, preferredThrust );
 	prefRot = preferredRotation;
 	
 	// Compute the rotational difference between the new rotation and the target rotation.

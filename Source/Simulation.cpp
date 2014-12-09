@@ -21,7 +21,8 @@
 
 
 Simulation:: Simulation()
-	:	gravity( 0, -9.81f, 0 )
+	:	gravity( 0, -9.81f, 0 ),
+		drag( 1 )
 {
 }
 
@@ -201,7 +202,7 @@ void Simulation:: computeAcceleration( const Quadcopter& quadcopter, Float timeS
 	linearAcceleration = gravity;
 	
 	// Add the effects of drag forces.
-	
+	linearAcceleration -= drag*velocity;
 	
 	// Compute the quadcopter acceleration based on the environmental forces.
 	quadcopter.computeAcceleration( TransformState( position, rotation, velocity, angularVelocity ),

@@ -57,6 +57,10 @@ class Roadmap
 		
 		
 		
+		Bool traceRay( const Vector3f& start, const Vector3f& direction, Float maxDistance, Float& t );
+		
+		
+		
 		void rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal );
 		
 		

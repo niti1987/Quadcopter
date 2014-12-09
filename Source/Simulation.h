@@ -166,6 +166,9 @@ class Simulation
 			Vector3f gravity;
 			
 			
+			/// The drag coefficient in the simulation.
+			Float drag;
+			
 			
 };
 

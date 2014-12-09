@@ -208,7 +208,7 @@ Bool Roadmap:: link( const Vector3f& start, const Vector3f& end ) const
 
 
 
-
+/*
 void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal )
 {
 	nodes.clear();
@@ -231,7 +231,7 @@ void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& s
 	{
 		const Vector3f& p1 = nodes[i].position;
 		
-		for ( Index j = 0; j < nodes.getSize(); j++ )
+		for ( Index j = i + 1; j < nodes.getSize(); j++ )
 		{
 			const Vector3f& p2 = nodes[j].position;
 			
@@ -242,6 +242,90 @@ void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& s
 			}
 		}
 	}
+}
+*/
+
+
+
+void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal )
+{
+	nodes.clear();
+	nodes.add( Node( start ) );
+	nodes.add( Node( goal ) );
+	
+	for ( Index i = 0; i < numSamples; i++ )
+	{
+		Vector3f p( math::random( bounds.min.x, bounds.max.x ),
+					math::random( bounds.min.y, bounds.max.y ),
+					math::random( bounds.min.z, bounds.max.z ) );
+		
+		nodes.add( Node( p ) );
+	}
+	
+	const Float distanceThreshold = 100.0;
+	const Float distanceThreshold2 = distanceThreshold*distanceThreshold;
+	const Size maxNeighbors = 10;
+	ArrayList< Tuple<Index,Float> > neighbors;
+	
+	for ( Index i = 0; i < nodes.getSize(); i++ )
+	{
+		const Vector3f& p1 = nodes[i].position;
+		Float maxNeighborDist = 0;
+		
+		for ( Index j = i + 1; j < nodes.getSize(); j++ )
+		{
+			const Vector3f& p2 = nodes[j].position;
+			Float distSquared = p1.getDistanceToSquared(p2);
+			
+			if ( neighbors.getSize() < maxNeighbors || distSquared < maxNeighborDist )
+			{
+				if ( link( p1, p2 ) )
+				{
+					if ( neighbors.getSize() < maxNeighbors )
+					{
+						neighbors.add( Tuple<Index,Float>( j, distSquared ) );
+						maxNeighborDist = math::max( distSquared, maxNeighborDist );
+					}
+					else
+					{
+						Index maxIndex = 0;
+						Float maxDist = 0;
+						
+						for ( Index k = 0; k < neighbors.getSize(); k++ )
+						{
+							if ( neighbors[k].value2 > maxDist )
+							{
+								maxDist = neighbors[k].value2;
+								maxIndex = k;
+							}
+						}
+						
+						neighbors[maxIndex] = Tuple<Index,Float>( j, distSquared );
+						maxNeighborDist = math::max( distSquared, maxDist );
+					}
+				}
+			}
+		}
+		
+		for ( Index j = 0; j < neighbors.getSize(); j++ )
+		{
+			nodes[i].neighbors.add( neighbors[j].value1 );
+			nodes[neighbors[j].value1].neighbors.add( i );
+		}
+		
+		neighbors.clear();
+	}
+}
+
+
+
+
+Bool Roadmap:: traceRay( const Vector3f& start, const Vector3f& direction, Float maxDistance, Float& t )
+{
+	Ray3f ray( start, direction.normalize() );
+	Index primitive;
+	
+	return bvh->traceRay( ray, maxDistance, stack.getRoot(), t, primitive );
 }
 
 

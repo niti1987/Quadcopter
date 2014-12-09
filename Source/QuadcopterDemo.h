@@ -123,6 +123,13 @@ class QuadcopterDemo : public SimpleDemo
 			
 			
 			
+			/// Try generating a roadmap and return whether or not a path was found.
+			Bool generateRoadmap( Quadcopter& quadcopter, const AABB3f& bounds,
+									const Vector3f& start, const Vector3f& goal, Size numSamples );
+			
+			
+			
+			
 			/// Draw the specified roadmap to the current viewport.
 			void drawRoadmap( const Roadmap& roadmap );
 			
@@ -184,6 +191,10 @@ class QuadcopterDemo : public SimpleDemo
 			/// A pointer to a mesh to use for quadcopters.
 			Pointer<MeshShape> quadcopterMesh;
 			
+			
+			
+			/// 0 == camera view, 1 = first quadcopter, etc...
+			Index currentView;
 			
 			
 			

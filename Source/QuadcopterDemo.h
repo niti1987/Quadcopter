@@ -198,6 +198,10 @@ class QuadcopterDemo : public SimpleDemo
 			
 			
 			
+			Index frameNumber;
+			Bool recording;
+			
+			
 			
 			
 		//********************************************************************************

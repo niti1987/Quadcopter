@@ -31,7 +31,8 @@ QuadcopterDemo:: QuadcopterDemo()
 		cameraYaw( 0 ),
 		cameraDistance( 50.0f ),
 		timeStep( 0.5/60.0f ),
-		currentView( 0 )
+		currentView( 0 ),
+		recording( false )
 {
 }
 
@@ -191,6 +192,7 @@ void QuadcopterDemo:: deinitialize()
 void QuadcopterDemo:: update( const Time& dt )
 {
 	handleInput( dt );
+	Mouse::setIsVisible( true );
 	
 	//********************************************************************************
 	// Update the simulation.
@@ -317,6 +319,9 @@ void QuadcopterDemo:: keyEvent( const KeyboardEvent& event )
 		
 		if ( event.getKey() == Key::Q )
 			currentView = (currentView + 1) % (quadcopters.getSize()+1);
+		
+		if ( event.getKey() == Key::R )
+			recording = !recording;
 	}
 }
 
@@ -523,31 +528,6 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	
 	immediateRenderer->render();
 	
-	/*
-	// Draw the quadcopter target basis.
-	immediateRenderer->setLineWidth( 2 );
-	immediateRenderer->begin( IndexedPrimitiveType::LINES );
-	
-	for ( Index i = 0; i < quadcopters.getSize(); i++ )
-	{
-		const Quadcopter& quadcopter = *quadcopters[i];
-		const Matrix3f& m = quadcopter.prefRot;
-		
-		immediateRenderer->color( 1.0f, 0.0f, 0.0f );
-		immediateRenderer->vertex( quadcopter.currentState.position );
-		immediateRenderer->vertex( quadcopter.currentState.position + m.x*5 );
-		
-		immediateRenderer->color( 0.0f, 1.0f, 0.0f );
-		immediateRenderer->vertex( quadcopter.currentState.position );
-		immediateRenderer->vertex( quadcopter.currentState.position + m.y*5 );
-		
-		immediateRenderer->color( 0.0f, 0.0f, 1.0f );
-		immediateRenderer->vertex( quadcopter.currentState.position );
-		immediateRenderer->vertex( quadcopter.currentState.position + m.z*5 );
-	}
-	
-	immediateRenderer->render();
-	*/
 	
 	immediateRenderer->getRenderMode().setFlag( RenderFlags::DEPTH_WRITE, false );
 	
@@ -609,6 +589,30 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 	immediateRenderer->getRenderMode().setFlag( RenderFlags::DEPTH_TEST, true );
 	immediateRenderer->getRenderMode().setFlag( RenderFlags::DEPTH_WRITE, true );
 	
+	
+	
+	
+	// Save the graphics frame to an image file.
+	if ( recording )
+	{
+		context->flush();
+		
+		Image screen;
+		
+		if ( context->readColorBuffer( PixelFormat::RGB, screen ) )
+		{
+			Path imagePath( Directory::getExecutable(), Path("frames/" + UTF8String(frameNumber) + ".tga") );
+			FileWriter writer( imagePath );
+			
+			if ( writer.open() )
+			{
+				images::io::ImageConverter imageConverter;
+				imageConverter.encode( images::ImageFormat::TGA, screen, writer );
+				writer.close();
+			}
+			frameNumber++;
+		}
+	}
 	
 	//****************************************************************************
 	// Draw the UI

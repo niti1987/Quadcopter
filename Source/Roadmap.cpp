@@ -208,42 +208,105 @@ Bool Roadmap:: link( const Vector3f& start, const Vector3f& end ) const
 
 
 
-/*
-void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& start, const Vector3f& goal )
+
+static Float getSphereHalfAngleSize( Float observerDistance, Float sphereRadius )
 {
-	nodes.clear();
-	nodes.add( Node( start ) );
-	nodes.add( Node( goal ) );
+	const Float hypotenuseSquared = math::square(observerDistance) - math::square(sphereRadius);
+	const Float sphereHalfAngle = hypotenuseSquared > 0 ? math::acos( math::sqrt( hypotenuseSquared ) / observerDistance ) : Float(0);
+	
+	return sphereHalfAngle;
+}
+
+
+
+
+static Vector3f getRandomDirectionInZCone( math::RandomVariable<Float>& variable, Real halfAngle )
+{
+	Real u1 = variable.sample( math::cos(halfAngle), Real(1) );
+	Real u2 = variable.sample( Real(0), Real(1) );
+	Real r = math::sqrt( Real(1) - u1*u1 );
+	Real theta = Real(2)*math::pi<Real>()*u2;
+	
+	return Vector3f( r*math::cos( theta ), r*math::sin( theta ), u1 );
+}
+
+
+
+static Bool rayIntersectsSphere( const Ray3f& ray, const bvh::BoundingSphere<Float>& sphere, Real& distanceAlongRay )
+{
+	Vector3 d = sphere.position - ray.origin;
+	Real dSquared = d.getMagnitudeSquared();
+	Real rSquared = sphere.radius*sphere.radius;
+	
+	if ( dSquared < rSquared )
+	{
+		// The ray starts inside the sphere and therefore we have an intersection.
+		distanceAlongRay = Real(0);
+		
+		return true;
+	}
+	else
+	{
+		// Find the closest point on the ray to the sphere's center.
+		Real t1 = math::dot( d, ray.direction );
+		
+		if ( t1 < math::epsilon<Real>() )
+		{
+			// The ray points away from the sphere so there is no intersection.
+			return false;
+		}
+		
+		// Find the distance from the closest point to the sphere's surface.
+		Real t2Squared = rSquared - dSquared + t1*t1;
+		
+		if ( t2Squared < math::epsilon<Real>() )
+			return false;
+		
+		// Compute the distance along the ray of the intersection.
+		distanceAlongRay = t1 - math::sqrt(t2Squared);
+		
+		return true;
+	}
+}
+
+
+
+
+Bool Roadmap:: link( const Vector3f& start, const Vector3f& end, Float radius, Size numSamples ) const
+{
+	Vector3f detectorDirection = start - end;
+	Float detectorDistance = detectorDirection.getMagnitude();
+	detectorDirection /= detectorDistance;
+	
+	// Compute the angular size of the detector.
+	const Float detectorHalfAngle = getSphereHalfAngleSize( detectorDistance, radius );
+	
+	// Compute the rotation matrix for the direction samples.
+	Matrix3f detectorRotation = Matrix3::planeBasis( detectorDirection );
+	
+	// Take samples to determine the detector's visibility.
+	Size numVisible = 0;
 	
 	for ( Index i = 0; i < numSamples; i++ )
 	{
-		Vector3f p( math::random( bounds.min.x, bounds.max.x ),
-					math::random( bounds.min.y, bounds.max.y ),
-					math::random( bounds.min.z, bounds.max.z ) );
+		// Generate a ray that samples the detectors's visibility.
+		Ray3f validationRay( end, 
+							detectorRotation*getRandomDirectionInZCone( randomVariable, detectorHalfAngle ) );
 		
-		nodes.add( Node( p ) );
+		// Determine the distance along the ray where the sphere is intersected.
+		Float rayDistance;
+		
+		if ( !rayIntersectsSphere( validationRay, bvh::BoundingSphere<Float>( start, radius ), rayDistance ) )
+			continue;
+		
+		// Trace a ray to see if that point is visible.
+		if ( !bvh->traceRay( validationRay, rayDistance, stack.getRoot() ) )
+			numVisible++;
 	}
 	
-	const Float distanceThreshold = 100.0;
-	const Float distanceThreshold2 = distanceThreshold*distanceThreshold;
-	
-	for ( Index i = 0; i < nodes.getSize(); i++ )
-	{
-		const Vector3f& p1 = nodes[i].position;
-		
-		for ( Index j = i + 1; j < nodes.getSize(); j++ )
-		{
-			const Vector3f& p2 = nodes[j].position;
-			
-			if ( p1.getDistanceToSquared(p2) < distanceThreshold2 && link( p1, p2 ) )
-			{
-				nodes[i].neighbors.add( j );
-				nodes[j].neighbors.add( i );
-			}
-		}
-	}
+	return numVisible == numSamples;
 }
-*/
+
 
 
 
@@ -279,7 +342,8 @@ void Roadmap:: rebuild( const AABB3f& bounds, Size numSamples, const Vector3f& s
 			
 			if ( neighbors.getSize() < maxNeighbors || distSquared < maxNeighborDist )
 			{
-				if ( link( p1, p2 ) )
+				if ( link( p1, p2, 2.0f ) && link( p2, p1, 2.0f ) )
+				//if ( link( p1, p2 ) )
 				{
 					if ( neighbors.getSize() < maxNeighbors )
 					{

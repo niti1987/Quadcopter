@@ -56,6 +56,10 @@ class Roadmap
 		Bool link( const Vector3f& start, const Vector3f& end ) const;
 		
 		
+		/// Return whether or not the specified start and end positions are visible to each other.
+		Bool link( const Vector3f& start, const Vector3f& end, Float radius, Size numSamples = 50 ) const;
+		
+		
 		
 		Bool traceRay( const Vector3f& start, const Vector3f& direction, Float maxDistance, Float& t );
 		
@@ -101,6 +105,7 @@ class Roadmap
 		
 		TraversalStack stack;
 		
+		mutable RandomVariable<Float> randomVariable;
 		
 };
 

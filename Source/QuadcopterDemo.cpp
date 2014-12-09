@@ -207,7 +207,10 @@ void QuadcopterDemo:: update( const Time& dt )
 	
 	// Update all of the quadcopter graphical representations with their new positions.
 	for ( Index i = 0; i < quadcopters.getSize(); i++ )
+	{
+		quadcopters[i]->tracer.add( quadcopters[i]->currentState.position );
 		quadcopters[i]->updateGraphics();
+	}
 	
 	// Update the camera's orientation and position.
 	if ( currentView == 0 || currentView - 1 >= quadcopters.getSize() )
@@ -362,7 +365,7 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	if ( roadmap->traceRay( camera->getPosition(), mouseDirection, math::max<Float>(), t ) )
 	{
 		goal = (camera->getPosition() + mouseDirection*t);
-		Vector3f offset = mouseDirection*(-math::min( t, 1.0f ));
+		Vector3f offset = mouseDirection*(-math::min( t, 2.0f ));
 		goal += offset;
 	}
 	
@@ -373,7 +376,7 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 	const Size numSceneSamples = 1000;
 	const Size minNumSamples = 100;
 	const Size maxNumSamples = 1000;
-	const Size maxInitialTrys = 5;
+	const Size maxInitialTrys = 10;
 	const Size maxExpandedTrys = 3;
 	
 	// Set the goal for each quadcopter.
@@ -408,6 +411,8 @@ void QuadcopterDemo:: mouseButtonEvent( const MouseButtonEvent& event )
 		
 		if ( quadcopters[i]->path.size() > 0 )
 			quadcopters[i]->nextWaypoint = quadcopters[i]->path[quadcopters[i]->nextid];
+		
+		quadcopters[i]->tracer.clear();
 	}
 }
 
@@ -583,6 +588,20 @@ void QuadcopterDemo:: draw( const Pointer<GraphicsContext>& context )
 				immediateRenderer->vertex( quadcopters[q]->path[i] );
 				immediateRenderer->vertex( quadcopters[q]->path[i+1] );
 			
+		}
+		
+		immediateRenderer->render();
+		
+		
+		// Draw the path history.
+		immediateRenderer->setLineWidth( 1 );
+		immediateRenderer->color( 0.0f, 1.0f, 1.0f, 1.0f );
+		immediateRenderer->begin( IndexedPrimitiveType::LINES );
+		
+		for ( Index i = 0; i < (quadcopters[q]->tracer.getSize()-1); i++ )
+		{
+			immediateRenderer->vertex( quadcopters[q]->tracer[i] );
+			immediateRenderer->vertex( quadcopters[q]->tracer[i+1] );
 		}
 		
 		immediateRenderer->render();

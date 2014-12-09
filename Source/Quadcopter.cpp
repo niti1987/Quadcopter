@@ -24,7 +24,7 @@ const float Quadcopter:: MAX_DELTA_THRUST = 1.0f;
 
 const Vector3f Quadcopter:: VEHICLE_DELTA_THRUST = Vector3f(20, 20, 25);
 
-const float Quadcopter:: VEHICLE_CLOSE_RANGE = 1;
+const float Quadcopter:: VEHICLE_CLOSE_RANGE = 5;
 const float Quadcopter:: VEHICLE_CLOSE_RANGE_SCALE_FACTOR = 0.2f;
 
 
@@ -133,7 +133,8 @@ void Quadcopter:: computeAcceleration( const TransformState& newState, Float tim
 		
 		for ( Index i = nextid; i < path.size(); i++ )
 		{
-			if ( roadmap->link( newState.position, path[i] ) )
+			if ( roadmap->link( newState.position, path[i], 2.0f ) &&
+				roadmap->link( path[i], newState.position, 2.0f ) )
 			{
 				nextWaypoint = path[i];
 				nextid = i;

@@ -209,7 +209,8 @@ class Quadcopter
 			/// The graphical representation of the quadcopter.
 			Pointer<GraphicsObject> graphics;
 			
-			
+			/// A history of the previous points along this quadcopter's path.
+			ArrayList<Vector3f> tracer;
 			
 			
 	private:
